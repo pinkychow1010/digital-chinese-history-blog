@@ -1,0 +1,3360 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Python Pandas Library | 數位中國史部落格 Digital Chinese History</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="Python Pandas Library" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Basic Data Manipulation" />
+<meta property="og:description" content="Basic Data Manipulation" />
+<link rel="canonical" href="https://pinkychow1010.github.io/digital-chinese-history-blog/jupyter/2020/01/23/Pandas_TextAnalysis_TextOriganization.html" />
+<meta property="og:url" content="https://pinkychow1010.github.io/digital-chinese-history-blog/jupyter/2020/01/23/Pandas_TextAnalysis_TextOriganization.html" />
+<meta property="og:site_name" content="數位中國史部落格 Digital Chinese History" />
+<meta property="og:image" content="https://pinkychow1010.github.io/digital-chinese-history-blog/images/chart-preview.png" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-01-23T00:00:00-06:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://pinkychow1010.github.io/digital-chinese-history-blog/images/chart-preview.png" />
+<meta property="twitter:title" content="Python Pandas Library" />
+<script type="application/ld+json">
+{"url":"https://pinkychow1010.github.io/digital-chinese-history-blog/jupyter/2020/01/23/Pandas_TextAnalysis_TextOriganization.html","@type":"BlogPosting","headline":"Python Pandas Library","dateModified":"2020-01-23T00:00:00-06:00","datePublished":"2020-01-23T00:00:00-06:00","image":"https://pinkychow1010.github.io/digital-chinese-history-blog/images/chart-preview.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://pinkychow1010.github.io/digital-chinese-history-blog/jupyter/2020/01/23/Pandas_TextAnalysis_TextOriganization.html"},"description":"Basic Data Manipulation","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/digital-chinese-history-blog/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://pinkychow1010.github.io/digital-chinese-history-blog/feed.xml" title="數位中國史部落格
+Digital Chinese History
+" /><link rel="shortcut icon" type="image/x-icon" href="/digital-chinese-history-blog/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/digital-chinese-history-blog/">數位中國史部落格
+Digital Chinese History
+</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/digital-chinese-history-blog/about/">About Me</a><a class="page-link" href="/digital-chinese-history-blog/search/">Search</a><a class="page-link" href="/digital-chinese-history-blog/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Python Pandas Library</h1><p class="page-description">Basic Data Manipulation</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2020-01-23T00:00:00-06:00" itemprop="datePublished">
+        Jan 23, 2020
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      16 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/digital-chinese-history-blog/categories/#jupyter">jupyter</a>
+        
+      
+      </p>
+    
+
+    
+      
+        <div class="pb-5 d-flex flex-justify-center">
+          <div class="px-2">
+
+    <a href="https://github.com/pinkychow1010/digital-chinese-history-blog/tree/master/_notebooks/2020-01-23-Pandas_TextAnalysis_TextOriganization.ipynb" role="button" target="_blank">
+<img class="notebook-badge-image" src="/digital-chinese-history-blog/assets/badges/github.svg" alt="View On GitHub">
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://mybinder.org/v2/gh/pinkychow1010/digital-chinese-history-blog/master?filepath=_notebooks%2F2020-01-23-Pandas_TextAnalysis_TextOriganization.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/digital-chinese-history-blog/assets/badges/binder.svg" alt="Open In Binder"/>
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://colab.research.google.com/github/pinkychow1010/digital-chinese-history-blog/blob/master/_notebooks/2020-01-23-Pandas_TextAnalysis_TextOriganization.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/digital-chinese-history-blog/assets/badges/colab.svg" alt="Open In Colab"/>
+    </a>
+</div>
+          <div class="px-2">
+  <a href="https://deepnote.com/launch?url=https%3A%2F%2Fgithub.com%2Fpinkychow1010%2Fdigital-chinese-history-blog%2Fblob%2Fmaster%2F_notebooks%2F2020-01-23-Pandas_TextAnalysis_TextOriganization.ipynb" target="_blank">
+      <img class="notebook-badge-image" src="/digital-chinese-history-blog/assets/badges/deepnote.svg" alt="Launch in Deepnote"/>
+  </a>
+</div>
+
+        </div>
+      </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <ul id="toc" class="section-nav">
+<li class="toc-entry toc-h2"><a href="#Pandas-Series">Pandas Series </a></li>
+<li class="toc-entry toc-h2"><a href="#Data-Manipulation">Data Manipulation </a></li>
+<li class="toc-entry toc-h2"><a href="#Data-Analysis">Data Analysis </a></li>
+<li class="toc-entry toc-h2"><a href="#Basic-Data-Visualization">Basic Data Visualization </a></li>
+<li class="toc-entry toc-h2"><a href="#Additional-information">Additional information </a></li>
+<li class="toc-entry toc-h2"><a href="#References:">References: </a></li>
+</ul><!--
+#################################################
+### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
+#################################################
+# file to edit: _notebooks/2020-01-23-Pandas_TextAnalysis_TextOriganization.ipynb
+-->
+
+<div class="container" id="notebook-container">
+        
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><br></p>
+<p>This notebook aims to intrduce users to Pandas library, an useful tool for tabular data manipulation. What it can be done is similar to Excel but allows users to have a much higher flexibility and to manage huge dataset in efficient manner.</p>
+<p><br></p>
+<p>Presumptions:</p>
+<p><a href="https://www.youtube.com/watch?v=vmEHCJofslg&amp;t=2s">https://www.youtube.com/watch?v=vmEHCJofslg&amp;t=2s</a></p>
+<p><a href="https://www.w3schools.com/python/python_dictionaries.asp">https://www.w3schools.com/python/python_dictionaries.asp</a></p>
+<p><br></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Pandas-Series">
+<a class="anchor" href="#Pandas-Series" aria-hidden="true"><span class="octicon octicon-link"></span></a><strong><em>Pandas Series</em></strong><a class="anchor-link" href="#Pandas-Series"> </a>
+</h2>
+<p>We have learnt about list, which is a simple way to handle information but Pandas includes  many extra features to handle data, such as handling <strong>missing data</strong> and <strong>indexing objects with text</strong>. The corresponding form of a list in Pandas is a <strong>Pandas series</strong>, which acts can also be understood as a column of the <strong>Pandas dataframe</strong>. A <strong>Pandas Series</strong> can be created using <code>pd.Series()</code>.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">names</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="s1">'登江中孤屿，赠白云先生王迥'</span><span class="p">,</span> <span class="s1">'秋登兰山寄张五'</span><span class="p">,</span><span class="s1">' '</span><span class="p">,</span><span class="s1">'入峡寄弟'</span><span class="p">])</span>
+<span class="n">names</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0    登江中孤屿，赠白云先生王迥
+1          秋登兰山寄张五
+2                 
+3             入峡寄弟
+dtype: object</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Nearly all Python's built-in string methods are mirrored by a Pandas vectorized string method. Here is a list of Pandas <code>str</code> methods:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>len()</code></td>
+<td><code>lower()</code></td>
+<td><code>translate()</code></td>
+<td><code>islower()</code></td>
+</tr>
+<tr>
+<td><code>ljust()</code></td>
+<td><code>upper()</code></td>
+<td><code>startswith()</code></td>
+<td><code>isupper()</code></td>
+</tr>
+<tr>
+<td><code>rjust()</code></td>
+<td><code>find()</code></td>
+<td><code>endswith()</code></td>
+<td><code>isnumeric()</code></td>
+</tr>
+<tr>
+<td><code>center()</code></td>
+<td><code>rfind()</code></td>
+<td><code>isalnum()</code></td>
+<td><code>isdecimal()</code></td>
+</tr>
+<tr>
+<td><code>zfill()</code></td>
+<td><code>index()</code></td>
+<td><code>isalpha()</code></td>
+<td><code>split()</code></td>
+</tr>
+<tr>
+<td><code>strip()</code></td>
+<td><code>rindex()</code></td>
+<td><code>isdigit()</code></td>
+<td><code>rsplit()</code></td>
+</tr>
+<tr>
+<td><code>rstrip()</code></td>
+<td><code>capitalize()</code></td>
+<td><code>isspace()</code></td>
+<td><code>partition()</code></td>
+</tr>
+<tr>
+<td><code>lstrip()</code></td>
+<td><code>swapcase()</code></td>
+<td><code>istitle()</code></td>
+<td><code>rpartition()</code></td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We need to pay attention that although many of the strings method is not applicable in Chinese languages, some functions can still be really helpful.</p>
+<p>For example,</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">names</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">'秋'</span><span class="p">)</span> <span class="c1"># looking for item that start with a character</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0    False
+1     True
+2    False
+3    False
+dtype: bool</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">names</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">isspace</span><span class="p">()</span> <span class="c1"># looking for empty space</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0    False
+1    False
+2     True
+3    False
+dtype: bool</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">names</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">'秋'</span><span class="p">)</span> <span class="c1"># look for where (index) is a character</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0   -1
+1    0
+2   -1
+3   -1
+dtype: int64</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">names</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">pat</span><span class="o">=</span><span class="s2">""</span><span class="p">)</span> <span class="c1"># split characters</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0    [, 登, 江, 中, 孤, 屿, ，, 赠, 白, 云, 先, 生, 王, 迥, ]
+1                      [, 秋, 登, 兰, 山, 寄, 张, 五, ]
+2                                        [,  , ]
+3                               [, 入, 峡, 寄, 弟, ]
+dtype: object</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">names</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span><span class="s1">'([A-Za-z]+)'</span><span class="p">,</span> <span class="n">expand</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="c1"># look for letters (this is called regular expression, you will learn about it later)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0    NaN
+1    NaN
+2    NaN
+3    NaN
+dtype: object</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">names</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s1">'^[秋].*$'</span><span class="p">)</span> <span class="c1"># find item with characters</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0           []
+1    [秋登兰山寄张五]
+2           []
+3           []
+dtype: object</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>There are also some methods that allows convenient operations:</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>get()</code></td>
+<td>Index each element</td>
+</tr>
+<tr>
+<td><code>slice()</code></td>
+<td>Slice each element</td>
+</tr>
+<tr>
+<td><code>slice_replace()</code></td>
+<td>Replace slice in each element with passed value</td>
+</tr>
+<tr>
+<td><code>cat()</code></td>
+<td>Concatenate strings</td>
+</tr>
+<tr>
+<td><code>repeat()</code></td>
+<td>Repeat values</td>
+</tr>
+<tr>
+<td><code>normalize()</code></td>
+<td>Return Unicode form of string</td>
+</tr>
+<tr>
+<td><code>pad()</code></td>
+<td>Add whitespace to left, right, or both sides of strings</td>
+</tr>
+<tr>
+<td><code>wrap()</code></td>
+<td>Split long strings into lines with length less than a given width</td>
+</tr>
+<tr>
+<td><code>join()</code></td>
+<td>Join strings in each element of the Series with passed separator</td>
+</tr>
+<tr>
+<td><code>get_dummies()</code></td>
+<td>extract dummy variables as a dataframe</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">names</span><span class="o">.</span><span class="n">str</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">1</span><span class="p">]</span> <span class="c1"># get the first character only</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0    登
+1    秋
+2     
+3    入
+dtype: object</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">names</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">pat</span><span class="o">=</span><span class="s1">'，'</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="c1"># get first clause</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0      登江中孤屿
+1    秋登兰山寄张五
+2           
+3       入峡寄弟
+dtype: object</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We can even get some statistics about the length of our text using <code>describe()</code>.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">names</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">len</span><span class="p">()</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>count     4.000000
+mean      6.250000
+std       5.123475
+min       1.000000
+25%       3.250000
+50%       5.500000
+75%       8.500000
+max      13.000000
+dtype: float64</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We can also create a Pandas DataFrame from a <strong>dictionary</strong>: while the <strong>keys</strong> will be used as the name of the column in the <strong>Pandas DataFrame</strong>, the <strong>values</strong> will be used as the data (rows).</p>
+<p>Let's build a data frame using <a href="https://en.wikipedia.org/wiki/Historical_capitals_of_China"><strong>capital</strong></a> names for Qin and Han dynasties as an example.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">dictionary</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">'Time'</span><span class="p">:</span> <span class="p">[</span><span class="s1">''</span><span class="p">,</span><span class="s1">'– 677 BC'</span><span class="p">,</span><span class="s1">'677 BC –'</span><span class="p">,</span><span class="s1">'– 383 BC'</span><span class="p">,</span><span class="s1">'383 BC – 250 BC'</span><span class="p">,</span><span class="s1">'350 BC – 207 BC'</span><span class="p">,</span><span class="s1">'202 BC'</span><span class="p">,</span><span class="s1">'202 BC – 200 BC'</span><span class="p">,</span><span class="s1">'200 BC – 8 BC'</span><span class="p">],</span>
+    <span class="s1">'Dynasty'</span><span class="p">:</span> <span class="p">[</span><span class="s1">'Qin'</span><span class="p">,</span><span class="s1">'Qin'</span><span class="p">,</span><span class="s1">'Qin'</span><span class="p">,</span><span class="s1">'Qin'</span><span class="p">,</span><span class="s1">'Qin'</span><span class="p">,</span><span class="s1">'Qin'</span><span class="p">,</span><span class="s1">'Han'</span><span class="p">,</span><span class="s1">'Han'</span><span class="p">,</span><span class="s1">'Han'</span><span class="p">],</span> 
+    <span class="s1">'Capital'</span><span class="p">:</span> <span class="p">[</span><span class="s1">'Xiquanqiu'</span><span class="p">,</span><span class="s1">'Pingyang'</span><span class="p">,</span><span class="s1">'Yong'</span><span class="p">,</span><span class="s1">'Jingyang'</span><span class="p">,</span><span class="s1">'Yueyang'</span><span class="p">,</span><span class="s1">'Xianyang'</span><span class="p">,</span><span class="s1">'Luoyang'</span><span class="p">,</span><span class="s1">'Yueyang'</span><span class="p">,</span><span class="s1">'Changan'</span><span class="p">]</span>
+     <span class="p">}</span> <span class="c1"># remember all column in the data frame have to have the same length</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">dictionary</span><span class="p">)</span> <span class="c1"># use pd.DataFrame() and put the dict as an argument</span>
+<span class="n">df</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Time</th>
+      <th>Dynasty</th>
+      <th>Capital</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td></td>
+      <td>Qin</td>
+      <td>Xiquanqiu</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>– 677 BC</td>
+      <td>Qin</td>
+      <td>Pingyang</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>677 BC –</td>
+      <td>Qin</td>
+      <td>Yong</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>– 383 BC</td>
+      <td>Qin</td>
+      <td>Jingyang</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>383 BC – 250 BC</td>
+      <td>Qin</td>
+      <td>Yueyang</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>350 BC – 207 BC</td>
+      <td>Qin</td>
+      <td>Xianyang</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>202 BC</td>
+      <td>Han</td>
+      <td>Luoyang</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>202 BC – 200 BC</td>
+      <td>Han</td>
+      <td>Yueyang</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>200 BC – 8 BC</td>
+      <td>Han</td>
+      <td>Changan</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">'Time'</span><span class="p">)</span> <span class="c1"># we can also set text as index</span>
+<span class="n">df</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Dynasty</th>
+      <th>Capital</th>
+    </tr>
+    <tr>
+      <th>Time</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th></th>
+      <td>Qin</td>
+      <td>Xiquanqiu</td>
+    </tr>
+    <tr>
+      <th>– 677 BC</th>
+      <td>Qin</td>
+      <td>Pingyang</td>
+    </tr>
+    <tr>
+      <th>677 BC –</th>
+      <td>Qin</td>
+      <td>Yong</td>
+    </tr>
+    <tr>
+      <th>– 383 BC</th>
+      <td>Qin</td>
+      <td>Jingyang</td>
+    </tr>
+    <tr>
+      <th>383 BC – 250 BC</th>
+      <td>Qin</td>
+      <td>Yueyang</td>
+    </tr>
+    <tr>
+      <th>350 BC – 207 BC</th>
+      <td>Qin</td>
+      <td>Xianyang</td>
+    </tr>
+    <tr>
+      <th>202 BC</th>
+      <td>Han</td>
+      <td>Luoyang</td>
+    </tr>
+    <tr>
+      <th>202 BC – 200 BC</th>
+      <td>Han</td>
+      <td>Yueyang</td>
+    </tr>
+    <tr>
+      <th>200 BC – 8 BC</th>
+      <td>Han</td>
+      <td>Changan</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>To view only the first row:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Dynasty</th>
+      <th>Capital</th>
+    </tr>
+    <tr>
+      <th>Time</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th></th>
+      <td>Qin</td>
+      <td>Xiquanqiu</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>To view only the last row:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">tail</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Dynasty</th>
+      <th>Capital</th>
+    </tr>
+    <tr>
+      <th>Time</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>200 BC – 8 BC</th>
+      <td>Han</td>
+      <td>Changan</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In order to understand better the group characteristics, we can also use the <strong>groupby</strong> option. It is used with a <strong>groupby()</strong> following with a <a href="https://pandas.pydata.org/docs/reference/groupby.html"><strong>method()</strong></a>.</p>
+<p>For example, we can use <strong>groupby("Dynasty").count()</strong> to count number of rows (number of capital) in each dynasty.</p>
+<p><br></p>
+<p><strong>Remarks:</strong> Index cannot be used as the groupby object.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">"Dynasty"</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Capital</th>
+    </tr>
+    <tr>
+      <th>Dynasty</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Han</th>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>Qin</th>
+      <td>6</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+<p><br></p>
+<h2 id="Data-Manipulation">
+<a class="anchor" href="#Data-Manipulation" aria-hidden="true"><span class="octicon octicon-link"></span></a><strong>Data Manipulation</strong><a class="anchor-link" href="#Data-Manipulation"> </a>
+</h2>
+<p><br></p>
+<p>After understanding what is a <strong>Pandas Series</strong> and what is a <strong>Pandas DataFrame</strong>, we can start with some basic manipulation using a data frame. 
+Let's start with an example to build a Pandas dataframe from a text file.</p>
+<p>First, we upload a text and selected <strong>titles.txt</strong> file. (can be found in the <strong>data</strong> folder)</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">google.colab</span> <span class="kn">import</span> <span class="n">files</span>
+<span class="n">uploaded</span> <span class="o">=</span> <span class="n">files</span><span class="o">.</span><span class="n">upload</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">uploaded</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+    <span class="n">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="s1">'r'</span><span class="p">)</span>
+    <span class="n">titles</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+
+     <input type="file" id="files-c264e304-c8f2-4e68-804b-9582ffc94e28" name="files[]" multiple disabled style="border:none">
+     <output id="result-c264e304-c8f2-4e68-804b-9582ffc94e28">
+      Upload widget is only available when the cell has been executed in the
+      current browser session. Please rerun this cell to enable.
+      </output>
+      <script src="/nbextensions/google.colab/files.js"></script> 
+</div>
+
+</div>
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Saving titles.txt to titles (1).txt
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Then, we can split the text into <strong>paragraphs</strong> (separate by two new lines) and <strong>sentence</strong> (separate by one new line).</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">titles</span> <span class="o">=</span> <span class="n">titles</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">"</span><span class="se">\n\n</span><span class="s2">"</span><span class="p">)</span> <span class="c1"># two new lines</span>
+<span class="n">titles</span> <span class="o">=</span> <span class="p">[</span><span class="n">lines</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">'</span><span class="se">\n</span><span class="s1">'</span><span class="p">)</span> <span class="k">for</span> <span class="n">lines</span> <span class="ow">in</span> <span class="n">titles</span><span class="p">]</span> <span class="c1"># one new line, done in a list comprehension</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">titles</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span> <span class="c1"># check the first two items we have: 卷159_1 and 卷159_2</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[['卷159_1 「从张丞相游南纪城猎，戏赠裴迪张参军」孟浩然',
+  '\u3000\u3000从禽非吾乐，不好云梦田。岁暮登城望，偏令乡思悬。',
+  '\u3000\u3000公卿有几几，车骑何翩翩。世禄金张贵，官曹幕府贤。',
+  '\u3000\u3000顺时行杀气，飞刃争割鲜。十里届宾馆，征声匝妓筵。',
+  '\u3000\u3000高标回落日，平楚散芳烟。何意狂歌客，从公亦在旃。'],
+ ['卷159_2 「登江中孤屿，赠白云先生王迥」孟浩然',
+  '\u3000\u3000悠悠清江水，水落沙屿出。回潭石下深，绿筱岸傍密。',
+  '\u3000\u3000鲛人潜不见，渔父歌自逸。忆与君别时，泛舟如昨日。',
+  '\u3000\u3000夕阳开返照，中坐兴非一。南望鹿门山，归来恨如失。']]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We can also check how many titles (卷) are there:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">titles</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>269</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Then construct our dataframe.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span> <span class="c1"># In case library is not imported</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"content"</span><span class="p">:</span> <span class="n">titles</span><span class="p">})</span> <span class="c1"># construct a data frame using a dictionary</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>content</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>[卷159_1 「从张丞相游南纪城猎，戏赠裴迪张参军」孟浩然, 　　从禽非吾乐，不好云梦田。...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>[卷159_2 「登江中孤屿，赠白云先生王迥」孟浩然, 　　悠悠清江水，水落沙屿出。回潭石下...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>[卷159_3 「晚春卧病寄张八」孟浩然, 　　南陌春将晚，北窗犹卧病。林园久不游，草木一何...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>[卷159_4 「秋登兰山寄张五」孟浩然, 　　北山白云里，隐者自怡悦。相望试登高，心飞逐鸟...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>[卷159_5 「入峡寄弟」孟浩然, 　　吾昔与尔辈，读书常闭门。未尝冒湍险，岂顾垂堂言。,...</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We realize the content column is so messy as it contains different information such as which titles, author name and the content itself. So we want to set up different new columns:</p>
+<p><br></p>
+<p><strong>1) title: The title</strong></p>
+<p><strong>2) content: The text</strong></p>
+<p><strong>3) index: use the text id (eg. 159_1) as index</strong></p>
+<p>We can set up new columns by simply writing</p>
+<p><strong>df["name of the new column"] = [what we plan to put in]</strong></p>
+<p>What we plan to put in can be for example, a Numpy array with the same length, or just a number (in this case all rows will have the same value). For example,</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">"test"</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>content</th>
+      <th>test</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>[卷159_1 「从张丞相游南纪城猎，戏赠裴迪张参军」孟浩然, 　　从禽非吾乐，不好云梦田。...</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>[卷159_2 「登江中孤屿，赠白云先生王迥」孟浩然, 　　悠悠清江水，水落沙屿出。回潭石下...</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>[卷159_3 「晚春卧病寄张八」孟浩然, 　　南陌春将晚，北窗犹卧病。林园久不游，草木一何...</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>[卷159_4 「秋登兰山寄张五」孟浩然, 　　北山白云里，隐者自怡悦。相望试登高，心飞逐鸟...</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>[卷159_5 「入峡寄弟」孟浩然, 　　吾昔与尔辈，读书常闭门。未尝冒湍险，岂顾垂堂言。,...</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Or this:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s2">"test"</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">269</span><span class="p">)</span>
+
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>content</th>
+      <th>test</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>[卷159_1 「从张丞相游南纪城猎，戏赠裴迪张参军」孟浩然, 　　从禽非吾乐，不好云梦田。...</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>[卷159_2 「登江中孤屿，赠白云先生王迥」孟浩然, 　　悠悠清江水，水落沙屿出。回潭石下...</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>[卷159_3 「晚春卧病寄张八」孟浩然, 　　南陌春将晚，北窗犹卧病。林园久不游，草木一何...</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>[卷159_4 「秋登兰山寄张五」孟浩然, 　　北山白云里，隐者自怡悦。相望试登高，心飞逐鸟...</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>[卷159_5 「入峡寄弟」孟浩然, 　　吾昔与尔辈，读书常闭门。未尝冒湍险，岂顾垂堂言。,...</td>
+      <td>4</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We can also add a new row:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s1">'content'</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="s1">'test'</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">},</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="c1"># This is temporary only and will not change the data frame itself</span>
+
+<span class="c1"># np.nan means missing values</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>content</th>
+      <th>test</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>[卷159_1 「从张丞相游南纪城猎，戏赠裴迪张参军」孟浩然, 　　从禽非吾乐，不好云梦田。...</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>[卷159_2 「登江中孤屿，赠白云先生王迥」孟浩然, 　　悠悠清江水，水落沙屿出。回潭石下...</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>[卷159_3 「晚春卧病寄张八」孟浩然, 　　南陌春将晚，北窗犹卧病。林园久不游，草木一何...</td>
+      <td>2.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>[卷159_4 「秋登兰山寄张五」孟浩然, 　　北山白云里，隐者自怡悦。相望试登高，心飞逐鸟...</td>
+      <td>3.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>[卷159_5 「入峡寄弟」孟浩然, 　　吾昔与尔辈，读书常闭门。未尝冒湍险，岂顾垂堂言。,...</td>
+      <td>4.0</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>265</th>
+      <td>[卷160_181 「渡浙江问舟中人（一题作济江问同舟人。一作崔国辅诗）」孟浩然, 　　潮落...</td>
+      <td>265.0</td>
+    </tr>
+    <tr>
+      <th>266</th>
+      <td>[卷160_182 「初秋」孟浩然, 　　不觉初秋夜渐长，清风习习重凄凉。, 　　炎炎暑退茅...</td>
+      <td>266.0</td>
+    </tr>
+    <tr>
+      <th>267</th>
+      <td>[卷160_183 「过融上人兰若」孟浩然, 　　山头禅室挂僧衣，窗外无人水鸟飞。, 　　黄...</td>
+      <td>267.0</td>
+    </tr>
+    <tr>
+      <th>268</th>
+      <td>[卷160_184 「句」孟浩然, 　　微云淡河汉，疏雨滴梧桐。, 　　逐逐怀良驭，萧萧顾乐...</td>
+      <td>268.0</td>
+    </tr>
+    <tr>
+      <th>269</th>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+<p>270 rows × 2 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s1">'content'</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="s1">'test'</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">},</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="c1"># df =  &lt;- now the df is replaced</span>
+
+<span class="n">df</span><span class="o">.</span><span class="n">tail</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>content</th>
+      <th>test</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>269</th>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We can then drop the row (all missing values) and the column again.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">how</span><span class="o">=</span><span class="s2">"any"</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="s2">"index"</span><span class="p">)</span> <span class="c1"># this is for dropping all missing values in the rows</span>
+
+<span class="n">df</span><span class="o">.</span><span class="n">tail</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>content</th>
+      <th>test</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>268</th>
+      <td>[卷160_184 「句」孟浩然, 　　微云淡河汉，疏雨滴梧桐。, 　　逐逐怀良驭，萧萧顾乐...</td>
+      <td>268.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="s2">"test"</span><span class="p">)</span> <span class="c1"># this is dropping the column named "test"</span>
+
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>content</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>[卷159_1 「从张丞相游南纪城猎，戏赠裴迪张参军」孟浩然, 　　从禽非吾乐，不好云梦田。...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>[卷159_2 「登江中孤屿，赠白云先生王迥」孟浩然, 　　悠悠清江水，水落沙屿出。回潭石下...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>[卷159_3 「晚春卧病寄张八」孟浩然, 　　南陌春将晚，北窗犹卧病。林园久不游，草木一何...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>[卷159_4 「秋登兰山寄张五」孟浩然, 　　北山白云里，隐者自怡悦。相望试登高，心飞逐鸟...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>[卷159_5 「入峡寄弟」孟浩然, 　　吾昔与尔辈，读书常闭门。未尝冒湍险，岂顾垂堂言。,...</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now we finally start with our new columns:</p>
+<p>Let's look at one of our data: we can see the first item is the id, title and author name, and the other items are the text. So let's set the first item as title, and the rest of the items as content.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s2">"content"</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>['卷159_1 「从张丞相游南纪城猎，戏赠裴迪张参军」孟浩然',
+ '\u3000\u3000从禽非吾乐，不好云梦田。岁暮登城望，偏令乡思悬。',
+ '\u3000\u3000公卿有几几，车骑何翩翩。世禄金张贵，官曹幕府贤。',
+ '\u3000\u3000顺时行杀气，飞刃争割鲜。十里届宾馆，征声匝妓筵。',
+ '\u3000\u3000高标回落日，平楚散芳烟。何意狂歌客，从公亦在旃。']</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s2">"title"</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">"content"</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="c1"># the first item</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">"content"</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">"content"</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="c1"># second to last item</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">"content"</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">"content"</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="c1"># get rid of the [] by extracting the first item from list</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>content</th>
+      <th>title</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>从禽非吾乐，不好云梦田。岁暮登城望，偏令乡思悬。</td>
+      <td>卷159_1 「从张丞相游南纪城猎，戏赠裴迪张参军」孟浩然</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>悠悠清江水，水落沙屿出。回潭石下深，绿筱岸傍密。</td>
+      <td>卷159_2 「登江中孤屿，赠白云先生王迥」孟浩然</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>南陌春将晚，北窗犹卧病。林园久不游，草木一何盛。</td>
+      <td>卷159_3 「晚春卧病寄张八」孟浩然</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>北山白云里，隐者自怡悦。相望试登高，心飞逐鸟灭。</td>
+      <td>卷159_4 「秋登兰山寄张五」孟浩然</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>吾昔与尔辈，读书常闭门。未尝冒湍险，岂顾垂堂言。</td>
+      <td>卷159_5 「入峡寄弟」孟浩然</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="sa">r</span><span class="s1">'\n'</span><span class="p">,</span><span class="s1">' '</span><span class="p">,</span> <span class="n">regex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># replace the next line symbol '\n' with empty space</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>content</th>
+      <th>title</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>从禽非吾乐，不好云梦田。岁暮登城望，偏令乡思悬。</td>
+      <td>卷159_1 「从张丞相游南纪城猎，戏赠裴迪张参军」孟浩然</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>悠悠清江水，水落沙屿出。回潭石下深，绿筱岸傍密。</td>
+      <td>卷159_2 「登江中孤屿，赠白云先生王迥」孟浩然</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>南陌春将晚，北窗犹卧病。林园久不游，草木一何盛。</td>
+      <td>卷159_3 「晚春卧病寄张八」孟浩然</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>北山白云里，隐者自怡悦。相望试登高，心飞逐鸟灭。</td>
+      <td>卷159_4 「秋登兰山寄张五」孟浩然</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>吾昔与尔辈，读书常闭门。未尝冒湍险，岂顾垂堂言。</td>
+      <td>卷159_5 「入峡寄弟」孟浩然</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">title</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="c1"># title is type of string</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>str</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now we can set up a new column "id" and then use it as our index using <strong>set_index()</strong>.</p>
+<p>We learnt in the last notebook. <strong>(\d+_\d+)</strong> means numbers followed by _ followed by numbers again. This is the pattern used for extract from the title column.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s2">"id"</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">title</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span><span class="s1">'(\d+_\d+)'</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">"id"</span><span class="p">)</span>
+
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>content</th>
+      <th>title</th>
+    </tr>
+    <tr>
+      <th>id</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>159_1</th>
+      <td>从禽非吾乐，不好云梦田。岁暮登城望，偏令乡思悬。</td>
+      <td>卷159_1 「从张丞相游南纪城猎，戏赠裴迪张参军」孟浩然</td>
+    </tr>
+    <tr>
+      <th>159_2</th>
+      <td>悠悠清江水，水落沙屿出。回潭石下深，绿筱岸傍密。</td>
+      <td>卷159_2 「登江中孤屿，赠白云先生王迥」孟浩然</td>
+    </tr>
+    <tr>
+      <th>159_3</th>
+      <td>南陌春将晚，北窗犹卧病。林园久不游，草木一何盛。</td>
+      <td>卷159_3 「晚春卧病寄张八」孟浩然</td>
+    </tr>
+    <tr>
+      <th>159_4</th>
+      <td>北山白云里，隐者自怡悦。相望试登高，心飞逐鸟灭。</td>
+      <td>卷159_4 「秋登兰山寄张五」孟浩然</td>
+    </tr>
+    <tr>
+      <th>159_5</th>
+      <td>吾昔与尔辈，读书常闭门。未尝冒湍险，岂顾垂堂言。</td>
+      <td>卷159_5 「入峡寄弟」孟浩然</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now our data frame looks better. But we still want to get rid of the id, author name, and 「」. To remove them, we replace them with a string of nothing (""). Save them back to title column.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">'title'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">'title'</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">'卷(\d+_\d+)'</span><span class="p">,</span> <span class="s1">''</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">'孟浩然'</span><span class="p">,</span> <span class="s1">''</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">'title'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">'title'</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">'「'</span><span class="p">,</span> <span class="s1">''</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">'」'</span><span class="p">,</span> <span class="s1">''</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Let's have our df2 now by coping "title" and "content" from our df. And set index using index from df.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df2</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="p">[[</span><span class="s1">'title'</span><span class="p">,</span><span class="s1">'content'</span><span class="p">]])</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+<span class="n">df2</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>title</th>
+      <th>content</th>
+    </tr>
+    <tr>
+      <th>id</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>159_1</th>
+      <td>从张丞相游南纪城猎，戏赠裴迪张参军</td>
+      <td>从禽非吾乐，不好云梦田。岁暮登城望，偏令乡思悬。</td>
+    </tr>
+    <tr>
+      <th>159_2</th>
+      <td>登江中孤屿，赠白云先生王迥</td>
+      <td>悠悠清江水，水落沙屿出。回潭石下深，绿筱岸傍密。</td>
+    </tr>
+    <tr>
+      <th>159_3</th>
+      <td>晚春卧病寄张八</td>
+      <td>南陌春将晚，北窗犹卧病。林园久不游，草木一何盛。</td>
+    </tr>
+    <tr>
+      <th>159_4</th>
+      <td>秋登兰山寄张五</td>
+      <td>北山白云里，隐者自怡悦。相望试登高，心飞逐鸟灭。</td>
+    </tr>
+    <tr>
+      <th>159_5</th>
+      <td>入峡寄弟</td>
+      <td>吾昔与尔辈，读书常闭门。未尝冒湍险，岂顾垂堂言。</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Finally, we also need to know that conversion between Pandas column and Numpy array is very simple. We can basically call the column and <strong>.values</strong>. Then we get our array.</p>
+<p>For example, we try to convert our title column to array.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df2</span><span class="o">.</span><span class="n">title</span><span class="o">.</span><span class="n">values</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span> <span class="c1"># first 5 items</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([' 从张丞相游南纪城猎，戏赠裴迪张参军', ' 登江中孤屿，赠白云先生王迥', ' 晚春卧病寄张八', ' 秋登兰山寄张五',
+       ' 入峡寄弟'], dtype=object)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+<p><br></p>
+<h2 id="Data-Analysis">
+<a class="anchor" href="#Data-Analysis" aria-hidden="true"><span class="octicon octicon-link"></span></a><strong>Data Analysis</strong><a class="anchor-link" href="#Data-Analysis"> </a>
+</h2>
+<p>After performing some basic processing of our data, let's try to do some analysis based on what we have. Let's say, we want to understand how the key words of season have been used in the text. How many times have they been used and how are they distributed? At the end we want to use the results to make a bar chart and a dispersion plot using matplotlib. We will learn much more about visualization later, but we now we will stick with the simple plots.</p>
+<p>In case we still have rows with missing values, we use <strong>dropna()</strong> again to clean our data frame.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df2</span> <span class="o">=</span> <span class="n">df2</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">how</span><span class="o">=</span><span class="s2">"any"</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="s2">"index"</span><span class="p">)</span> <span class="c1"># this is for dropping all missing values in the rows</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Then we calculate the word offset. It is done by geting the length of strings in the content column (<strong>.len()</strong>) and calculate the cumulative sum of it (<strong>.cumsum()</strong>). It means that now the values in the rows is not the length of the one title, but the word offset starting from the first character of the first title. We use it as our word offset for the plot later. With (<strong>.to_numpy()</strong>) we get the list to numpy array.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">word_count</span> <span class="o">=</span> <span class="n">df2</span><span class="o">.</span><span class="n">content</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">len</span><span class="p">()</span><span class="o">.</span><span class="n">cumsum</span><span class="p">()</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+
+<span class="n">word_count</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([ 26,  52,  78, 104, 130])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now we want to look for the keywords for every season. We do it using the <strong>find()</strong> function and convert the list to numpy. The same apply to every season.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">spring_count</span> <span class="o">=</span> <span class="n">df2</span><span class="o">.</span><span class="n">content</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">'春'</span><span class="p">)</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span> <span class="c1"># for spring</span>
+
+<span class="n">spring_count</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([-1, -1,  4, -1, -1])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">summer_count</span> <span class="o">=</span> <span class="n">df2</span><span class="o">.</span><span class="n">content</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">'夏'</span><span class="p">)</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span> <span class="c1"># for summer</span>
+
+<span class="n">summer_count</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([-1, -1, -1, -1, -1])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">autumn_count</span> <span class="o">=</span> <span class="n">df2</span><span class="o">.</span><span class="n">content</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">'秋'</span><span class="p">)</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span> <span class="c1"># for autumn</span>
+
+<span class="n">autumn_count</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([-1, -1, -1, -1, -1])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">winter_count</span> <span class="o">=</span> <span class="n">df2</span><span class="o">.</span><span class="n">content</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">'冬'</span><span class="p">)</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span> <span class="c1"># for winter</span>
+<span class="n">winter_count</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([-1, -1, -1, -1, -1])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Then, we use <strong>list comprehension</strong> and <strong>enumerate()</strong> to loop through all items and the index in the array, and save (<strong>index + word offset</strong>) that is not equal to one.</p>
+<p>The value that printed out can be understood as the <strong>total word offset</strong> of that character starting from the first title. For example, from the next cell we can tell "春" appears in the 82th, 198th, 660th, ... characters.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">spring_occur</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">v</span> <span class="o">+</span> <span class="n">word_count</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">spring_count</span><span class="p">)</span> <span class="k">if</span> <span class="n">v</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="c1"># for spring</span>
+<span class="n">spring_occur</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([  82,  198,  660,  826, 1094, 1690, 1749, 2077, 2177, 2183, 2333,
+       2781, 2853, 3302, 3681, 4091, 4249, 4321, 4351, 5190, 5259, 5297,
+       5765, 5902, 6065, 6523, 6571, 6805, 6821])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">summer_occur</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">v</span> <span class="o">+</span> <span class="n">word_count</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">summer_count</span><span class="p">)</span> <span class="k">if</span> <span class="n">v</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="c1"># for summer</span>
+<span class="n">summer_occur</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([ 407, 3204, 3897])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">autumn_occur</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">v</span> <span class="o">+</span> <span class="n">word_count</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">autumn_count</span><span class="p">)</span> <span class="k">if</span> <span class="n">v</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="c1"># for autumn</span>
+<span class="n">autumn_occur</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([ 366, 1949, 2347, 3455, 3743, 5504, 5649, 6850])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">winter_occur</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">v</span> <span class="o">+</span> <span class="n">word_count</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">winter_count</span><span class="p">)</span> <span class="k">if</span> <span class="n">v</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="c1"># for winter</span>
+<span class="n">winter_occur</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([], dtype=float64)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+<p><br></p>
+<h2 id="Basic-Data-Visualization">
+<a class="anchor" href="#Basic-Data-Visualization" aria-hidden="true"><span class="octicon octicon-link"></span></a><strong>Basic Data Visualization</strong><a class="anchor-link" href="#Basic-Data-Visualization"> </a>
+</h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Afterwards, we have our arrays which store information about the occurences of season keywords. We can make a plot out of it using <strong>matplotlib</strong>. The dispersion plot we are making is based on scatter plot. We will thus do a scatter plot for every season with custom marker styles.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span> <span class="c1"># import library</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span> <span class="c1"># create an empty plot with defined size</span>
+
+<span class="c1"># in the scatter plot function (plt.scatter()), we need X for 1st argument and Y for 2nd argument.</span>
+<span class="c1"># for X we will put the word offset values for keyword occurence, for Y we will put a constant value from 1 to 4</span>
+<span class="c1"># because we want the same season in the same row</span>
+
+<span class="c1"># np.ones() creates 1 with defined shape, in this case the shape is [length of X,1]</span>
+<span class="n">spring_y</span> <span class="o">=</span> <span class="mi">1</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">([</span><span class="nb">len</span><span class="p">(</span><span class="n">spring_occur</span><span class="p">),</span><span class="mi">1</span><span class="p">])</span> <span class="c1"># all 1 (1*1)</span>
+<span class="n">summer_y</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">([</span><span class="nb">len</span><span class="p">(</span><span class="n">summer_occur</span><span class="p">),</span><span class="mi">1</span><span class="p">])</span> <span class="c1"># all 2 (2*1)</span>
+<span class="n">autumn_y</span> <span class="o">=</span> <span class="mi">3</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">([</span><span class="nb">len</span><span class="p">(</span><span class="n">autumn_occur</span><span class="p">),</span><span class="mi">1</span><span class="p">])</span> <span class="c1"># all 3 (3*1)</span>
+<span class="n">winter_y</span> <span class="o">=</span> <span class="mi">4</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">([</span><span class="nb">len</span><span class="p">(</span><span class="n">winter_occur</span><span class="p">),</span><span class="mi">1</span><span class="p">])</span> <span class="c1"># all 4 (4*1)</span>
+
+<span class="c1"># scatter plot                </span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">spring_occur</span><span class="p">,</span><span class="n">spring_y</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span> <span class="c1"># first scatter plot for spring, alpha is transparency of the markers</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">summer_occur</span><span class="p">,</span><span class="n">summer_y</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span> <span class="c1"># for summer</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">autumn_occur</span><span class="p">,</span><span class="n">autumn_y</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span> <span class="c1"># for autumn</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">winter_occur</span><span class="p">,</span><span class="n">winter_y</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span> <span class="c1"># for winter</span>
+
+<span class="c1"># set y limits</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">)</span>
+
+<span class="c1"># we want our y labels as text, not number. so here we define them.</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="s1">''</span><span class="p">,</span><span class="s1">'Spring'</span><span class="p">,</span> <span class="s1">'Summer'</span><span class="p">,</span> <span class="s1">'Autumn'</span><span class="p">,</span> <span class="s1">'Winter'</span><span class="p">]</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_yticklabels</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+
+<span class="c1"># no plot frame is needed</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">box</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="c1"># labels and title</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">"Word Offset"</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">"Season Keywords"</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">"Lexical Dispersion"</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>Text(0.5, 1.0, 'Lexical Dispersion')</pre>
+</div>
+
+</div>
+
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,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%0A">
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+<p>On another hand, we can also make a bar chart by simply showing the occurence frequency of keywords.</p>
+<p>We use <strong>count()</strong> of the <strong>content</strong> column from df2 to count the occurence. We need to add <strong>sum()</strong> to sum up count for all rows, not single row.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">spring</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">df2</span><span class="o">.</span><span class="n">content</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s1">'春'</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span> <span class="c1"># spring</span>
+<span class="n">spring</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>29</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">summer</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">df2</span><span class="o">.</span><span class="n">content</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s1">'夏'</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span> <span class="c1"># summer</span>
+<span class="n">summer</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>3</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">autumn</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">df2</span><span class="o">.</span><span class="n">content</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s1">'秋'</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span> <span class="c1"># autumn</span>
+<span class="n">autumn</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>8</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">winter</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">df2</span><span class="o">.</span><span class="n">content</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s1">'冬'</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span> <span class="c1"># winter</span>
+<span class="n">winter</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now, we can use our results to make another data frame. We do it because having results in a separate data frame make visualization easier.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">count</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'season'</span><span class="p">:</span> <span class="p">[</span><span class="s2">"spring"</span><span class="p">,</span> <span class="s2">"summer"</span><span class="p">,</span> <span class="s2">"autumn"</span><span class="p">,</span> <span class="s2">"winter"</span><span class="p">],</span><span class="s1">'count'</span><span class="p">:</span> <span class="p">[</span><span class="n">spring</span><span class="p">,</span> <span class="n">summer</span><span class="p">,</span> <span class="n">autumn</span><span class="p">,</span> <span class="n">winter</span><span class="p">]}</span>
+<span class="n">season</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">count</span><span class="p">)</span>
+
+<span class="c1"># set season as index</span>
+<span class="n">season</span> <span class="o">=</span> <span class="n">season</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">"season"</span><span class="p">)</span>
+<span class="n">season</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>count</th>
+    </tr>
+    <tr>
+      <th>season</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>spring</th>
+      <td>29</td>
+    </tr>
+    <tr>
+      <th>summer</th>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>autumn</th>
+      <td>8</td>
+    </tr>
+    <tr>
+      <th>winter</th>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In order to have Chinese characters shown in our plot, we need to download a package and change the font from the Python library. Please just follow the follow code.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>wget -O TaipeiSansTCBeta-Regular.ttf https://drive.google.com/uc?id<span class="o">=</span>1eGAsTN1HBpJAkeVM57_C7ccp7hbgSz3_<span class="p">&amp;</span><span class="nv">export</span><span class="o">=</span>download
+
+<span class="c1"># import library</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span> 
+<span class="kn">from</span> <span class="nn">matplotlib.font_manager</span> <span class="kn">import</span> <span class="n">fontManager</span>
+
+<span class="c1"># change font setting</span>
+<span class="n">fontManager</span><span class="o">.</span><span class="n">addfont</span><span class="p">(</span><span class="s1">'TaipeiSansTCBeta-Regular.ttf'</span><span class="p">)</span>
+<span class="n">mpl</span><span class="o">.</span><span class="n">rc</span><span class="p">(</span><span class="s1">'font'</span><span class="p">,</span> <span class="n">family</span><span class="o">=</span><span class="s1">'Taipei Sans TC Beta'</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>--2021-12-12 20:09:06--  https://drive.google.com/uc?id=1eGAsTN1HBpJAkeVM57_C7ccp7hbgSz3_
+Resolving drive.google.com (drive.google.com)... 142.250.81.206, 2607:f8b0:4004:82f::200e
+Connecting to drive.google.com (drive.google.com)|142.250.81.206|:443... connected.
+HTTP request sent, awaiting response... 302 Moved Temporarily
+Location: https://doc-0k-9o-docs.googleusercontent.com/docs/securesc/ha0ro937gcuc7l7deffksulhg5h7mbp1/6nfeiuvrhp3la80n9pg1oja3jsktcq6e/1639339725000/02847987870453524430/*/1eGAsTN1HBpJAkeVM57_C7ccp7hbgSz3_ [following]
+Warning: wildcards not supported in HTTP.
+--2021-12-12 20:09:10--  https://doc-0k-9o-docs.googleusercontent.com/docs/securesc/ha0ro937gcuc7l7deffksulhg5h7mbp1/6nfeiuvrhp3la80n9pg1oja3jsktcq6e/1639339725000/02847987870453524430/*/1eGAsTN1HBpJAkeVM57_C7ccp7hbgSz3_
+Resolving doc-0k-9o-docs.googleusercontent.com (doc-0k-9o-docs.googleusercontent.com)... 142.250.73.193, 2607:f8b0:4004:829::2001
+Connecting to doc-0k-9o-docs.googleusercontent.com (doc-0k-9o-docs.googleusercontent.com)|142.250.73.193|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 20659344 (20M) [application/x-font-ttf]
+Saving to: ‘TaipeiSansTCBeta-Regular.ttf’
+
+TaipeiSansTCBeta-Re 100%[===================&gt;]  19.70M  35.2MB/s    in 0.6s    
+
+2021-12-12 20:09:11 (35.2 MB/s) - ‘TaipeiSansTCBeta-Regular.ttf’ saved [20659344/20659344]
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Having a Pandas data frame make visualization simple. We can basically call the dataframe with .plot., followed by the type of plot we want to have. For example, a bar chart is <strong>(name of dataframe).plot.bar()</strong>.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+
+<span class="c1"># bar chart</span>
+<span class="n">season</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">rot</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#830045"</span><span class="p">)</span>
+
+<span class="c1"># labels and title</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">"Season"</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">"Occurence"</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">"Description of season in </span><span class="se">\n</span><span class="s2">孟浩然诗 卷一百五十九 and 卷一百六十?"</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+
+<span class="c1"># remove legend and add keywords in the x-axis</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">([</span><span class="s1">'春'</span><span class="p">,</span><span class="s1">'夏'</span><span class="p">,</span><span class="s1">'秋'</span><span class="p">,</span><span class="s1">'冬'</span><span class="p">],</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">get_legend</span><span class="p">()</span><span class="o">.</span><span class="n">remove</span><span class="p">()</span>
+
+<span class="c1"># adjust spacing in plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea ">
+<pre>&lt;Figure size 1296x432 with 0 Axes&gt;</pre>
+</div>
+
+</div>
+
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,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%0A">
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><br>
+<br></p>
+<hr>
+<h2 id="Additional-information">
+<a class="anchor" href="#Additional-information" aria-hidden="true"><span class="octicon octicon-link"></span></a><strong>Additional information</strong><a class="anchor-link" href="#Additional-information"> </a>
+</h2>
+<p>This notebook is provided for educational purpose and feel free to report any issue on GitHub.</p>
+<p><br></p>
+<p><strong>Author:</strong> <a href="https://www.linkedin.com/in/ka-hei-chow-231345188/">Ka Hei, Chow</a></p>
+<p><strong>License:</strong> The code in this notebook is licensed under the <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons by Attribution 4.0 license</a>.</p>
+<p><strong>Last modified:</strong> December 2021</p>
+<p><br></p>
+<hr>
+<p><br></p>
+<h2 id="References:">
+<a class="anchor" href="#References:" aria-hidden="true"><span class="octicon octicon-link"></span></a><strong>References:</strong><a class="anchor-link" href="#References:"> </a>
+</h2>
+<p><a href="https://levelup.gitconnected.com/how-to-improve-the-performance-of-chinese-text-tokenization-in-python-and-jieba-26add53f3756">Jieba</a></p>
+<p><a href="https://colab.research.google.com/github/willismax/matplotlib_show_chinese_in_colab/blob/master/matplotlib_show_chinese_in_colab.ipynb#scrollTo=RfR0uymWF3cB">Displaying Chinese characters</a></p>
+<p><a href="https://colab.research.google.com/github/jakevdp/PythonDataScienceHandbook/blob/master/notebooks/03.10-Working-With-Strings.ipynb#scrollTo=DrCMZr3rJsfU">Python Data Science Handbook</a></p>
+
+</div>
+</div>
+</div>
+</div>
+
+
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="pinkychow1010/digital-chinese-history-blog"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/digital-chinese-history-blog/jupyter/2020/01/23/Pandas_TextAnalysis_TextOriganization.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/digital-chinese-history-blog/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/digital-chinese-history-blog/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/digital-chinese-history-blog/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>This site focuses on Python and aims to support users to conduct academic research in the humanities using open source programming languages.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/pinkychow1010" title="pinkychow1010"><svg class="svg-icon grey"><use xlink:href="/digital-chinese-history-blog/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/pinkychow1010" title="pinkychow1010"><svg class="svg-icon grey"><use xlink:href="/digital-chinese-history-blog/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
