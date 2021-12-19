@@ -155,10 +155,14 @@
   
 
   
+
   
 
   
-      ,"page10": {
+  
+
+  
+      ,"page12": {
           "title": "",
           "content": "Sitemap: {{ “sitemap.xml” | absolute_url }} | .",
           "url": "https://pinkychow1010.github.io/digital-chinese-history-blog/robots.txt",
