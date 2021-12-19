@@ -1,16 +1,16 @@
 ---
 layout: page
-title: About Me
+title: About
 permalink: /about/
 ---
 
-# Introduction to Python Programming
+## Introduction to Python Programming
 
 **Hi!** This is *Ka Hei*. This space is created at the *end of 2021* for introducing users in the humanities to pick up some `basic programming skills`📍 for research using `digital text resources`. You do not need to have any programming knowledge when you start with the tutorials. It covers tasks from `data acquisition`, `analysis` to `visualization`, working with both `text`📜 and `geospatial data`🗺️. All tutorials use ***(historical) Chinese text*** to demonstrate workflows of relevant tasks (sometimes mixed with examples from other languages, ***eg. Japanese, Korean, and English***).
 
 <br>
 
-# Instructions
+## Instructions
 
 #### WHY this space?
 
