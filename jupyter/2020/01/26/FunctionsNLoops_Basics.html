@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Functions and Loops | 數位中國史部落格 Digital Chinese History</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="Functions and Loops" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Python Basics" />
+<meta property="og:description" content="Python Basics" />
+<link rel="canonical" href="https://pinkychow1010.github.io/digital-chinese-history-blog/jupyter/2020/01/26/FunctionsNLoops_Basics.html" />
+<meta property="og:url" content="https://pinkychow1010.github.io/digital-chinese-history-blog/jupyter/2020/01/26/FunctionsNLoops_Basics.html" />
+<meta property="og:site_name" content="數位中國史部落格 Digital Chinese History" />
+<meta property="og:image" content="https://pinkychow1010.github.io/digital-chinese-history-blog/images/chart-preview.png" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-01-26T00:00:00-06:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://pinkychow1010.github.io/digital-chinese-history-blog/images/chart-preview.png" />
+<meta property="twitter:title" content="Functions and Loops" />
+<script type="application/ld+json">
+{"url":"https://pinkychow1010.github.io/digital-chinese-history-blog/jupyter/2020/01/26/FunctionsNLoops_Basics.html","@type":"BlogPosting","headline":"Functions and Loops","dateModified":"2020-01-26T00:00:00-06:00","datePublished":"2020-01-26T00:00:00-06:00","image":"https://pinkychow1010.github.io/digital-chinese-history-blog/images/chart-preview.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://pinkychow1010.github.io/digital-chinese-history-blog/jupyter/2020/01/26/FunctionsNLoops_Basics.html"},"description":"Python Basics","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/digital-chinese-history-blog/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://pinkychow1010.github.io/digital-chinese-history-blog/feed.xml" title="數位中國史部落格
+Digital Chinese History
+" /><link rel="shortcut icon" type="image/x-icon" href="/digital-chinese-history-blog/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/digital-chinese-history-blog/">數位中國史部落格
+Digital Chinese History
+</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/digital-chinese-history-blog/about/">About Me</a><a class="page-link" href="/digital-chinese-history-blog/search/">Search</a><a class="page-link" href="/digital-chinese-history-blog/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Functions and Loops</h1><p class="page-description">Python Basics</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2020-01-26T00:00:00-06:00" itemprop="datePublished">
+        Jan 26, 2020
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      6 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/digital-chinese-history-blog/categories/#jupyter">jupyter</a>
+        
+      
+      </p>
+    
+
+    
+      
+        <div class="pb-5 d-flex flex-justify-center">
+          <div class="px-2">
+
+    <a href="https://github.com/pinkychow1010/digital-chinese-history-blog/tree/master/_notebooks/2020-01-26-FunctionsNLoops_Basics.ipynb" role="button" target="_blank">
+<img class="notebook-badge-image" src="/digital-chinese-history-blog/assets/badges/github.svg" alt="View On GitHub">
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://mybinder.org/v2/gh/pinkychow1010/digital-chinese-history-blog/master?filepath=_notebooks%2F2020-01-26-FunctionsNLoops_Basics.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/digital-chinese-history-blog/assets/badges/binder.svg" alt="Open In Binder"/>
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://colab.research.google.com/github/pinkychow1010/digital-chinese-history-blog/blob/master/_notebooks/2020-01-26-FunctionsNLoops_Basics.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/digital-chinese-history-blog/assets/badges/colab.svg" alt="Open In Colab"/>
+    </a>
+</div>
+          <div class="px-2">
+  <a href="https://deepnote.com/launch?url=https%3A%2F%2Fgithub.com%2Fpinkychow1010%2Fdigital-chinese-history-blog%2Fblob%2Fmaster%2F_notebooks%2F2020-01-26-FunctionsNLoops_Basics.ipynb" target="_blank">
+      <img class="notebook-badge-image" src="/digital-chinese-history-blog/assets/badges/deepnote.svg" alt="Launch in Deepnote"/>
+  </a>
+</div>
+
+        </div>
+      </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <ul id="toc" class="section-nav">
+<li class="toc-entry toc-h1"><a href="#婦女雜誌廣告-(Advertisements-from-Chinese-Womens-Magazine)">婦女雜誌廣告 (Advertisements from Chinese Womens Magazine) </a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#Additional-information">Additional information </a></li>
+<li class="toc-entry toc-h2"><a href="#References:">References: </a></li>
+</ul>
+</li>
+</ul><!--
+#################################################
+### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
+#################################################
+# file to edit: _notebooks/2020-01-26-FunctionsNLoops_Basics.ipynb
+-->
+
+<div class="container" id="notebook-container">
+        
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><br></p>
+<hr>
+<p>For a larger chunk of text analysis, the workflow might get longer and longer which can be unhandy and prone to mistakes. Both functions and loops are ways to "ask for repeated computation", either by looping through what you have or refering back to code you already wrote (the function).</p>
+<p>This notebook aims to introduce users how to use functions and loops in Python using basic text exmaple from the humanity discipline. It aims to provide users basic skills to automate small chunks of text analysis using text resources.</p>
+<p><br></p>
+<p><em>Presumption:</em></p>
+<p><a href="https://www.w3schools.com/python/python_functions.asp">Functions</a></p>
+<p><a href="https://www.w3schools.com/python/python_for_loops.asp">Loops</a></p>
+<p><a href="https://realpython.com/python-enumerate/">Enumerate</a></p>
+<p><br></p>
+<p>It is also recommanded that the user has some <a href="https://www.youtube.com/watch?v=kqtD5dpn9C8&amp;t=532s">basic understandings</a> already with Python.</p>
+<p><br></p>
+<hr>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>## <strong><em>Functions</em></strong>
+</li>
+</ul>
+<p>In Python, a function is a group of related statements that performs a specific task.</p>
+<p>Functions break our tasks into smaller chunks and make it more manageable. Furthermore, it avoids repetition and makes the code reusable. It is very helful when the workflow (task) need to be repeated done (Get information from a long list of document or webpages) so the user do not need to specify everything for multiple times to execute the task. It is also less prone to mistakes as users do not need to code everytime.</p>
+<p>A function is started with the keyword <code>def</code>. Once the function is defined, it can be called by typing the function name with appropriate parameters.</p>
+<p><br></p>
+<p><strong>Remark:</strong></p>
+<p>Both <code>#</code> and <code>""" """</code> in the code are comments and will not run in Python.</p>
+<p><br></p>
+<p><strong>Example of a function:</strong></p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">datetime</span>
+
+<span class="c1"># define funciton</span>
+<span class="k">def</span> <span class="nf">getTime</span><span class="p">(</span><span class="n">n</span><span class="p">):</span> <span class="c1"># name and input</span>
+  <span class="sd">"""</span>
+<span class="sd">  This function acquire future days from now </span>
+<span class="sd">  """</span>
+  <span class="n">day</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span> <span class="o">+</span> <span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="n">n</span><span class="p">)</span> <span class="c1"># action</span>
+  <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">day</span><span class="p">)</span> <span class="c1"># output</span>
+
+<span class="c1"># call function</span>
+<span class="n">getTime</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>'2021-12-10 20:06:05.499284'</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="婦女雜誌廣告-(Advertisements-from-Chinese-Womens-Magazine)">
+<a class="anchor" href="#%E5%A9%A6%E5%A5%B3%E9%9B%9C%E8%AA%8C%E5%BB%A3%E5%91%8A-(Advertisements-from-Chinese-Womens-Magazine)" aria-hidden="true"><span class="octicon octicon-link"></span></a><strong>婦女雜誌廣告</strong> (Advertisements from Chinese Womens Magazine)<a class="anchor-link" href="#%E5%A9%A6%E5%A5%B3%E9%9B%9C%E8%AA%8C%E5%BB%A3%E5%91%8A-(Advertisements-from-Chinese-Womens-Magazine)"> </a>
+</h1>
+<p>This is the subset of the advertisements published in <a href="https://mhdb.mh.sinica.edu.tw/fnzz/view.php?book=1501&amp;str=%E5%A9%A6%E5%A5%B3">婦女雜誌1915年 第01期</a>.</p>
+<p>Let's say we want to know if the advertistment is published form a 公司.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ad</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"商務印書館發行書目介紹"</span><span class="p">,</span><span class="s2">"女界寶、非洲樹皮丸、助肺呼吸香膠、家普魚肝油、清血解毒海波藥、納佛補天汁、良丹(五洲大藥房)"</span><span class="p">,</span><span class="s2">"泰豐罐頭食品有限公司製造廠攝影"</span><span class="p">,</span><span class="s2">"武進莊苣史女士菊花寒菜寫生"</span><span class="p">,</span><span class="s2">"中華眼鏡公司"</span><span class="p">,</span><span class="s2">"中將湯(東亞公司經理批發)"</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">re</span> <span class="c1"># this you will learn in the notebook web scrapping so you do not need to understand everything for now</span>
+
+<span class="k">def</span> <span class="nf">ad_check</span><span class="p">(</span><span class="n">text</span><span class="p">):</span> <span class="c1"># but you need to know the function start with def, the name of the function, and a () with/ without argument(s) inside.</span>
+  <span class="n">pattern</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s1">'公司'</span><span class="p">)</span> <span class="c1"># inside the function you need to indent every line (with a tab)</span>
+  <span class="n">match</span> <span class="o">=</span> <span class="nb">any</span><span class="p">(</span><span class="n">pattern</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">text</span><span class="p">))</span> <span class="c1"># you somehow get to the result (desired output)</span>
+  <span class="k">return</span> <span class="n">match</span> <span class="c1"># and you return them (typically in a variable)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now we can apply the function using our ad list. We can only pass a string in the function so we need to slice the item. For example, we can check on the first advertisement in list.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ad_check</span><span class="p">(</span><span class="n">ad</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>False</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>It returns <strong>False</strong>, a boolean meaning the word "公司" cannot be found. Now we check on the third item.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ad_check</span><span class="p">(</span><span class="n">ad</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>True</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>True is returned, meaning the keyword is found. So now we do not need to type the whole function everytime we want to check for an ad.</p>
+<p><br>
+<br></p>
+<ul>
+<li>## <strong><em>Loops</em></strong>
+</li>
+</ul>
+<p>In fact, we can even automate all ads using a loop. A loop can be very simple, but can get complicated if multiple elements are looped in parallel or when it is nested (loop inside another loop).</p>
+<p>Here we use a simple for loop: it is started with a "<strong>for</strong> (something) <strong>in</strong> (something)<strong>:</strong>", and followed by the next line(s) (all operations needed). All lines under the loop needed to be indented.</p>
+<p>It basically tells Python:</p>
+<p><br></p>
+<p><strong>For the item (i) in my list (ad),</strong></p>
+<p><strong>apply the function using input item (i)</strong></p>
+<p><strong>and print the result before the next round (item)</strong></p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">ad</span><span class="p">:</span> <span class="c1"># i is the item you name, ad is our list</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">ad_check</span><span class="p">(</span><span class="n">i</span><span class="p">))</span> <span class="c1"># action</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>False
+False
+True
+False
+True
+True
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Sometime when we loop, we do not want to loop using the item itself, but the index of our item (For example, here let's say we want to print the index of the company found). Then we can do it in the following way:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">ad</span><span class="p">)</span> <span class="c1"># first we found the len of our list</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>6</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ad</span><span class="p">))</span> <span class="c1"># then we generate a sequence with the same length</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([0, 1, 2, 3, 4, 5])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This is then the index we loop through instead of the item.</p>
+<p><br></p>
+<p><strong>Remark:</strong></p>
+<p><strong><em>ad_check(ad[i])</em></strong> is the same as <strong><em>ad_check(ad[i]) == True</em></strong> but the first way is more efficient to run in Python.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="p">(</span><span class="n">ad_check</span><span class="p">(</span><span class="n">ad</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span> <span class="o">==</span> <span class="p">(</span><span class="n">ad_check</span><span class="p">(</span><span class="n">ad</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">==</span> <span class="kc">True</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>True</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ad</span><span class="p">)):</span> <span class="c1"># loop tho index</span>
+  <span class="k">if</span> <span class="n">ad_check</span><span class="p">(</span><span class="n">ad</span><span class="p">[</span><span class="n">i</span><span class="p">]):</span> <span class="c1"># provide a condition: only print when it is true</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="s2">". "</span><span class="p">,</span><span class="n">ad</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="c1"># print the index and the item</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>2 .  泰豐罐頭食品有限公司製造廠攝影
+4 .  中華眼鏡公司
+5 .  中將湯(東亞公司經理批發)
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Nonetheless, print the results is not very helpful because it is not stored in a variable and we cannot recall them. A helpful way is to stored them in another list.</p>
+<p>Before we try to store them into our list, we need to first define it, as an empty list.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">check_list</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1"># define our output list</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">ad</span><span class="p">:</span> <span class="c1"># for loop again</span>
+  <span class="n">check_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ad_check</span><span class="p">(</span><span class="n">i</span><span class="p">))</span> <span class="c1"># now we use append (adding element at the end of the list) to put our result every round</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">check_list</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[False, False, True, False, True, True]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now we know the keyword is found in 3rd, 5th, 6th ads. We can print out the company ads. This can be better done using numpy array. so we will first convert both lists to arrays.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span> <span class="c1"># always need to import library first</span>
+
+<span class="n">ad</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">ad</span><span class="p">)</span> <span class="c1"># convert using np.array()</span>
+<span class="n">check_list</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">check_list</span><span class="p">)</span>
+
+<span class="n">ad</span><span class="p">[</span><span class="n">check_list</span><span class="p">]</span> <span class="c1"># slice ad using checklist, it only works when the check_list consists boolean (True and False, or 1 and 0)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array(['泰豐罐頭食品有限公司製造廠攝影', '中華眼鏡公司', '中將湯(東亞公司經理批發)'], dtype='&lt;U46')</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We also need to be careful that looping is considered an inefficient way to get things done in Python, so if we can get the job done without loop, then it is better we do it without.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><br>
+<br></p>
+<ul>
+<li>## <strong><em>Enumerate</em></strong>
+</li>
+</ul>
+<p>Sometimes, we do not only want to loop through the items, but also the indices of the item so we want do some further operations. In the above example we use a loop of index to print all the items with "公司".</p>
+<p>2 .  泰豐罐頭食品有限公司製造廠攝影
+4 .  中華眼鏡公司
+5 .  中將湯(東亞公司經理批發)</p>
+<p>However, we can use <strong>enumerate()</strong> instead which is a more efficient approach. It provides us two numbers: the first one is index starting from 0, another one is the item itself.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">count</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">ad</span><span class="p">):</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">count</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>0 商務印書館發行書目介紹
+1 女界寶、非洲樹皮丸、助肺呼吸香膠、家普魚肝油、清血解毒海波藥、納佛補天汁、良丹(五洲大藥房)
+2 泰豐罐頭食品有限公司製造廠攝影
+3 武進莊苣史女士菊花寒菜寫生
+4 中華眼鏡公司
+5 中將湯(東亞公司經理批發)
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The following code give use exactly the same result as the above example:</p>
+<p>In this case, both codes do not seem to make a difference, however, in other case, using enumerate() is much more efficient and allows use to write much shorter code.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">count</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">ad</span><span class="p">):</span>
+  <span class="k">if</span> <span class="n">ad_check</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">count</span><span class="p">,</span> <span class="s1">'.'</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>2 . 泰豐罐頭食品有限公司製造廠攝影
+4 . 中華眼鏡公司
+5 . 中將湯(東亞公司經理批發)
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><br>
+<br></p>
+<hr>
+<h2 id="Additional-information">
+<a class="anchor" href="#Additional-information" aria-hidden="true"><span class="octicon octicon-link"></span></a><strong>Additional information</strong><a class="anchor-link" href="#Additional-information"> </a>
+</h2>
+<p>This notebook is provided for educational purpose and feel free to report any issue on GitHub.</p>
+<p><br></p>
+<p><strong>Author:</strong> <a href="https://www.linkedin.com/in/ka-hei-chow-231345188/">Ka Hei, Chow</a></p>
+<p><strong>License:</strong> The code in this notebook is licensed under the <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons by Attribution 4.0 license</a>.</p>
+<p><strong>Last modified:</strong> December 2021</p>
+<p><br></p>
+<hr>
+<p><br></p>
+<h2 id="References:">
+<a class="anchor" href="#References:" aria-hidden="true"><span class="octicon octicon-link"></span></a><strong>References:</strong><a class="anchor-link" href="#References:"> </a>
+</h2>
+<p><a href="https://mhdb.mh.sinica.edu.tw/fnzz/view.php?book=1501&amp;str=%E5%A9%A6%E5%A5%B3">https://mhdb.mh.sinica.edu.tw/fnzz/view.php?book=1501&amp;str=%E5%A9%A6%E5%A5%B3</a></p>
+
+</div>
+</div>
+</div>
+</div>
+
+
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="pinkychow1010/digital-chinese-history-blog"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/digital-chinese-history-blog/jupyter/2020/01/26/FunctionsNLoops_Basics.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/digital-chinese-history-blog/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/digital-chinese-history-blog/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/digital-chinese-history-blog/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>This site focuses on Python and aims to support users to conduct academic research in the humanities using open source programming languages.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/fastai" title="fastai"><svg class="svg-icon grey"><use xlink:href="/digital-chinese-history-blog/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/fastdotai" title="fastdotai"><svg class="svg-icon grey"><use xlink:href="/digital-chinese-history-blog/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Python for Research Q &amp; A 🖋️ | 數位中國史部落格 Digital Chinese History</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="Python for Research Q &amp; A 🖋️" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="What is Python all for?" />
+<meta property="og:description" content="What is Python all for?" />
+<link rel="canonical" href="https://pinkychow1010.github.io/digital-chinese-history-blog/jupyter/2020/01/31/Python_Research_Q&A_Basics.html" />
+<meta property="og:url" content="https://pinkychow1010.github.io/digital-chinese-history-blog/jupyter/2020/01/31/Python_Research_Q&A_Basics.html" />
+<meta property="og:site_name" content="數位中國史部落格 Digital Chinese History" />
+<meta property="og:image" content="https://pinkychow1010.github.io/digital-chinese-history-blog/images/chart-preview.png" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-01-31T00:00:00-06:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://pinkychow1010.github.io/digital-chinese-history-blog/images/chart-preview.png" />
+<meta property="twitter:title" content="Python for Research Q &amp; A 🖋️" />
+<script type="application/ld+json">
+{"url":"https://pinkychow1010.github.io/digital-chinese-history-blog/jupyter/2020/01/31/Python_Research_Q&A_Basics.html","@type":"BlogPosting","headline":"Python for Research Q &amp; A 🖋️","dateModified":"2020-01-31T00:00:00-06:00","datePublished":"2020-01-31T00:00:00-06:00","image":"https://pinkychow1010.github.io/digital-chinese-history-blog/images/chart-preview.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://pinkychow1010.github.io/digital-chinese-history-blog/jupyter/2020/01/31/Python_Research_Q&A_Basics.html"},"description":"What is Python all for?","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/digital-chinese-history-blog/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://pinkychow1010.github.io/digital-chinese-history-blog/feed.xml" title="數位中國史部落格
+Digital Chinese History
+" /><link rel="shortcut icon" type="image/x-icon" href="/digital-chinese-history-blog/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/digital-chinese-history-blog/">數位中國史部落格
+Digital Chinese History
+</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/digital-chinese-history-blog/about/">About Me</a><a class="page-link" href="/digital-chinese-history-blog/search/">Search</a><a class="page-link" href="/digital-chinese-history-blog/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Python for Research Q &amp; A 🖋️</h1><p class="page-description">What is Python all for?</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2020-01-31T00:00:00-06:00" itemprop="datePublished">
+        Jan 31, 2020
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      5 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/digital-chinese-history-blog/categories/#jupyter">jupyter</a>
+        
+      
+      </p>
+    
+
+    
+      
+        <div class="pb-5 d-flex flex-justify-center">
+          <div class="px-2">
+
+    <a href="https://github.com/pinkychow1010/digital-chinese-history-blog/tree/master/_notebooks/2020-01-31-Python_Research_Q&A_Basics.ipynb" role="button" target="_blank">
+<img class="notebook-badge-image" src="/digital-chinese-history-blog/assets/badges/github.svg" alt="View On GitHub">
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://mybinder.org/v2/gh/pinkychow1010/digital-chinese-history-blog/master?filepath=_notebooks%2F2020-01-31-Python_Research_Q%26A_Basics.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/digital-chinese-history-blog/assets/badges/binder.svg" alt="Open In Binder"/>
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://colab.research.google.com/github/pinkychow1010/digital-chinese-history-blog/blob/master/_notebooks/2020-01-31-Python_Research_Q&A_Basics.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/digital-chinese-history-blog/assets/badges/colab.svg" alt="Open In Colab"/>
+    </a>
+</div>
+          <div class="px-2">
+  <a href="https://deepnote.com/launch?url=https%3A%2F%2Fgithub.com%2Fpinkychow1010%2Fdigital-chinese-history-blog%2Fblob%2Fmaster%2F_notebooks%2F2020-01-31-Python_Research_Q%26A_Basics.ipynb" target="_blank">
+      <img class="notebook-badge-image" src="/digital-chinese-history-blog/assets/badges/deepnote.svg" alt="Launch in Deepnote"/>
+  </a>
+</div>
+
+        </div>
+      </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <ul id="toc" class="section-nav">
+<li class="toc-entry toc-h2"><a href="#Background">Background </a></li>
+<li class="toc-entry toc-h2"><a href="#General-purpose-Language">General-purpose Language </a></li>
+<li class="toc-entry toc-h2"><a href="#For-Qualitative-Research">For Qualitative Research </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#Data-Input">Data Input </a></li>
+<li class="toc-entry toc-h3"><a href="#Data-Analysis">Data Analysis </a></li>
+<li class="toc-entry toc-h3"><a href="#Data-Presentation">Data Presentation </a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#Checking-out-some-galleries:">Checking out some galleries: </a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#What-can-Python-do-for-me?">What can Python do for me? </a></li>
+<li class="toc-entry toc-h2"><a href="#Geospatial-Data-??">Geospatial Data ?? </a></li>
+<li class="toc-entry toc-h2"><a href="#Interactive-Bubble-Chart-??">Interactive Bubble Chart ?? </a></li>
+<li class="toc-entry toc-h2"><a href="#Text-Optical-Recognition-(OCR)-??">Text Optical Recognition (OCR) ?? </a></li>
+<li class="toc-entry toc-h2"><a href="#Data-Cleaning-??-Manipulation-??">Data Cleaning ?? Manipulation ?? </a></li>
+<li class="toc-entry toc-h2"><a href="#Data-Mining-??-Web-Scraping-??">Data Mining ?? Web Scraping ?? </a></li>
+<li class="toc-entry toc-h2"><a href="#Web-Application-??-App-??">Web Application ?? App ?? </a></li>
+<li class="toc-entry toc-h2"><a href="#Additional-information">Additional information </a></li>
+<li class="toc-entry toc-h2"><a href="#References:">References: </a></li>
+</ul><!--
+#################################################
+### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
+#################################################
+# file to edit: _notebooks/2020-01-31-Python_Research_Q&A_Basics.ipynb
+-->
+
+<div class="container" id="notebook-container">
+        
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><br></p>
+<hr>
+<h2 id="Background">
+<a class="anchor" href="#Background" aria-hidden="true"><span class="octicon octicon-link"></span></a><strong>Background</strong><a class="anchor-link" href="#Background"> </a>
+</h2>
+<p><strong>Python</strong> is getting more and more popular, not only in the field of computer science, but also in the diverse fields when it comes to computation, working with digital resources and data presentation. This notebook aims to give users some basic knowledge about the potential of Python programming language in the context of humanity research.</p>
+<p><br></p>
+<p><em>Presumption:</em> Not applicable</p>
+<p><br></p>
+<hr>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Although Python is a programming language, it is different from other low-level programming languages by being more <strong>user-friendly</strong> and more close to a interpreter than machine code. It is for general purpose and also relatively <strong>beginner-friendly</strong>.</p>
+<p>Python is not only more <strong>readable</strong>, it also has <strong>less structural rules</strong> and usually much <strong>shorter</strong>. Compared to other languages such as JavaScript, Python has not so much low-level language like syntax so its learning curve is not as steep.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="General-purpose-Language">
+<a class="anchor" href="#General-purpose-Language" aria-hidden="true"><span class="octicon octicon-link"></span></a><strong>General-purpose Language</strong><a class="anchor-link" href="#General-purpose-Language"> </a>
+</h2>
+<p>Although you might have read other tutorials telling you how you can use very diverse tools to achieve fancy tasks that you wish to perform. You also have to realize that how much time will you need to master that languages or tools before tasks can be done.</p>
+<p>Let's assume that you are not a real web developer here and data analysis or visualization is not your primary profession. It means, you are not making your living by making charts and websites, and for you making creative and fancy new charts is not as important as making a not so time-consuming and presentable bar chart which display your results to the audience or in your paper.</p>
+<p>Most often, what you need is then much more simple functionalities which a fancy tool can overkill. You also need to consider that not all digital tools are open and free, so using multiple of them can cost you time and money.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="For-Qualitative-Research">
+<a class="anchor" href="#For-Qualitative-Research" aria-hidden="true"><span class="octicon octicon-link"></span></a><strong>For Qualitative Research</strong><a class="anchor-link" href="#For-Qualitative-Research"> </a>
+</h2>
+<p>Although Python is a programming language and is often associated with computing and numbers, it can help you with qualitative research too! It includes many functionalities to work with text resources. Although you do not need to do calculation on them, sometimes you do want to find a pattern in them, look for the keywords, or just get them into digital text.</p>
+<p><br></p>
+<h3 id="Data-Input">
+<a class="anchor" href="#Data-Input" aria-hidden="true"><span class="octicon octicon-link"></span></a><strong><em>Data Input</em></strong><a class="anchor-link" href="#Data-Input"> </a>
+</h3>
+<p>Python can help you to get your qualitative sources. Let's say you want to look into <a href="https://21dzk.l.u-tokyo.ac.jp/BDK/bdk_search.php?md=normal&amp;num=B0192">BDK (Bukkyo Dendo Kyokai) Database</a> for the <strong>A Biography of Sakyamuni</strong>. And you want to get the text file of certain chapters. What you can do is to use Python to scrap the text and load it in a file for you. Or let's say you want to have all the Buddhist texts having a particular <strong>keywords</strong>, then you can filter the text using Python.</p>
+<p><br></p>
+<h3 id="Data-Analysis">
+<a class="anchor" href="#Data-Analysis" aria-hidden="true"><span class="octicon octicon-link"></span></a><strong><em>Data Analysis</em></strong><a class="anchor-link" href="#Data-Analysis"> </a>
+</h3>
+<p>So now you got the text. But you want to see how does certain keywords distributed inside your text(s), or what is the associated <strong>sentiment</strong> of the text(s). Then you can perform <strong>NLP</strong> in Python. Or if you have a database of Buddhist temples and want to analysis what regions are they mostly located in, then you can perform some geospatial analysis in Python too.</p>
+<p><br></p>
+<h3 id="Data-Presentation">
+<a class="anchor" href="#Data-Presentation" aria-hidden="true"><span class="octicon octicon-link"></span></a><strong><em>Data Presentation</em></strong><a class="anchor-link" href="#Data-Presentation"> </a>
+</h3>
+<p>Let's say now you got your results already, and you need to present them either in a paper, in a PowerPoint or make a simple webpage that you can shared with your colleagues or your audience. You can also make both static and <strong>interactive charts/ text visualization</strong> using Python. They can be either a bar chart for comparison, a word cloud for showing key words, or a map showing geolocations of objects.</p>
+<p><br></p>
+<h4 id="Checking-out-some-galleries:">
+<a class="anchor" href="#Checking-out-some-galleries:" aria-hidden="true"><span class="octicon octicon-link"></span></a><strong><em>Checking out some galleries:</em></strong><a class="anchor-link" href="#Checking-out-some-galleries:"> </a>
+</h4>
+<ul>
+<li>
+<p><a href="https://plotly.com/python/"><strong>PLOTLY</strong></a></p>
+</li>
+<li>
+<p><a href="https://seaborn.pydata.org/examples/index.html"><strong>SEABORN</strong></a></p>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div>
+
+<figure>
+  
+    <img class="docimage" src="https://storage.googleapis.com/coderzcolumn/static/tutorials/data_science/sunburst_chart_1.jpg" alt="" style="max-width: 250px">
+    
+    
+</figure>
+
+
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="What-can-Python-do-for-me?">
+<a class="anchor" href="#What-can-Python-do-for-me?" aria-hidden="true"><span class="octicon octicon-link"></span></a><strong>What can Python do for me?</strong><a class="anchor-link" href="#What-can-Python-do-for-me?"> </a>
+</h2>
+<p>Python can indeed handle a large variety of tasks, from get data for you <strong>(web scraping)</strong>, to analysis your data <strong>(text analysis)</strong>, to present your results <strong>(data visualization)</strong>. Its high speed allow you to scan and work with a large amount of data and search for the ones that you are interested in! You can then either analyse them with Python or continue by yourself to read the information retrieved. Or Python simply let you present what you have in mind, like a time line, in a digital format.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Geospatial-Data-??">
+<a class="anchor" href="#Geospatial-Data-??" aria-hidden="true"><span class="octicon octicon-link"></span></a><strong><em>Geospatial Data ??</em></strong><a class="anchor-link" href="#Geospatial-Data-??"> </a>
+</h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>For example, you might have read about <strong>Mapbox.js, Leaflet.js, R</strong> or <strong>GIS</strong> for analysing geospatial data, making choropleths and interactive graphics. But <strong>Python</strong> can do it too using <strong>Plotly</strong>, <strong>Folium</strong> and <strong>Geoopandas</strong>!</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div>
+
+<figure>
+  
+    <img class="docimage" src="https://miro.medium.com/max/1400/1*e0ncdSQp1wZRX-wSO-JsRg.png" alt="" style="max-width: 550px">
+    
+    
+</figure>
+
+
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Interactive-Bubble-Chart-??">
+<a class="anchor" href="#Interactive-Bubble-Chart-??" aria-hidden="true"><span class="octicon octicon-link"></span></a><strong><em>Interactive Bubble Chart ??</em></strong><a class="anchor-link" href="#Interactive-Bubble-Chart-??"> </a>
+</h2>
+<p>Then you read about <strong>D3.js</strong> for making an interactive bubble chart. But <strong>Python</strong> can get it done too using <strong>Plotly</strong>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div>
+
+<figure>
+  
+    <img class="docimage" src="https://i.pinimg.com/originals/bf/04/0d/bf040d66ed4ae891c4847ffd9a7d440d.png" alt="" style="max-width: 550px">
+    
+    
+</figure>
+
+
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Text-Optical-Recognition-(OCR)-??">
+<a class="anchor" href="#Text-Optical-Recognition-(OCR)-??" aria-hidden="true"><span class="octicon octicon-link"></span></a><strong><em>Text Optical Recognition (OCR) ??</em></strong><a class="anchor-link" href="#Text-Optical-Recognition-(OCR)-??"> </a>
+</h2>
+<p>Then you read about doing OCR, but <strong>Python</strong> get give you a ride too using <strong>pytesseract</strong>. You can even work on it without the need for <strong>Bash</strong> or <strong>Comment Line</strong>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div>
+
+<figure>
+  
+    <img class="docimage" src="https://pyimagesearch.com/wp-content/uploads/2017/06/tesseract_python_output_03.jpg" alt="" style="max-width: 550px">
+    
+    
+</figure>
+
+
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Data-Cleaning-??-Manipulation-??">
+<a class="anchor" href="#Data-Cleaning-??-Manipulation-??" aria-hidden="true"><span class="octicon octicon-link"></span></a><strong><em>Data Cleaning ?? Manipulation ??</em></strong><a class="anchor-link" href="#Data-Cleaning-??-Manipulation-??"> </a>
+</h2>
+<p>Then you read about other digital tools for data cleaning and manipulation. You realize you need them too. But you can stick with <strong>Python</strong>: <strong>Pandas</strong> library can get the job done!</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div>
+
+<figure>
+  
+    <img class="docimage" src="https://miro.medium.com/max/1200/1*wXkIJWBE_InOAu5Plf7TIg.png" alt="" style="max-width: 550px">
+    
+    
+</figure>
+
+
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Data-Mining-??-Web-Scraping-??">
+<a class="anchor" href="#Data-Mining-??-Web-Scraping-??" aria-hidden="true"><span class="octicon octicon-link"></span></a><strong><em>Data Mining ?? Web Scraping ??</em></strong><a class="anchor-link" href="#Data-Mining-??-Web-Scraping-??"> </a>
+</h2>
+<p>Then you think of getting information from a digital database? The door of <strong>Python Beautiful Soup</strong> is open for you!</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div>
+
+<figure>
+  
+    <img class="docimage" src="https://miro.medium.com/max/960/0*9PbNnwHdp8ocBn7b.jpg" alt="" style="max-width: 550px">
+    
+    
+</figure>
+
+
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Web-Application-??-App-??">
+<a class="anchor" href="#Web-Application-??-App-??" aria-hidden="true"><span class="octicon octicon-link"></span></a><strong><em>Web Application ?? App ??</em></strong><a class="anchor-link" href="#Web-Application-??-App-??"> </a>
+</h2>
+<p>Want to make a simple web application or app to host your data visualization or presentation? Try out <strong>Dash</strong> from <strong>Plotly</strong> which can be run in <strong>Python</strong> too!</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div>
+
+<figure>
+  
+    <img class="docimage" src="https://user-images.githubusercontent.com/1280389/30086123-97c58bde-9267-11e7-98a0-7f626de5199a.gif" alt="" style="max-width: 550px">
+    
+    
+</figure>
+
+
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><br>
+<br></p>
+<hr>
+<h2 id="Additional-information">
+<a class="anchor" href="#Additional-information" aria-hidden="true"><span class="octicon octicon-link"></span></a><strong>Additional information</strong><a class="anchor-link" href="#Additional-information"> </a>
+</h2>
+<p>This notebook is provided for educational purpose and feel free to report any issue on GitHub.</p>
+<p><br></p>
+<p><strong>Author:</strong> <a href="https://www.linkedin.com/in/ka-hei-chow-231345188/">Ka Hei, Chow</a></p>
+<p><strong>License:</strong> The code in this notebook is licensed under the <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons by Attribution 4.0 license</a>.</p>
+<p><strong>Last modified:</strong> December 2021</p>
+<p><br></p>
+<hr>
+<p><br></p>
+<h2 id="References:">
+<a class="anchor" href="#References:" aria-hidden="true"><span class="octicon octicon-link"></span></a><strong>References:</strong><a class="anchor-link" href="#References:"> </a>
+</h2>
+<p><a href="https://www.bitdegree.org/tutorials/python-vs-javascript/">https://www.bitdegree.org/tutorials/python-vs-javascript/</a></p>
+<p><a href="https://towardsdatascience.com/a-complete-guide-to-an-interactive-geographical-map-using-python-f4c5197e23e0">https://towardsdatascience.com/a-complete-guide-to-an-interactive-geographical-map-using-python-f4c5197e23e0</a></p>
+
+</div>
+</div>
+</div>
+</div>
+
+
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="pinkychow1010/digital-chinese-history-blog"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/digital-chinese-history-blog/jupyter/2020/01/31/Python_Research_Q&A_Basics.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/digital-chinese-history-blog/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/digital-chinese-history-blog/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/digital-chinese-history-blog/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>This site focuses on Python and aims to support users to conduct academic research in the humanities using open source programming languages.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/fastai" title="fastai"><svg class="svg-icon grey"><use xlink:href="/digital-chinese-history-blog/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/fastdotai" title="fastdotai"><svg class="svg-icon grey"><use xlink:href="/digital-chinese-history-blog/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

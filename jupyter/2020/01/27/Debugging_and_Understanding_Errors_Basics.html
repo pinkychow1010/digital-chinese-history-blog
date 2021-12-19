@@ -1,0 +1,1211 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Debugging and Understanding Errors 🐞 | 數位中國史部落格 Digital Chinese History</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="Debugging and Understanding Errors 🐞" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Get prepared for mistakes" />
+<meta property="og:description" content="Get prepared for mistakes" />
+<link rel="canonical" href="https://pinkychow1010.github.io/digital-chinese-history-blog/jupyter/2020/01/27/Debugging_and_Understanding_Errors_Basics.html" />
+<meta property="og:url" content="https://pinkychow1010.github.io/digital-chinese-history-blog/jupyter/2020/01/27/Debugging_and_Understanding_Errors_Basics.html" />
+<meta property="og:site_name" content="數位中國史部落格 Digital Chinese History" />
+<meta property="og:image" content="https://pinkychow1010.github.io/digital-chinese-history-blog/images/chart-preview.png" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-01-27T00:00:00-06:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://pinkychow1010.github.io/digital-chinese-history-blog/images/chart-preview.png" />
+<meta property="twitter:title" content="Debugging and Understanding Errors 🐞" />
+<script type="application/ld+json">
+{"url":"https://pinkychow1010.github.io/digital-chinese-history-blog/jupyter/2020/01/27/Debugging_and_Understanding_Errors_Basics.html","@type":"BlogPosting","headline":"Debugging and Understanding Errors 🐞","dateModified":"2020-01-27T00:00:00-06:00","datePublished":"2020-01-27T00:00:00-06:00","image":"https://pinkychow1010.github.io/digital-chinese-history-blog/images/chart-preview.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://pinkychow1010.github.io/digital-chinese-history-blog/jupyter/2020/01/27/Debugging_and_Understanding_Errors_Basics.html"},"description":"Get prepared for mistakes","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/digital-chinese-history-blog/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://pinkychow1010.github.io/digital-chinese-history-blog/feed.xml" title="數位中國史部落格
+Digital Chinese History
+" /><link rel="shortcut icon" type="image/x-icon" href="/digital-chinese-history-blog/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/digital-chinese-history-blog/">數位中國史部落格
+Digital Chinese History
+</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/digital-chinese-history-blog/about/">About Me</a><a class="page-link" href="/digital-chinese-history-blog/search/">Search</a><a class="page-link" href="/digital-chinese-history-blog/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Debugging and Understanding Errors 🐞</h1><p class="page-description">Get prepared for mistakes</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2020-01-27T00:00:00-06:00" itemprop="datePublished">
+        Jan 27, 2020
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      8 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/digital-chinese-history-blog/categories/#jupyter">jupyter</a>
+        
+      
+      </p>
+    
+
+    
+      
+        <div class="pb-5 d-flex flex-justify-center">
+          <div class="px-2">
+
+    <a href="https://github.com/pinkychow1010/digital-chinese-history-blog/tree/master/_notebooks/2020-01-27-Debugging_and_Understanding_Errors_Basics.ipynb" role="button" target="_blank">
+<img class="notebook-badge-image" src="/digital-chinese-history-blog/assets/badges/github.svg" alt="View On GitHub">
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://mybinder.org/v2/gh/pinkychow1010/digital-chinese-history-blog/master?filepath=_notebooks%2F2020-01-27-Debugging_and_Understanding_Errors_Basics.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/digital-chinese-history-blog/assets/badges/binder.svg" alt="Open In Binder"/>
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://colab.research.google.com/github/pinkychow1010/digital-chinese-history-blog/blob/master/_notebooks/2020-01-27-Debugging_and_Understanding_Errors_Basics.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/digital-chinese-history-blog/assets/badges/colab.svg" alt="Open In Colab"/>
+    </a>
+</div>
+          <div class="px-2">
+  <a href="https://deepnote.com/launch?url=https%3A%2F%2Fgithub.com%2Fpinkychow1010%2Fdigital-chinese-history-blog%2Fblob%2Fmaster%2F_notebooks%2F2020-01-27-Debugging_and_Understanding_Errors_Basics.ipynb" target="_blank">
+      <img class="notebook-badge-image" src="/digital-chinese-history-blog/assets/badges/deepnote.svg" alt="Launch in Deepnote"/>
+  </a>
+</div>
+
+        </div>
+      </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <ul id="toc" class="section-nav">
+<li class="toc-entry toc-h2"><a href="#Background">Background </a></li>
+<li class="toc-entry toc-h2"><a href="#1)-Understand-Error-Messages">1) Understand Error Messages </a></li>
+<li class="toc-entry toc-h2"><a href="#2)-Spot-the-Sources-of-Errors">2) Spot the Sources of Errors </a></li>
+<li class="toc-entry toc-h2"><a href="#3)-Google-and-stackoverflow">3) Google and stackoverflow </a></li>
+<li class="toc-entry toc-h2"><a href="#4)-Use-Try-and-Except">4) Use Try and Except </a></li>
+<li class="toc-entry toc-h2"><a href="#5)-Check-Documentation">5) Check Documentation </a></li>
+<li class="toc-entry toc-h2"><a href="#Additional-information">Additional information </a></li>
+<li class="toc-entry toc-h2"><a href="#References:">References: </a></li>
+</ul><!--
+#################################################
+### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
+#################################################
+# file to edit: _notebooks/2020-01-27-Debugging_and_Understanding_Errors_Basics.ipynb
+-->
+
+<div class="container" id="notebook-container">
+        
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><br></p>
+<hr>
+<h2 id="Background">
+<a class="anchor" href="#Background" aria-hidden="true"><span class="octicon octicon-link"></span></a><strong>Background</strong><a class="anchor-link" href="#Background"> </a>
+</h2>
+<p>A bug occurs when things do not work the way you want it to, even though Python only give what you ask for. It is because we have a different understandings compared to the programming languages. To resolve this, we need to find out the sources of errors and adjust our code accordingly. In this notebook you will learn different approach to resolve potential issues and some tips to avoid them from happening.</p>
+<p><br></p>
+<p><em>Presumption:</em></p>
+<p><a href="https://www.w3schools.com/python/python_try_except.asp">https://www.w3schools.com/python/python_try_except.asp</a></p>
+<p><a href="https://www.tutorialsteacher.com/python/error-types-in-python">https://www.tutorialsteacher.com/python/error-types-in-python</a></p>
+<p><br></p>
+<hr>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="1)-Understand-Error-Messages">
+<a class="anchor" href="#1)-Understand-Error-Messages" aria-hidden="true"><span class="octicon octicon-link"></span></a><strong>1) Understand Error Messages</strong><a class="anchor-link" href="#1)-Understand-Error-Messages"> </a>
+</h2>
+<p>As you have seen from the link above, there are many different types of errors in Python which is meant to be helpful to tell user <strong>"what is wrong?"</strong>. But some errors might be more common than the others. Let's look at some common errors.</p>
+<p>Let's say you want to add a second collection to the first one (collection). But instead of <strong>"collection"</strong>, you wrote <strong>"Collection"</strong>.</p>
+<p>In this case Python tells you</p>
+<p><code>NameError: name 'Collection' is not defined</code></p>
+<p>It is because Python is searching for "Collection" and cannot find one.</p>
+<p><strong><em>Name Error: Raised when a variable is not found in the local or global scope.</em></strong></p>
+<p>What you need to do it just correct the name.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">collection</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"Chinese Posters in Harvard-Yenching Manchukuo Collection"</span><span class="p">]</span>
+
+<span class="n">Collection</span> <span class="o">+</span> <span class="p">[</span><span class="s2">"Linked Archive of Asian Postcards"</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_text output_error">
+<pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-green-fg">&lt;ipython-input-3-cba7c442d3f4&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span><span class="ansi-blue-fg">()</span>
+<span class="ansi-green-intense-fg ansi-bold">      1</span> collection <span class="ansi-blue-fg">=</span> <span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">"Chinese Posters in Harvard-Yenching Manchukuo Collection"</span><span class="ansi-blue-fg">]</span>
+<span class="ansi-green-intense-fg ansi-bold">      2</span> 
+<span class="ansi-green-fg">----&gt; 3</span><span class="ansi-red-fg"> </span>Collection <span class="ansi-blue-fg">+</span> <span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">"Linked Archive of Asian Postcards"</span><span class="ansi-blue-fg">]</span>
+
+<span class="ansi-red-fg">NameError</span>: name 'Collection' is not defined</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Error occurs too when the library is not imported before use.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_text output_error">
+<pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-green-fg">&lt;ipython-input-6-9be6f90ccf89&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span><span class="ansi-blue-fg">()</span>
+<span class="ansi-green-fg">----&gt; 1</span><span class="ansi-red-fg"> </span>np<span class="ansi-blue-fg">.</span>arange<span class="ansi-blue-fg">(</span><span class="ansi-cyan-fg">1</span><span class="ansi-blue-fg">,</span><span class="ansi-cyan-fg">5</span><span class="ansi-blue-fg">)</span>
+
+<span class="ansi-red-fg">NameError</span>: name 'np' is not defined</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Or when you have one item in list while you are asking for the second one (Remember Python starts with 0). You get:</p>
+<p><code>IndexError: list index out of range</code></p>
+<p><strong><em>Index Error: Raised when the index of a sequence is out of range.</em></strong></p>
+<p>Then you need to correct the index.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">collection</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"Chinese Posters in Harvard-Yenching Manchukuo Collection"</span><span class="p">]</span>
+
+<span class="n">collection</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_text output_error">
+<pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">IndexError</span>                                Traceback (most recent call last)
+<span class="ansi-green-fg">&lt;ipython-input-4-e10b1e230939&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span><span class="ansi-blue-fg">()</span>
+<span class="ansi-green-intense-fg ansi-bold">      1</span> collection <span class="ansi-blue-fg">=</span> <span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">"Chinese Posters in Harvard-Yenching Manchukuo Collection"</span><span class="ansi-blue-fg">]</span>
+<span class="ansi-green-intense-fg ansi-bold">      2</span> 
+<span class="ansi-green-fg">----&gt; 3</span><span class="ansi-red-fg"> </span>collection<span class="ansi-blue-fg">[</span><span class="ansi-cyan-fg">1</span><span class="ansi-blue-fg">]</span>
+
+<span class="ansi-red-fg">IndexError</span>: list index out of range</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>There is also <strong>Type Error</strong>: Raised when a function or operation is applied to an object of an incorrect type.</p>
+<p>It occurs because np.max() looks for a number and we input a <strong>string</strong>.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">([</span><span class="mi">3</span><span class="p">])</span> <span class="c1"># this works</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>3</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">([</span><span class="n">collection</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_text output_error">
+<pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">TypeError</span>                                 Traceback (most recent call last)
+<span class="ansi-green-fg">&lt;ipython-input-11-9da63d4b2b0e&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span><span class="ansi-blue-fg">()</span>
+<span class="ansi-green-intense-fg ansi-bold">      1</span> <span class="ansi-green-fg">import</span> numpy <span class="ansi-green-fg">as</span> np
+<span class="ansi-green-fg">----&gt; 2</span><span class="ansi-red-fg"> </span>np<span class="ansi-blue-fg">.</span>max<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">[</span>collection<span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">)</span>
+
+<span class="ansi-green-fg">&lt;__array_function__ internals&gt;</span> in <span class="ansi-cyan-fg">amax</span><span class="ansi-blue-fg">(*args, **kwargs)</span>
+
+<span class="ansi-green-fg">/usr/local/lib/python3.7/dist-packages/numpy/core/fromnumeric.py</span> in <span class="ansi-cyan-fg">amax</span><span class="ansi-blue-fg">(a, axis, out, keepdims, initial, where)</span>
+<span class="ansi-green-intense-fg ansi-bold">   2704</span>     """
+<span class="ansi-green-intense-fg ansi-bold">   2705</span>     return _wrapreduction(a, np.maximum, 'max', axis, None, out,
+<span class="ansi-green-fg">-&gt; 2706</span><span class="ansi-red-fg">                           keepdims=keepdims, initial=initial, where=where)
+</span><span class="ansi-green-intense-fg ansi-bold">   2707</span> 
+<span class="ansi-green-intense-fg ansi-bold">   2708</span> 
+
+<span class="ansi-green-fg">/usr/local/lib/python3.7/dist-packages/numpy/core/fromnumeric.py</span> in <span class="ansi-cyan-fg">_wrapreduction</span><span class="ansi-blue-fg">(obj, ufunc, method, axis, dtype, out, **kwargs)</span>
+<span class="ansi-green-intense-fg ansi-bold">     85</span>                 <span class="ansi-green-fg">return</span> reduction<span class="ansi-blue-fg">(</span>axis<span class="ansi-blue-fg">=</span>axis<span class="ansi-blue-fg">,</span> out<span class="ansi-blue-fg">=</span>out<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>passkwargs<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">     86</span> 
+<span class="ansi-green-fg">---&gt; 87</span><span class="ansi-red-fg">     </span><span class="ansi-green-fg">return</span> ufunc<span class="ansi-blue-fg">.</span>reduce<span class="ansi-blue-fg">(</span>obj<span class="ansi-blue-fg">,</span> axis<span class="ansi-blue-fg">,</span> dtype<span class="ansi-blue-fg">,</span> out<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>passkwargs<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">     88</span> 
+<span class="ansi-green-intense-fg ansi-bold">     89</span> 
+
+<span class="ansi-red-fg">TypeError</span>: cannot perform reduce with flexible type</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Another error that is really common is that when you type something <strong>grammatically wrong</strong> in the Python sense.</p>
+<p><strong><em>Syntax Error:    Raised by the parser when a syntax error is encountered.</em></strong></p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">collection</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"Chinese Posters in Harvard-Yenching Manchukuo Collection"</span><span class="p">]</span>
+
+<span class="n">collection</span><span class="p">[</span><span class="mi">0</span><span class="p">)</span> <span class="c1"># it should be [0], not[0)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_text output_error">
+<pre>
+<span class="ansi-cyan-fg">  File </span><span class="ansi-green-fg">"&lt;ipython-input-18-011172c21475&gt;"</span><span class="ansi-cyan-fg">, line </span><span class="ansi-green-fg">3</span>
+<span class="ansi-red-fg">    collection[0)</span>
+                ^
+<span class="ansi-red-fg">SyntaxError</span><span class="ansi-red-fg">:</span> invalid syntax
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="2)-Spot-the-Sources-of-Errors">
+<a class="anchor" href="#2)-Spot-the-Sources-of-Errors" aria-hidden="true"><span class="octicon octicon-link"></span></a><strong>2) Spot the Sources of Errors</strong><a class="anchor-link" href="#2)-Spot-the-Sources-of-Errors"> </a>
+</h2>
+<p>In order to make errors easier to spot, it is always a good practice if you run only a small chunk of code in a time. For example, you call separate a long chunk of code into different cells.</p>
+<p>Every cell can be used for one main action, for example:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Another way to spot errors in code is that try to reduce the code you have. For example:</p>
+<p>Let's say you want to find out the length of the first advertisement in the list (商務印書館發行書目介紹), and you built a function for it. But <strong>instead of 11 characters, you get 2.</strong></p>
+<p>Although there is no problems running this code, as it is not giving you what you want, it is also a bug.</p>
+<p>What you can do is to reduce the code and to see if things work the way you want.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ad</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"商務印書館發行書目介紹"</span><span class="p">,</span><span class="s2">"女界寶、非洲樹皮丸、助肺呼吸香膠、家普魚肝油、清血解毒海波藥、納佛補天汁、良丹(五洲大藥房)"</span><span class="p">]</span>
+
+<span class="kn">import</span> <span class="nn">re</span> <span class="c1"># this you will learn in the notebook web scrapping so you do not need to understand everything for now</span>
+
+<span class="k">def</span> <span class="nf">number_of_character</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+  <span class="n">list_</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">text</span><span class="p">)</span> <span class="c1"># list() is used to split words into a list of characters</span>
+  <span class="n">length</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">list_</span><span class="p">)</span> <span class="c1"># len() is to check the length </span>
+  <span class="k">return</span> <span class="n">length</span>
+
+<span class="n">number_of_character</span><span class="p">(</span><span class="n">ad</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>2</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Let's check the first step: Can we use list to split the characters as we want?</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">list</span><span class="p">(</span><span class="n">ad</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>['商務印書館發行書目介紹', '女界寶、非洲樹皮丸、助肺呼吸香膠、家普魚肝油、清血解毒海波藥、納佛補天汁、良丹(五洲大藥房)']</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>And we realize, we want to split 商務印書館發行書目介紹, but this is not done!</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">list</span><span class="p">(</span><span class="s2">"advertisement"</span><span class="p">)</span> <span class="c1"># this is what we want, to split characters</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>['a', 'd', 'v', 'e', 'r', 't', 'i', 's', 'e', 'm', 'e', 'n', 't']</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>And then we might find out, it only work if we use ad[0] instead.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">list</span><span class="p">(</span><span class="n">ad</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>['商', '務', '印', '書', '館', '發', '行', '書', '目', '介', '紹']</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ad</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"商務印書館發行書目介紹"</span><span class="p">,</span><span class="s2">"女界寶、非洲樹皮丸、助肺呼吸香膠、家普魚肝油、清血解毒海波藥、納佛補天汁、良丹(五洲大藥房)"</span><span class="p">]</span>
+
+<span class="kn">import</span> <span class="nn">re</span> <span class="c1"># this you will learn in the notebook web scrapping so you do not need to understand everything for now</span>
+
+<span class="k">def</span> <span class="nf">number_of_character</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+  <span class="n">list_</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+  <span class="n">length</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">list_</span><span class="p">)</span>
+  <span class="k">return</span> <span class="n">length</span>
+
+<span class="n">number_of_character</span><span class="p">(</span><span class="n">ad</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>11</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="3)-Google-and-stackoverflow">
+<a class="anchor" href="#3)-Google-and-stackoverflow" aria-hidden="true"><span class="octicon octicon-link"></span></a><strong>3) Google and stackoverflow</strong><a class="anchor-link" href="#3)-Google-and-stackoverflow"> </a>
+</h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Sometimes errors are not so clear to you. What you can do is to copy the errors and Google them. <a href="https://stackoverflow.com/">Stackoverflow</a> is also another website that can be really helpful.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">collection</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"Chinese Posters in Harvard-Yenching Manchukuo Collection"</span><span class="p">,</span> <span class="s2">"Linked Archive of Asian Postcards"</span><span class="p">]</span>
+<span class="n">typ</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="n">collection</span><span class="p">[</span><span class="n">typ</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_text output_error">
+<pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">TypeError</span>                                 Traceback (most recent call last)
+<span class="ansi-green-fg">&lt;ipython-input-13-9eca3a76ef67&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span><span class="ansi-blue-fg">()</span>
+<span class="ansi-green-intense-fg ansi-bold">      2</span> typ <span class="ansi-blue-fg">=</span> <span class="ansi-blue-fg">[</span><span class="ansi-cyan-fg">1</span><span class="ansi-blue-fg">,</span><span class="ansi-cyan-fg">0</span><span class="ansi-blue-fg">]</span>
+<span class="ansi-green-intense-fg ansi-bold">      3</span> 
+<span class="ansi-green-fg">----&gt; 4</span><span class="ansi-red-fg"> </span>collection<span class="ansi-blue-fg">[</span>typ<span class="ansi-blue-fg">]</span>
+
+<span class="ansi-red-fg">TypeError</span>: list indices must be integers or slices, not list</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Then you might find out what you need to select collection item from typ is to use <strong>Numpy array</strong> instead of <strong>list</strong>.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">collection</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="s2">"Chinese Posters in Harvard-Yenching Manchukuo Collection"</span><span class="p">,</span> <span class="s2">"Linked Archive of Asian Postcards"</span><span class="p">])</span>
+<span class="n">typ</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="n">collection</span><span class="p">[</span><span class="n">typ</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array(['Linked Archive of Asian Postcards',
+       'Chinese Posters in Harvard-Yenching Manchukuo Collection'],
+      dtype='&lt;U56')</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="4)-Use-Try-and-Except">
+<a class="anchor" href="#4)-Use-Try-and-Except" aria-hidden="true"><span class="octicon octicon-link"></span></a><strong>4) Use Try and Except</strong><a class="anchor-link" href="#4)-Use-Try-and-Except"> </a>
+</h2>
+<p>In order to avoid errors, what we can also do is to use <strong>try</strong> and <strong>except</strong>. It means asking Python to try something out, if it does not work, then do <strong>Plan B</strong> instead of giving you errors.</p>
+<p><code>Be careful that this method only appy if the errors come from unexpected outliners in inputs. It will not give you any meaningful results if the errors lie in your code itself.</code></p>
+<p><br></p>
+<p><strong>It works as follow:</strong></p>
+<p><strong><code>try:</code></strong></p>
+<p><strong><code>(do plan a)</code></strong>  # &lt;- indented block</p>
+<p><strong><code>except:</code></strong></p>
+<p><strong><code>(do plan b)</code></strong> # &lt;- indented block</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">try</span><span class="p">:</span>
+  <span class="nb">print</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+<span class="k">except</span><span class="p">:</span>
+  <span class="nb">print</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>2
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><br></p>
+<p>For example, the same function work well for the first and second item, but there is a typo in the third item, so that it is not a string, but an integer.</p>
+<p>In this case, the function will not work as it expects a string.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">collection</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"Chinese Posters in Harvard-Yenching Manchukuo Collection"</span><span class="p">,</span> <span class="s2">"Linked Archive of Asian Postcards"</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">number_of_character</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+  <span class="n">list_</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+  <span class="n">length</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">list_</span><span class="p">)</span>
+  <span class="k">return</span> <span class="n">length</span>
+
+<span class="n">number_of_character</span><span class="p">(</span><span class="n">collection</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_text output_error">
+<pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">TypeError</span>                                 Traceback (most recent call last)
+<span class="ansi-green-fg">&lt;ipython-input-50-b4200bdffa93&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span><span class="ansi-blue-fg">()</span>
+<span class="ansi-green-intense-fg ansi-bold">      4</span>   <span class="ansi-green-fg">return</span> length
+<span class="ansi-green-intense-fg ansi-bold">      5</span> 
+<span class="ansi-green-fg">----&gt; 6</span><span class="ansi-red-fg"> </span>number_of_character<span class="ansi-blue-fg">(</span>collection<span class="ansi-blue-fg">[</span><span class="ansi-cyan-fg">2</span><span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">)</span>
+
+<span class="ansi-green-fg">&lt;ipython-input-50-b4200bdffa93&gt;</span> in <span class="ansi-cyan-fg">number_of_character</span><span class="ansi-blue-fg">(text)</span>
+<span class="ansi-green-intense-fg ansi-bold">      1</span> <span class="ansi-green-fg">def</span> number_of_character<span class="ansi-blue-fg">(</span>text<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg">----&gt; 2</span><span class="ansi-red-fg">   </span>list_ <span class="ansi-blue-fg">=</span> list<span class="ansi-blue-fg">(</span>text<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">      3</span>   length <span class="ansi-blue-fg">=</span> len<span class="ansi-blue-fg">(</span>list_<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">      4</span>   <span class="ansi-green-fg">return</span> length
+<span class="ansi-green-intense-fg ansi-bold">      5</span> 
+
+<span class="ansi-red-fg">TypeError</span>: 'int' object is not iterable</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>What we can do is to set up a <strong>Plan B</strong>:</p>
+<p>If the words cannot be split, then use an empty list ([]).</p>
+<p><br></p>
+<p><strong><em>OUR PLAN B</em></strong></p>
+<p><code>except:</code></p>
+<p><code>list_ = []</code></p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">number_of_character</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+  <span class="k">try</span><span class="p">:</span>
+    <span class="n">list_</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+  <span class="k">except</span><span class="p">:</span>
+    <span class="n">list_</span> <span class="o">=</span> <span class="p">[]</span>
+  <span class="n">length</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">list_</span><span class="p">)</span>
+  <span class="k">return</span> <span class="n">length</span>
+
+<span class="n">number_of_character</span><span class="p">(</span><span class="n">collection</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now, we do not get the same error anymore. It is particularly useful when we are automating the task: because if we want going through thousands of documents, we do not want the code to crash because of one little typo.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="5)-Check-Documentation">
+<a class="anchor" href="#5)-Check-Documentation" aria-hidden="true"><span class="octicon octicon-link"></span></a><strong>5) Check Documentation</strong><a class="anchor-link" href="#5)-Check-Documentation"> </a>
+</h2>
+<p>If the errors come from your code itself, the easiest way to inspect the problems is to check the documentation of the function you used. If you are using Jupyter Notebook, you can always highlight the function you typed and the documentation of this function will appear, illustrating what inputs are expected.</p>
+<p>You can also choose to directly Google the function and check the examples. For exmaple, if the following error occurs, by searching the reverse function "python reverse()" we can see from the <a href="https://docs.python.org/3/tutorial/datastructures.html">documentation</a> that the list is expected before the function ad(), not inside the ().</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">reverse</span><span class="p">(</span><span class="n">ad</span><span class="p">)</span>
+<span class="n">ad</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_text output_error">
+<pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-green-fg">&lt;ipython-input-20-e88da2471207&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span><span class="ansi-blue-fg">()</span>
+<span class="ansi-green-intense-fg ansi-bold">      1</span> <span class="ansi-red-fg"># error</span>
+<span class="ansi-green-fg">----&gt; 2</span><span class="ansi-red-fg"> </span>reverse<span class="ansi-blue-fg">(</span>ad<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">      3</span> ad
+
+<span class="ansi-red-fg">NameError</span>: name 'reverse' is not defined</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ad</span><span class="o">.</span><span class="n">reverse</span><span class="p">()</span>
+<span class="n">ad</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>['女界寶、非洲樹皮丸、助肺呼吸香膠、家普魚肝油、清血解毒海波藥、納佛補天汁、良丹(五洲大藥房)', '商務印書館發行書目介紹']</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><br>
+<br></p>
+<hr>
+<h2 id="Additional-information">
+<a class="anchor" href="#Additional-information" aria-hidden="true"><span class="octicon octicon-link"></span></a><strong>Additional information</strong><a class="anchor-link" href="#Additional-information"> </a>
+</h2>
+<p>This notebook is provided for educational purpose and feel free to report any issue on GitHub.</p>
+<p><br></p>
+<p><strong>Author:</strong> <a href="https://www.linkedin.com/in/ka-hei-chow-231345188/">Ka Hei, Chow</a></p>
+<p><strong>License:</strong> The code in this notebook is licensed under the <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons by Attribution 4.0 license</a>.</p>
+<p><strong>Last modified:</strong> December 2021</p>
+<p><br></p>
+<hr>
+<p><br></p>
+<h2 id="References:">
+<a class="anchor" href="#References:" aria-hidden="true"><span class="octicon octicon-link"></span></a><strong>References:</strong><a class="anchor-link" href="#References:"> </a>
+</h2>
+<p><a href="https://www.tutorialsteacher.com/python/error-types-in-python">https://www.tutorialsteacher.com/python/error-types-in-python</a></p>
+
+</div>
+</div>
+</div>
+</div>
+
+
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="pinkychow1010/digital-chinese-history-blog"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/digital-chinese-history-blog/jupyter/2020/01/27/Debugging_and_Understanding_Errors_Basics.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/digital-chinese-history-blog/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/digital-chinese-history-blog/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/digital-chinese-history-blog/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>This site focuses on Python and aims to support users to conduct academic research in the humanities using open source programming languages.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/fastai" title="fastai"><svg class="svg-icon grey"><use xlink:href="/digital-chinese-history-blog/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/fastdotai" title="fastdotai"><svg class="svg-icon grey"><use xlink:href="/digital-chinese-history-blog/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

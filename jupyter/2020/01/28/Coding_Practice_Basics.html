@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Good Coding Practice 🖋️ | 數位中國史部落格 Digital Chinese History</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="Good Coding Practice 🖋️" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="How to keep good habits for writing your code" />
+<meta property="og:description" content="How to keep good habits for writing your code" />
+<link rel="canonical" href="https://pinkychow1010.github.io/digital-chinese-history-blog/jupyter/2020/01/28/Coding_Practice_Basics.html" />
+<meta property="og:url" content="https://pinkychow1010.github.io/digital-chinese-history-blog/jupyter/2020/01/28/Coding_Practice_Basics.html" />
+<meta property="og:site_name" content="數位中國史部落格 Digital Chinese History" />
+<meta property="og:image" content="https://pinkychow1010.github.io/digital-chinese-history-blog/images/chart-preview.png" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-01-28T00:00:00-06:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://pinkychow1010.github.io/digital-chinese-history-blog/images/chart-preview.png" />
+<meta property="twitter:title" content="Good Coding Practice 🖋️" />
+<script type="application/ld+json">
+{"url":"https://pinkychow1010.github.io/digital-chinese-history-blog/jupyter/2020/01/28/Coding_Practice_Basics.html","@type":"BlogPosting","headline":"Good Coding Practice 🖋️","dateModified":"2020-01-28T00:00:00-06:00","datePublished":"2020-01-28T00:00:00-06:00","image":"https://pinkychow1010.github.io/digital-chinese-history-blog/images/chart-preview.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://pinkychow1010.github.io/digital-chinese-history-blog/jupyter/2020/01/28/Coding_Practice_Basics.html"},"description":"How to keep good habits for writing your code","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/digital-chinese-history-blog/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://pinkychow1010.github.io/digital-chinese-history-blog/feed.xml" title="數位中國史部落格
+Digital Chinese History
+" /><link rel="shortcut icon" type="image/x-icon" href="/digital-chinese-history-blog/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/digital-chinese-history-blog/">數位中國史部落格
+Digital Chinese History
+</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/digital-chinese-history-blog/about/">About Me</a><a class="page-link" href="/digital-chinese-history-blog/search/">Search</a><a class="page-link" href="/digital-chinese-history-blog/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Good Coding Practice 🖋️</h1><p class="page-description">How to keep good habits for writing your code</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2020-01-28T00:00:00-06:00" itemprop="datePublished">
+        Jan 28, 2020
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      6 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/digital-chinese-history-blog/categories/#jupyter">jupyter</a>
+        
+      
+      </p>
+    
+
+    
+      
+        <div class="pb-5 d-flex flex-justify-center">
+          <div class="px-2">
+
+    <a href="https://github.com/pinkychow1010/digital-chinese-history-blog/tree/master/_notebooks/2020-01-28-Coding_Practice_Basics.ipynb" role="button" target="_blank">
+<img class="notebook-badge-image" src="/digital-chinese-history-blog/assets/badges/github.svg" alt="View On GitHub">
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://mybinder.org/v2/gh/pinkychow1010/digital-chinese-history-blog/master?filepath=_notebooks%2F2020-01-28-Coding_Practice_Basics.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/digital-chinese-history-blog/assets/badges/binder.svg" alt="Open In Binder"/>
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://colab.research.google.com/github/pinkychow1010/digital-chinese-history-blog/blob/master/_notebooks/2020-01-28-Coding_Practice_Basics.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/digital-chinese-history-blog/assets/badges/colab.svg" alt="Open In Colab"/>
+    </a>
+</div>
+          <div class="px-2">
+  <a href="https://deepnote.com/launch?url=https%3A%2F%2Fgithub.com%2Fpinkychow1010%2Fdigital-chinese-history-blog%2Fblob%2Fmaster%2F_notebooks%2F2020-01-28-Coding_Practice_Basics.ipynb" target="_blank">
+      <img class="notebook-badge-image" src="/digital-chinese-history-blog/assets/badges/deepnote.svg" alt="Launch in Deepnote"/>
+  </a>
+</div>
+
+        </div>
+      </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <ul id="toc" class="section-nav">
+<li class="toc-entry toc-h2"><a href="#Background">Background </a></li>
+<li class="toc-entry toc-h2"><a href="#1)-Documentation">1) Documentation </a></li>
+<li class="toc-entry toc-h2"><a href="#RECORD-WHAT-YOU-HAVE-DONE-📃">RECORD WHAT YOU HAVE DONE 📃 </a></li>
+<li class="toc-entry toc-h2"><a href="#2)-Consistency">2) Consistency </a></li>
+<li class="toc-entry toc-h2"><a href="#KEEP-THINGS-EASY-TO-REMEMBER-🧠">KEEP THINGS EASY TO REMEMBER 🧠 </a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#So-stay-consistent!">So stay consistent! </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#3)-Naming">3) Naming </a></li>
+<li class="toc-entry toc-h2"><a href="#KEEP-THINGS-CLEAN">KEEP THINGS CLEAN </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#🐫-Camel-Case">🐫 Camel Case </a></li>
+<li class="toc-entry toc-h3"><a href="#👨-Pascal-Case">👨 Pascal Case </a></li>
+<li class="toc-entry toc-h3"><a href="#🐍-Snake-Case">🐍 Snake Case </a></li>
+<li class="toc-entry toc-h3"><a href="#🥙-Kebab-Case">🥙 Kebab Case </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#4)-Correct-Broken-Code">4) Correct Broken Code </a></li>
+<li class="toc-entry toc-h2"><a href="#GET-THINGS-FIXED-🔧">GET THINGS FIXED 🔧 </a></li>
+<li class="toc-entry toc-h2"><a href="#5)-Readability">5) Readability </a></li>
+<li class="toc-entry toc-h2"><a href="#KEEP-THINGS-CLEAN,-CONCISE-AND-SIMPLE-🐇">KEEP THINGS CLEAN, CONCISE AND SIMPLE 🐇 </a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#Happy-Coding!">Happy Coding! </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#Additional-information">Additional information </a></li>
+<li class="toc-entry toc-h2"><a href="#References:">References: </a></li>
+</ul><!--
+#################################################
+### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
+#################################################
+# file to edit: _notebooks/2020-01-28-Coding_Practice_Basics.ipynb
+-->
+
+<div class="container" id="notebook-container">
+        
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><br></p>
+<hr>
+<h2 id="Background">
+<a class="anchor" href="#Background" aria-hidden="true"><span class="octicon octicon-link"></span></a><strong>Background</strong><a class="anchor-link" href="#Background"> </a>
+</h2>
+<p>Although programming is probably not your primary profession, it is always nice to have good coding practice to avoid unnecessary mistakes and misunderstandings in your projects. Some of the practices are more relevant for professional programmers, but here we mention the more relevant one for users who mostly code for fixed-term research projects.</p>
+<p><br></p>
+<p><em>Presumption:</em> Not applicable</p>
+<p><br></p>
+<hr>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="1)-Documentation">
+<a class="anchor" href="#1)-Documentation" aria-hidden="true"><span class="octicon octicon-link"></span></a><strong><em>1) Documentation</em></strong><a class="anchor-link" href="#1)-Documentation"> </a>
+</h2>
+<h2 id="RECORD-WHAT-YOU-HAVE-DONE-📃">
+<a class="anchor" href="#RECORD-WHAT-YOU-HAVE-DONE-%F0%9F%93%83" aria-hidden="true"><span class="octicon octicon-link"></span></a>RECORD WHAT YOU HAVE DONE 📃<a class="anchor-link" href="#RECORD-WHAT-YOU-HAVE-DONE-%F0%9F%93%83"> </a>
+</h2>
+<p>Documentation is important. Although you might be really sure what you are doing when you code, most of the time it is not anymore the case when you wake up another morning, after busy time working on other projects or after a nice family trip. Do not need to mentioned if you are looking at your own code from last year. Do always document them, either by writing a comment with <code>#</code>, <code>""" """</code>, or use a <code>Jupyter Notebook</code> and add more texts!</p>
+<p>And sometimes you might have a project together with your colleagues, and they also need to understand what you are doing. Or if you are always working alone, then one day you colleagues want to get some insights from the code you wrote. You are not gonna show them and explain everything to them.</p>
+<p>So make use of comments! When we write comments, we do not write what is done, we write <strong>what is the purpose</strong>. For example, if you create a new dataframe with two columns from the old dataframe, it is better to write <strong>"extract coordinates and name from historical sites"</strong> than <strong>"create new dataframe"</strong>, bacause the later comment do not give enough context and new information to the readers.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="2)-Consistency">
+<a class="anchor" href="#2)-Consistency" aria-hidden="true"><span class="octicon octicon-link"></span></a><strong><em>2) Consistency</em></strong><a class="anchor-link" href="#2)-Consistency"> </a>
+</h2>
+<h2 id="KEEP-THINGS-EASY-TO-REMEMBER-🧠">
+<a class="anchor" href="#KEEP-THINGS-EASY-TO-REMEMBER-%F0%9F%A7%A0" aria-hidden="true"><span class="octicon octicon-link"></span></a>KEEP THINGS EASY TO REMEMBER 🧠<a class="anchor-link" href="#KEEP-THINGS-EASY-TO-REMEMBER-%F0%9F%A7%A0"> </a>
+</h2>
+<p>You might not realize it but consistency fits your brain that always search for patterns! If you write your code in a consistent way, it can save you a lot of time running into unnecessary mistakes.</p>
+<p>For example, if you name your five dataframes as</p>
+<ul>
+<li>dataframe1</li>
+<li>dataframe2</li>
+<li>DataFrame3</li>
+<li>Dataframe4</li>
+<li>Dataframe_5</li>
+</ul>
+<p>You might forget how did you name your dataframe later, and write dataframe3, or Dataframe_4, which all will run into errors. Consistency applies particularly to capital letters because we have learnt Python is case-sensitive.</p>
+<p>You might think you can check it out everytime but it is not handy if you have tens of those variables. It is better that you name them in a consistent way from the first place.</p>
+<p>Like:</p>
+<ul>
+<li>df1</li>
+<li>df2</li>
+<li>df3</li>
+<li>df4</li>
+<li>df5</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>It also apply when you are writing code instead of naming variable. Because you always have multiple ways to get things done. Stick with the way that is simple and straight-forward!</p>
+<p>For example, you have data from three years:</p>
+<ul>
+<li>df_2018 = [9.8, 12.6, 15.8]</li>
+<li>df_2019 = [5.6, 17.6, 25.1]</li>
+<li>df_2020 = np.array([6.5, 11.3, 13.5])</li>
+</ul>
+<p><br></p>
+<p>While df_2018 and df_2019 are lists, df_2020 is a Numpy array. Although both data types will work, they are different types and you might not remember it later, and run into errors because you thought the operations that works for df_2018 will also works for df_2020.</p>
+<h4 id="So-stay-consistent!">
+<a class="anchor" href="#So-stay-consistent!" aria-hidden="true"><span class="octicon octicon-link"></span></a><strong><em>So stay consistent!</em></strong><a class="anchor-link" href="#So-stay-consistent!"> </a>
+</h4>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="3)-Naming">
+<a class="anchor" href="#3)-Naming" aria-hidden="true"><span class="octicon octicon-link"></span></a>3) Naming<a class="anchor-link" href="#3)-Naming"> </a>
+</h2>
+<h2 id="KEEP-THINGS-CLEAN">
+<a class="anchor" href="#KEEP-THINGS-CLEAN" aria-hidden="true"><span class="octicon octicon-link"></span></a><strong><em>KEEP THINGS CLEAN</em></strong><a class="anchor-link" href="#KEEP-THINGS-CLEAN"> </a>
+</h2>
+<p>Also it is important how you name the objects. If you have one dataframe for China, one for Korea and one for Japan. You want to name them in a more informative way, not</p>
+<ul>
+<li>df1</li>
+<li>df2</li>
+<li>df3</li>
+</ul>
+<p>but</p>
+<ul>
+<li>df_china</li>
+<li>df_japan</li>
+<li>df_korea</li>
+</ul>
+<p><br></p>
+<p>There are different conventions too you would follow, particularly when it comes to combining words. Because Python do not support spaces in variable, you cannot name a data frame "South Korea Data Frame", but the letters need to be combined in some ways.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><br></p>
+<h3 id="🐫-Camel-Case">
+<a class="anchor" href="#%F0%9F%90%AB-Camel-Case" aria-hidden="true"><span class="octicon octicon-link"></span></a>🐫 <strong><em>Camel Case</em></strong><a class="anchor-link" href="#%F0%9F%90%AB-Camel-Case"> </a>
+</h3>
+<p>Camel case combines words by capitalizing all words following the first word and removing the space, as follows:</p>
+<p><strong>Raw:</strong> <code>user login count</code></p>
+<p><strong>Camel Case:</strong> <code>userLoginCount</code></p>
+<p><br></p>
+<h3 id="👨-Pascal-Case">
+<a class="anchor" href="#%F0%9F%91%A8-Pascal-Case" aria-hidden="true"><span class="octicon octicon-link"></span></a>👨 <strong><em>Pascal Case</em></strong><a class="anchor-link" href="#%F0%9F%91%A8-Pascal-Case"> </a>
+</h3>
+<p>Pascal case combines words by capitalizing all words (even the first word) and removing the space, as follows:</p>
+<p><strong>Raw:</strong> <code>user login count</code></p>
+<p><strong>Pascal Case:</strong> <code>UserLoginCount</code></p>
+<p><br></p>
+<h3 id="🐍-Snake-Case">
+<a class="anchor" href="#%F0%9F%90%8D-Snake-Case" aria-hidden="true"><span class="octicon octicon-link"></span></a>🐍 <strong><em>Snake Case</em></strong><a class="anchor-link" href="#%F0%9F%90%8D-Snake-Case"> </a>
+</h3>
+<p>Snake case combines words by replacing each space with an underscore (_) and, in the all caps version, all letters are capitalized, as follows:</p>
+<p><strong>Raw:</strong> <code>user login count</code></p>
+<p><strong>Snake Case:</strong> <code>user_login_count</code></p>
+<p><strong>Snake Case (All Caps):</strong> <code>USER_LOGIN_COUNT</code></p>
+<p><br></p>
+<h3 id="🥙-Kebab-Case">
+<a class="anchor" href="#%F0%9F%A5%99-Kebab-Case" aria-hidden="true"><span class="octicon octicon-link"></span></a>🥙 <strong><em>Kebab Case</em></strong><a class="anchor-link" href="#%F0%9F%A5%99-Kebab-Case"> </a>
+</h3>
+<p>Kebab case combines words by replacing each space with a dash (-), as follows:</p>
+<p><strong>Raw:</strong> <code>user login count</code></p>
+<p><strong>Kebab Case:</strong> <code>user-login-count</code></p>
+<p><br></p>
+<p>There is not the best way how to name your variable, either "dateFrame" or "data-frame", the more important is that they are used in a consistent way. Also pay attention that <strong>abbreviations</strong> are recommanded to keep things short but not too much that all others cannot really understand.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="4)-Correct-Broken-Code">
+<a class="anchor" href="#4)-Correct-Broken-Code" aria-hidden="true"><span class="octicon octicon-link"></span></a>4) Correct Broken Code<a class="anchor-link" href="#4)-Correct-Broken-Code"> </a>
+</h2>
+<h2 id="GET-THINGS-FIXED-🔧">
+<a class="anchor" href="#GET-THINGS-FIXED-%F0%9F%94%A7" aria-hidden="true"><span class="octicon octicon-link"></span></a><strong><em>GET THINGS FIXED</em></strong> 🔧<a class="anchor-link" href="#GET-THINGS-FIXED-%F0%9F%94%A7"> </a>
+</h2>
+<p><br></p>
+<p>Sometimes things do not work the way we want, they are called bugs. They might not come to your immediate concerns but mark them down and get them fixed as soon as possible. You might even forget in what ways it is broken if you do not fix them timely and it can get worse.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="5)-Readability">
+<a class="anchor" href="#5)-Readability" aria-hidden="true"><span class="octicon octicon-link"></span></a>5) Readability<a class="anchor-link" href="#5)-Readability"> </a>
+</h2>
+<h2 id="KEEP-THINGS-CLEAN,-CONCISE-AND-SIMPLE-🐇">
+<a class="anchor" href="#KEEP-THINGS-CLEAN,-CONCISE-AND-SIMPLE-%F0%9F%90%87" aria-hidden="true"><span class="octicon octicon-link"></span></a><strong><em>KEEP THINGS CLEAN, CONCISE AND SIMPLE</em></strong> 🐇<a class="anchor-link" href="#KEEP-THINGS-CLEAN,-CONCISE-AND-SIMPLE-%F0%9F%90%87"> </a>
+</h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This is simple. If code does not work, throw them away and do not keep mess.</p>
+<p>For example, instead of writing code like below:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">urban_history</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"Hong Kong Government Reports Online 1841-1942"</span><span class="p">,</span><span class="s2">"Policing the Shanghai International Settlement, 1894-1945"</span><span class="p">,</span><span class="s2">"Virtual Cities Project"</span><span class="p">]</span> 
+<span class="n">social_history</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"China Families"</span><span class="p">]</span>
+<span class="c1"># Manchukuo = ["Chinese Posters in Harvard-Yenching Manchukuo Collection"] # try without first</span>
+
+
+
+<span class="c1"># urban_history.insert(social_history,2) (does not work)</span>
+<span class="c1">#</span>
+<span class="c1"># print(urban_history.append(social_history)) (does not work either)</span>
+<span class="n">urban_history</span> <span class="o">+</span> <span class="n">social_history</span> <span class="c1"># this is fine</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>['Hong Kong Government Reports Online 1841-1942',
+ 'Policing the Shanghai International Settlement, 1894-1945',
+ 'Virtual Cities Project',
+ 'China Families']</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Keep your "Working Table" clean like this:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">urban_history</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"Hong Kong Government Reports Online 1841-1942"</span><span class="p">,</span><span class="s2">"Policing the Shanghai International Settlement, 1894-1945"</span><span class="p">,</span><span class="s2">"Virtual Cities Project"</span><span class="p">]</span> 
+<span class="n">social_history</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"China Families"</span><span class="p">]</span>
+
+<span class="c1"># calculation</span>
+<span class="n">urban_history</span> <span class="o">+</span> <span class="n">social_history</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>['Hong Kong Government Reports Online 1841-1942',
+ 'Policing the Shanghai International Settlement, 1894-1945',
+ 'Virtual Cities Project',
+ 'China Families']</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Clean code also mean that your code is readable. For example, try to avoid many operations in one line. Although it also works, it make things hard to read. If there are any small typos, it is often not so easy to spot.</p>
+<p>Like:</p>
+<p><strong>(NOT recommanded)</strong></p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="p">{</span><span class="s1">'Name'</span><span class="p">:</span> <span class="p">[</span><span class="s2">"Hong Kong Government Reports Online 1841-1942"</span><span class="p">,</span><span class="s2">"Policing the Shanghai International Settlement, 1894-1945"</span><span class="p">,</span><span class="s2">"Virtual Cities Project"</span><span class="p">]</span> 
+<span class="p">,</span> <span class="s1">'History'</span><span class="p">:</span> <span class="p">[</span><span class="s2">"urban"</span><span class="p">,</span><span class="s2">"urban"</span><span class="p">,</span><span class="s2">"urban"</span><span class="p">]}))</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+      <th>History</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Hong Kong Government Reports Online 1841-1942</td>
+      <td>urban</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="p">{</span><span class="s1">'Name'</span><span class="p">:</span> <span class="p">[</span><span class="s2">"Hong Kong Government Reports Online 1841-1942"</span><span class="p">,</span><span class="s2">"Policing the Shanghai International Settlement, 1894-1945"</span><span class="p">,</span><span class="s2">"Virtual Cities Project"</span><span class="p">]</span> 
+<span class="p">,</span> <span class="s1">'History'</span><span class="p">:</span> <span class="p">[</span><span class="s2">"urban"</span><span class="p">,</span><span class="s2">"urban"</span><span class="p">,</span><span class="s2">"urban"</span><span class="p">]]}))</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_text output_error">
+<pre>
+<span class="ansi-cyan-fg">  File </span><span class="ansi-green-fg">"&lt;ipython-input-10-5139c64437bf&gt;"</span><span class="ansi-cyan-fg">, line </span><span class="ansi-green-fg">5</span>
+<span class="ansi-red-fg">    , 'History': ["urban","urban","urban"]]})).head(1)</span>
+                                          ^
+<span class="ansi-red-fg">SyntaxError</span><span class="ansi-red-fg">:</span> invalid syntax
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>(recommanded)</strong></p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="c1"># type of history</span>
+<span class="n">hist_type</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"urban"</span><span class="p">,</span><span class="s2">"urban"</span><span class="p">,</span><span class="s2">"urban"</span><span class="p">]</span>
+
+<span class="c1"># set up datframe</span>
+<span class="n">d</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'Name'</span><span class="p">:</span> <span class="n">urban_history</span><span class="p">,</span> <span class="s1">'History'</span><span class="p">:</span> <span class="n">hist_type</span><span class="p">}</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">d</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+      <th>History</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Hong Kong Government Reports Online 1841-1942</td>
+      <td>urban</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Happy-Coding!">
+<a class="anchor" href="#Happy-Coding!" aria-hidden="true"><span class="octicon octicon-link"></span></a><strong>Happy Coding!</strong><a class="anchor-link" href="#Happy-Coding!"> </a>
+</h4>
+<p><br></p>
+<hr>
+<p><em>(Quoted from The Zen of Python, by Tim Peters)</em></p>
+<p><strong><em>Beautiful is better than ugly.</em></strong></p>
+<p><strong><em>Explicit is better than implicit.</em></strong></p>
+<p><strong><em>Simple is better than complex.</em></strong></p>
+<p><strong><em>Complex is better than complicated.</em></strong></p>
+<p><strong><em>Readability counts.</em></strong></p>
+<p><strong><em>If the implementation is hard to explain, it’s a bad idea.</em></strong></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><br>
+<br></p>
+<hr>
+<h2 id="Additional-information">
+<a class="anchor" href="#Additional-information" aria-hidden="true"><span class="octicon octicon-link"></span></a><strong>Additional information</strong><a class="anchor-link" href="#Additional-information"> </a>
+</h2>
+<p>This notebook is provided for educational purpose and feel free to report any issue on GitHub.</p>
+<p><br></p>
+<p><strong>Author:</strong> <a href="https://www.linkedin.com/in/ka-hei-chow-231345188/">Ka Hei, Chow</a></p>
+<p><strong>License:</strong> The code in this notebook is licensed under the <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons by Attribution 4.0 license</a>.</p>
+<p><strong>Last modified:</strong> December 2021</p>
+<p><br></p>
+<hr>
+<p><br></p>
+<h2 id="References:">
+<a class="anchor" href="#References:" aria-hidden="true"><span class="octicon octicon-link"></span></a><strong>References:</strong><a class="anchor-link" href="#References:"> </a>
+</h2>
+<p><a href="https://data-flair.training/blogs/python-best-practices/">https://data-flair.training/blogs/python-best-practices/</a></p>
+<p><a href="https://betterprogramming.pub/string-case-styles-camel-pascal-snake-and-kebab-case-981407998841">https://betterprogramming.pub/string-case-styles-camel-pascal-snake-and-kebab-case-981407998841</a></p>
+
+</div>
+</div>
+</div>
+</div>
+
+
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="pinkychow1010/digital-chinese-history-blog"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/digital-chinese-history-blog/jupyter/2020/01/28/Coding_Practice_Basics.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/digital-chinese-history-blog/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/digital-chinese-history-blog/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/digital-chinese-history-blog/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>This site focuses on Python and aims to support users to conduct academic research in the humanities using open source programming languages.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/fastai" title="fastai"><svg class="svg-icon grey"><use xlink:href="/digital-chinese-history-blog/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/fastdotai" title="fastdotai"><svg class="svg-icon grey"><use xlink:href="/digital-chinese-history-blog/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

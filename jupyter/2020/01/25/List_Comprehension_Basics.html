@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>List Comprehension | 數位中國史部落格 Digital Chinese History</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="List Comprehension" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Python basics" />
+<meta property="og:description" content="Python basics" />
+<link rel="canonical" href="https://pinkychow1010.github.io/digital-chinese-history-blog/jupyter/2020/01/25/List_Comprehension_Basics.html" />
+<meta property="og:url" content="https://pinkychow1010.github.io/digital-chinese-history-blog/jupyter/2020/01/25/List_Comprehension_Basics.html" />
+<meta property="og:site_name" content="數位中國史部落格 Digital Chinese History" />
+<meta property="og:image" content="https://pinkychow1010.github.io/digital-chinese-history-blog/images/chart-preview.png" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-01-25T00:00:00-06:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://pinkychow1010.github.io/digital-chinese-history-blog/images/chart-preview.png" />
+<meta property="twitter:title" content="List Comprehension" />
+<script type="application/ld+json">
+{"url":"https://pinkychow1010.github.io/digital-chinese-history-blog/jupyter/2020/01/25/List_Comprehension_Basics.html","@type":"BlogPosting","headline":"List Comprehension","dateModified":"2020-01-25T00:00:00-06:00","datePublished":"2020-01-25T00:00:00-06:00","image":"https://pinkychow1010.github.io/digital-chinese-history-blog/images/chart-preview.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://pinkychow1010.github.io/digital-chinese-history-blog/jupyter/2020/01/25/List_Comprehension_Basics.html"},"description":"Python basics","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/digital-chinese-history-blog/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://pinkychow1010.github.io/digital-chinese-history-blog/feed.xml" title="數位中國史部落格
+Digital Chinese History
+" /><link rel="shortcut icon" type="image/x-icon" href="/digital-chinese-history-blog/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/digital-chinese-history-blog/">數位中國史部落格
+Digital Chinese History
+</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/digital-chinese-history-blog/about/">About Me</a><a class="page-link" href="/digital-chinese-history-blog/search/">Search</a><a class="page-link" href="/digital-chinese-history-blog/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">List Comprehension</h1><p class="page-description">Python basics</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2020-01-25T00:00:00-06:00" itemprop="datePublished">
+        Jan 25, 2020
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      9 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/digital-chinese-history-blog/categories/#jupyter">jupyter</a>
+        
+      
+      </p>
+    
+
+    
+      
+        <div class="pb-5 d-flex flex-justify-center">
+          <div class="px-2">
+
+    <a href="https://github.com/pinkychow1010/digital-chinese-history-blog/tree/master/_notebooks/2020-01-25-List_Comprehension_Basics.ipynb" role="button" target="_blank">
+<img class="notebook-badge-image" src="/digital-chinese-history-blog/assets/badges/github.svg" alt="View On GitHub">
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://mybinder.org/v2/gh/pinkychow1010/digital-chinese-history-blog/master?filepath=_notebooks%2F2020-01-25-List_Comprehension_Basics.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/digital-chinese-history-blog/assets/badges/binder.svg" alt="Open In Binder"/>
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://colab.research.google.com/github/pinkychow1010/digital-chinese-history-blog/blob/master/_notebooks/2020-01-25-List_Comprehension_Basics.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/digital-chinese-history-blog/assets/badges/colab.svg" alt="Open In Colab"/>
+    </a>
+</div>
+          <div class="px-2">
+  <a href="https://deepnote.com/launch?url=https%3A%2F%2Fgithub.com%2Fpinkychow1010%2Fdigital-chinese-history-blog%2Fblob%2Fmaster%2F_notebooks%2F2020-01-25-List_Comprehension_Basics.ipynb" target="_blank">
+      <img class="notebook-badge-image" src="/digital-chinese-history-blog/assets/badges/deepnote.svg" alt="Launch in Deepnote"/>
+  </a>
+</div>
+
+        </div>
+      </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <ul id="toc" class="section-nav">
+<li class="toc-entry toc-h2"><a href="#Additional-information">Additional information </a></li>
+<li class="toc-entry toc-h2"><a href="#References:">References: </a></li>
+</ul><!--
+#################################################
+### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
+#################################################
+# file to edit: _notebooks/2020-01-25-List_Comprehension_Basics.ipynb
+-->
+
+<div class="container" id="notebook-container">
+        
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><br></p>
+<p><em>Presumption:</em></p>
+<p><a href="https://www.youtube.com/watch?v=5K08WcjGV6c">List Comprehension</a></p>
+<p><a href="https://www.w3schools.com/python/python_dictionaries.asp">Dictionary</a></p>
+<p><a href="https://www.w3schools.com/python/python_tuples.asp">Tuples</a></p>
+<p><a href="https://www.w3schools.com/python/ref_func_zip.asp">zip()</a></p>
+<p><br></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Below we use a short list of <a href="https://logart.mpiwg-berlin.mpg.de/LGServices2/#/books">local gazetteers</a> from <strong><em>LoGaRT</em></strong> as our example.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">gazetteer</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"天下一統志(明)"</span><span class="p">,</span><span class="s2">"大明一統志(明)"</span><span class="p">,</span><span class="s2">"嘉善縣志(明)"</span><span class="p">,</span><span class="s2">"雍大記南畿志(明)"</span><span class="p">,</span><span class="s2">"上海縣志(明)"</span><span class="p">,</span><span class="s2">"全遼志(明)"</span><span class="p">,</span><span class="s2">"喬三石耀州志(明)"</span><span class="p">,</span><span class="s2">"宣府鎮志(明)"</span><span class="p">,</span><span class="s2">"雲南通志(明)"</span><span class="p">,</span><span class="s2">"大明一統志輯錄(明)"</span><span class="p">,</span><span class="s2">"雲中郡志(清)"</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">re</span> <span class="c1"># this you will learn in the notebook web scrapping so you do not need to understand everything for now</span>
+
+<span class="k">def</span> <span class="nf">str_check</span><span class="p">(</span><span class="n">text</span><span class="p">):</span> <span class="c1"># but you need to know the function start with def, the name of the function, and a () with/ without argument(s) inside.</span>
+  <span class="n">pattern</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s1">'明'</span><span class="p">)</span> <span class="c1"># inside the function you need to indent every line (with a tab)</span>
+  <span class="n">match</span> <span class="o">=</span> <span class="nb">any</span><span class="p">(</span><span class="n">pattern</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">text</span><span class="p">))</span> <span class="c1"># you somehow get to the result (desired output)</span>
+  <span class="k">return</span> <span class="n">match</span> <span class="c1"># and you return them (typically in a variable)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Suppose we need all the local gazetteers from 明 only. What we can do is to build a function (there is another easier option using Pandas but now we stick with this function). And then we can print all results which fit the condition.</p>
+<p><br></p>
+<p><strong>The structure of list comprehension is:</strong></p>
+<p><code>[ ]</code> <strong>&lt;- in a list &lt;- key components</strong></p>
+<p><code>(name1) for (name2) in</code> <strong>&lt;- for and in are keywords, (name2) is the variable name to be assigned for the item in loop, (name1) is the output you want, which should be expressed in terms of (name1)</strong></p>
+<p><code>(list)</code> <strong>&lt;- the variable which stores all the items or the list to be loop through</strong></p>
+<p><code>if (condition)</code> <strong>&lt;- add a condition, this part is optional</strong></p>
+<p><br></p>
+<p><strong><em>Remarks:</em></strong> <code>(name1) and (name2) can be the same but do not need to be</code></p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">gazetteer</span> <span class="k">if</span> <span class="n">str_check</span><span class="p">(</span><span class="n">x</span><span class="p">)]</span> <span class="c1"># if ad_check(x) is the same as if ad_check(x) == True</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>['天下一統志(明)',
+ '大明一統志(明)',
+ '嘉善縣志(明)',
+ '雍大記南畿志(明)',
+ '上海縣志(明)',
+ '全遼志(明)',
+ '喬三石耀州志(明)',
+ '宣府鎮志(明)',
+ '雲南通志(明)',
+ '大明一統志輯錄(明)']</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We can also save the list to another new list.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ming_gazetteer</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">gazetteer</span> <span class="k">if</span> <span class="n">str_check</span><span class="p">(</span><span class="n">x</span><span class="p">)]</span>
+<span class="n">ming_gazetteer</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>['天下一統志(明)',
+ '大明一統志(明)',
+ '嘉善縣志(明)',
+ '雍大記南畿志(明)',
+ '上海縣志(明)',
+ '全遼志(明)',
+ '喬三石耀州志(明)',
+ '宣府鎮志(明)',
+ '雲南通志(明)',
+ '大明一統志輯錄(明)']</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We can also change the outputs: for example, instead of the item itself, we want to get the lengths of the strings which fit the same condition:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">gazetteer</span> <span class="k">if</span> <span class="n">str_check</span><span class="p">(</span><span class="n">x</span><span class="p">)]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[8, 8, 7, 9, 7, 6, 9, 7, 7, 10]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">gazetteer</span> <span class="k">if</span> <span class="n">str_check</span><span class="p">(</span><span class="n">x</span><span class="p">)]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>['天下一統志(明)',
+ '大明一統志(明)',
+ '嘉善縣志(明)',
+ '雍大記南畿志(明)',
+ '上海縣志(明)',
+ '全遼志(明)',
+ '喬三石耀州志(明)',
+ '宣府鎮志(明)',
+ '雲南通志(明)',
+ '大明一統志輯錄(明)']</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We can also combine list comprehension with any functions from any library. For example, we want to get the piyin of the items in our list. We can use library <strong>pinyin</strong> for that.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span> pip install pinyin # install library
+<span class="kn">import</span> <span class="nn">pinyin</span> <span class="c1"># import library</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="p">[</span><span class="n">pinyin</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">"strip"</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s2">" "</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">gazetteer</span><span class="p">]</span> <span class="c1"># get the pinyin for all items</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>['tian xia yi tong zhi ( ming )',
+ 'da ming yi tong zhi ( ming )',
+ 'jia shan xian zhi ( ming )',
+ 'yong da ji nan ji zhi ( ming )',
+ 'shang hai xian zhi ( ming )',
+ 'quan liao zhi ( ming )',
+ 'qiao san shi yao zhou zhi ( ming )',
+ 'xuan fu zhen zhi ( ming )',
+ 'yun nan tong zhi ( ming )',
+ 'da ming yi tong zhi ji lu ( ming )',
+ 'yun zhong jun zhi ( qing )']</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="p">[</span><span class="n">pinyin</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">"strip"</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s2">" "</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">gazetteer</span> <span class="k">if</span> <span class="n">str_check</span><span class="p">(</span><span class="n">x</span><span class="p">)]</span> <span class="c1"># get the pinyin for all items from ming</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>['tian xia yi tong zhi ( ming )',
+ 'da ming yi tong zhi ( ming )',
+ 'jia shan xian zhi ( ming )',
+ 'yong da ji nan ji zhi ( ming )',
+ 'shang hai xian zhi ( ming )',
+ 'quan liao zhi ( ming )',
+ 'qiao san shi yao zhou zhi ( ming )',
+ 'xuan fu zhen zhi ( ming )',
+ 'yun nan tong zhi ( ming )',
+ 'da ming yi tong zhi ji lu ( ming )']</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Apart from that, we can also combine the index using <strong>enumerate()</strong> (we have learnt it from the previous lesson).</p>
+<p><strong><code>Remember that enumerate() return two values as we need two names between the keywords "for" and "in"!</code></strong></p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="p">[</span><span class="nb">print</span><span class="p">(</span><span class="n">index</span><span class="p">,</span><span class="n">pinyin</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">"strip"</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s2">" "</span><span class="p">))</span> <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">item</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">gazetteer</span><span class="p">)]</span> <span class="c1"># get the pinyin with indices for all items</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>0 tian xia yi tong zhi ( ming )
+1 da ming yi tong zhi ( ming )
+2 jia shan xian zhi ( ming )
+3 yong da ji nan ji zhi ( ming )
+4 shang hai xian zhi ( ming )
+5 quan liao zhi ( ming )
+6 qiao san shi yao zhou zhi ( ming )
+7 xuan fu zhen zhi ( ming )
+8 yun nan tong zhi ( ming )
+9 da ming yi tong zhi ji lu ( ming )
+10 yun zhong jun zhi ( qing )
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[None, None, None, None, None, None, None, None, None, None, None]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="p">[</span><span class="nb">print</span><span class="p">(</span><span class="n">index</span><span class="p">,</span><span class="n">pinyin</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">"strip"</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s2">" "</span><span class="p">))</span> <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">item</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">gazetteer</span><span class="p">)</span> <span class="k">if</span> <span class="n">index</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">]]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>1 da ming yi tong zhi ( ming )
+3 yong da ji nan ji zhi ( ming )
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[None, None]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="p">[</span><span class="nb">print</span><span class="p">(</span><span class="n">index</span><span class="p">,</span><span class="n">pinyin</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">"strip"</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s2">" "</span><span class="p">))</span> <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">item</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">gazetteer</span><span class="p">)</span> <span class="k">if</span> <span class="n">index</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>1 da ming yi tong zhi ( ming )
+2 jia shan xian zhi ( ming )
+3 yong da ji nan ji zhi ( ming )
+4 shang hai xian zhi ( ming )
+5 quan liao zhi ( ming )
+6 qiao san shi yao zhou zhi ( ming )
+7 xuan fu zhen zhi ( ming )
+8 yun nan tong zhi ( ming )
+9 da ming yi tong zhi ji lu ( ming )
+10 yun zhong jun zhi ( qing )
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[None, None, None, None, None, None, None, None, None, None]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>There are numerous options what we can do using list comprehension. Another example demonsrating the functionality of list comprehension is word frequency count: searching for the keywords which appears in the top frequencies.</p>
+<p>First, we join all the items to a single list and then split all Chinese character using <strong>list()</strong> after removing () using <strong>replace()</strong>.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">string</span> <span class="o">=</span> <span class="s1">''</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">gazetteer</span><span class="p">)</span> <span class="c1"># join all items in list to a single string</span>
+<span class="n">string</span> <span class="o">=</span> <span class="n">string</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">"("</span><span class="p">,</span> <span class="s2">""</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">")"</span><span class="p">,</span> <span class="s2">""</span><span class="p">)</span> <span class="c1"># replace "(" and ")" to nothing ""</span>
+
+<span class="n">wordlist</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">string</span><span class="p">)</span> <span class="c1"># split all Chinese characters</span>
+<span class="n">wordlist</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span> <span class="c1"># print first 5 characters</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>['天', '下', '一', '統', '志']</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now we use list comprehension to count all characters.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">wordfreq</span> <span class="o">=</span> <span class="p">[</span><span class="n">wordlist</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">w</span><span class="p">)</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">wordlist</span><span class="p">]</span> <span class="c1"># list comprehension to count all characters</span>
+
+<span class="c1"># print the single string</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"String</span><span class="se">\n</span><span class="s2">"</span> <span class="o">+</span> <span class="n">string</span> <span class="o">+</span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span> <span class="c1"># \n means new line</span>
+
+<span class="c1"># print a list of all characters</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"List</span><span class="se">\n</span><span class="s2">"</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">wordlist</span><span class="p">)</span> <span class="o">+</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
+
+<span class="c1"># print frequencies</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Frequencies</span><span class="se">\n</span><span class="s2">"</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">wordfreq</span><span class="p">)</span> <span class="o">+</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
+
+<span class="c1"># print zip objects by combining characters and occurences</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Pairs</span><span class="se">\n</span><span class="s2">"</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">wordlist</span><span class="p">,</span> <span class="n">wordfreq</span><span class="p">))))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>String
+天下一統志明大明一統志明嘉善縣志明雍大記南畿志明上海縣志明全遼志明喬三石耀州志明宣府鎮志明雲南通志明大明一統志輯錄明雲中郡志清
+
+List
+['天', '下', '一', '統', '志', '明', '大', '明', '一', '統', '志', '明', '嘉', '善', '縣', '志', '明', '雍', '大', '記', '南', '畿', '志', '明', '上', '海', '縣', '志', '明', '全', '遼', '志', '明', '喬', '三', '石', '耀', '州', '志', '明', '宣', '府', '鎮', '志', '明', '雲', '南', '通', '志', '明', '大', '明', '一', '統', '志', '輯', '錄', '明', '雲', '中', '郡', '志', '清']
+
+Frequencies
+[1, 1, 3, 3, 11, 12, 3, 12, 3, 3, 11, 12, 1, 1, 2, 11, 12, 1, 3, 1, 2, 1, 11, 12, 1, 1, 2, 11, 12, 1, 1, 11, 12, 1, 1, 1, 1, 1, 11, 12, 1, 1, 1, 11, 12, 2, 2, 1, 11, 12, 3, 12, 3, 3, 11, 1, 1, 12, 2, 1, 1, 11, 1]
+
+Pairs
+[('天', 1), ('下', 1), ('一', 3), ('統', 3), ('志', 11), ('明', 12), ('大', 3), ('明', 12), ('一', 3), ('統', 3), ('志', 11), ('明', 12), ('嘉', 1), ('善', 1), ('縣', 2), ('志', 11), ('明', 12), ('雍', 1), ('大', 3), ('記', 1), ('南', 2), ('畿', 1), ('志', 11), ('明', 12), ('上', 1), ('海', 1), ('縣', 2), ('志', 11), ('明', 12), ('全', 1), ('遼', 1), ('志', 11), ('明', 12), ('喬', 1), ('三', 1), ('石', 1), ('耀', 1), ('州', 1), ('志', 11), ('明', 12), ('宣', 1), ('府', 1), ('鎮', 1), ('志', 11), ('明', 12), ('雲', 2), ('南', 2), ('通', 1), ('志', 11), ('明', 12), ('大', 3), ('明', 12), ('一', 3), ('統', 3), ('志', 11), ('輯', 1), ('錄', 1), ('明', 12), ('雲', 2), ('中', 1), ('郡', 1), ('志', 11), ('清', 1)]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In order to produce more useful outputs to inspect the keywords, we can combine functions and list comprehensions to output a dictionary. Click <a href="https://www.w3schools.com/python/python_functions.asp">here</a> if you need to review how to build a function.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">wordListToFreqDict</span><span class="p">(</span><span class="n">wordlist</span><span class="p">):</span>
+<span class="sd">"""</span>
+<span class="sd">This function convert a word list to dictionary displaying frequencies of character occurences</span>
+<span class="sd">"""</span>
+    <span class="n">wordfreq</span> <span class="o">=</span> <span class="p">[</span><span class="n">wordlist</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">wordlist</span><span class="p">]</span> <span class="c1"># same as what we did above</span>
+    <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">wordlist</span><span class="p">,</span><span class="n">wordfreq</span><span class="p">)))</span> <span class="c1"># return a dictionary of zip objects</span>
+
+<span class="n">word_count</span> <span class="o">=</span> <span class="n">wordListToFreqDict</span><span class="p">(</span><span class="n">wordlist</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Let's look at our dictionary <strong>word_count</strong>.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">word_count</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>{'一': 3,
+ '三': 1,
+ '上': 1,
+ '下': 1,
+ '中': 1,
+ '全': 1,
+ '南': 2,
+ '善': 1,
+ '喬': 1,
+ '嘉': 1,
+ '大': 3,
+ '天': 1,
+ '宣': 1,
+ '州': 1,
+ '府': 1,
+ '志': 11,
+ '明': 12,
+ '海': 1,
+ '清': 1,
+ '畿': 1,
+ '石': 1,
+ '統': 3,
+ '縣': 2,
+ '耀': 1,
+ '記': 1,
+ '輯': 1,
+ '通': 1,
+ '遼': 1,
+ '郡': 1,
+ '錄': 1,
+ '鎮': 1,
+ '雍': 1,
+ '雲': 2}</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>However, as we can see, the data seems to be a bit messy. It would be much easier to read if we order the keywords by frequency. We can do this by building another small function to sort the values.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">sortFreqDict</span><span class="p">(</span><span class="n">freqdict</span><span class="p">):</span>
+  <span class="sd">"""</span>
+<span class="sd">  This function sort dictionary by keyword frequencies</span>
+<span class="sd">  """</span>
+    <span class="n">aux</span> <span class="o">=</span> <span class="p">[(</span><span class="n">freqdict</span><span class="p">[</span><span class="n">key</span><span class="p">],</span> <span class="n">key</span><span class="p">)</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">freqdict</span><span class="p">]</span> <span class="c1"># convert dictionary back to a list of tuples</span>
+    <span class="n">aux</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span> <span class="c1"># sort the values</span>
+    <span class="n">aux</span><span class="o">.</span><span class="n">reverse</span><span class="p">()</span> <span class="c1"># reverse the values so the items are in descending order</span>
+    <span class="k">return</span> <span class="n">aux</span> <span class="c1"># return sorted list</span>
+
+<span class="n">sortFreqDict</span><span class="p">(</span><span class="n">word_count</span><span class="p">)[:</span><span class="mi">5</span><span class="p">]</span> <span class="c1"># apply our function and print the first 5 items in list</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[(12, '明'), (11, '志'), (3, '統'), (3, '大'), (3, '一')]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><br>
+<br></p>
+<hr>
+<h2 id="Additional-information">
+<a class="anchor" href="#Additional-information" aria-hidden="true"><span class="octicon octicon-link"></span></a><strong>Additional information</strong><a class="anchor-link" href="#Additional-information"> </a>
+</h2>
+<p>This notebook is provided for educational purpose and feel free to report any issue on GitHub.</p>
+<p><br></p>
+<p><strong>Author:</strong> <a href="https://www.linkedin.com/in/ka-hei-chow-231345188/">Ka Hei, Chow</a></p>
+<p><strong>License:</strong> The code in this notebook is licensed under the <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons by Attribution 4.0 license</a>.</p>
+<p><strong>Last modified:</strong> December 2021</p>
+<p><br></p>
+<hr>
+<p><br></p>
+<h2 id="References:">
+<a class="anchor" href="#References:" aria-hidden="true"><span class="octicon octicon-link"></span></a><strong>References:</strong><a class="anchor-link" href="#References:"> </a>
+</h2>
+<p><a href="https://gist.github.com/acrymble/1065661">https://gist.github.com/acrymble/1065661</a></p>
+
+</div>
+</div>
+</div>
+</div>
+
+
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="pinkychow1010/digital-chinese-history-blog"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/digital-chinese-history-blog/jupyter/2020/01/25/List_Comprehension_Basics.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/digital-chinese-history-blog/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/digital-chinese-history-blog/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/digital-chinese-history-blog/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>This site focuses on Python and aims to support users to conduct academic research in the humanities using open source programming languages.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/fastai" title="fastai"><svg class="svg-icon grey"><use xlink:href="/digital-chinese-history-blog/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/fastdotai" title="fastdotai"><svg class="svg-icon grey"><use xlink:href="/digital-chinese-history-blog/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
