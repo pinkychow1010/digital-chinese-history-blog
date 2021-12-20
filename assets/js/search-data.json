@@ -139,6 +139,22 @@
   
 
   
+      ,"page4": {
+          "title": "Resources",
+          "content": "Here you can find some recommanded external resources for further learning. . . 1️⃣ . Python for Digital Humanity . . 2️⃣ . Introduction to Cultural Analytics &amp; Python . . 3️⃣ . Data Camp . . 4️⃣ . free code camp . . 5️⃣ . Corey Schafer Youtube Channel . .",
+          "url": "https://pinkychow1010.github.io/digital-chinese-history-blog/resources/",
+          "relUrl": "/resources/",
+          "date": ""
+      }
+      
+  
+
+  
+  
+
+  
+
+  
   
 
   
@@ -147,11 +163,6 @@
   
 
   
-
-  
-  
-
-  
   
 
   
@@ -160,7 +171,7 @@
   
 
   
-      ,"page12": {
+      ,"page13": {
           "title": "",
           "content": "Sitemap: {{ “sitemap.xml” | absolute_url }} | .",
           "url": "https://pinkychow1010.github.io/digital-chinese-history-blog/robots.txt",
