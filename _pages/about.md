@@ -99,6 +99,10 @@ beautifulsoup4, Bokeh, geopandas, matplotlib, folium, matplotlib, networkx, nump
 
 #### How to use this Space 🚀:
 
+* All code displayed on this webpage is available as Jupyter Notebook and it is highly recommanded that you download them and try it out by yourself.
+
+* If you are new to **Colab**, pleaese first click on [Colab](https://colab.research.google.com/) and begin your journey. Then download the notebook you need from [this page](https://github.com/pinkychow1010/digital-chinese-history-blog/tree/master/_notebooks). Search for the right title, right click and select "save link as". You will be able to download the Jupyter Notebook with the file extension ".ipynb" (You do not need an acocunt in **GitHub** but it is recommanded that you sign up). Go back to Colab and click *File* -> *Upload notebook*, select the notebook you just downloaded. Now you can run the notebook by yourself and start your coding journey.
+
 * **ALL** the tutorials provided here is ordered **by LEVELS (lv1: the easiest, lv4: the most difficult)** and it is recommanded to **FOLLOW THE ORDER** when you go through them
 
 * There are **PREREQUISITES** for almost all of the tutorials so please **FOLLOW the links** before you start with the content
@@ -107,15 +111,11 @@ beautifulsoup4, Bokeh, geopandas, matplotlib, folium, matplotlib, networkx, nump
 
 * The tutorials do **NOT COVER** all possibilities or functionalities of the *Python libraries* so please do not solely depends on them
 
-* **PRACTICE** is the only way to go! So please download the notebooks and play around by yourselves. **TYPE THE CODE** by yourselves and **TRY** to change some options and run them again.
+* **PRACTICE** is the only way to go! So **TYPE THE CODE** by yourselves and **TRY** to change some options and run them again.
 
 * Inputs and potential outputs from the tutorials are available in the ***data*** folder.
 
 * Additional notebooks for references only are available in the ***additional*** folder.
-
-* The notebooks are developed in the **Colab environment** so it is the most straight-forward if you run them in [Colab](https://colab.research.google.com/?utm_source=scs-index) too.
-
-* If you find some issues of the code itself or have some suggestions on the topics, please feel free to **FILE ISSUES** on GitHub.
 
 <br>
 
