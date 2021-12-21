@@ -113,9 +113,9 @@ beautifulsoup4, Bokeh, geopandas, matplotlib, folium, matplotlib, networkx, nump
 
 * **PRACTICE** is the only way to go! So **TYPE THE CODE** by yourselves and **TRY** to change some options and run them again.
 
-* Inputs and potential outputs from the tutorials are available in the ***data*** folder.
+* Inputs and potential outputs from the tutorials are available in the [***data***](https://github.com/pinkychow1010/digital-chinese-history-blog/tree/master/data) folder.
 
-* Additional notebooks for references only are available in the ***additional*** folder.
+* Additional notebooks for references only are available in the [***additional***](https://github.com/pinkychow1010/digital-chinese-history-blog/tree/master/additional) folder.
 
 <br>
 
