@@ -101,7 +101,11 @@ beautifulsoup4, Bokeh, geopandas, matplotlib, folium, matplotlib, networkx, nump
 
 * All code displayed on this webpage is available as **Jupyter Notebook** and it is highly recommanded that you download them and try it out by yourself.
 
-* If you are new to **Colab**, pleaese first click on [Colab](https://colab.research.google.com/) and begin your journey. Then download the notebook you need from [this page](https://github.com/pinkychow1010/digital-chinese-history-blog/tree/master/_notebooks). Search for the right title, right click and select "save link as". You will be able to download the Jupyter Notebook with the file extension ".ipynb" (You do not need an acocunt in **GitHub** but it is recommanded that you sign up). Go back to Colab and click *File* -> *Upload notebook*, select the notebook you just downloaded. Now you can run the notebook by yourself and start your coding journey.
+* If you are new to **Colab**, pleaese first click on [Colab](https://colab.research.google.com/) and begin your journey. There are two options to open the notebook in Colab:
+
+**1)** Recommanded Option: Go to the page for the lesson here. Right under the tags, there are four icons. Click on option **"Open in Colab"**. You will be then able to view the notebook in Colab.
+
+**2)** Another Option: Download the notebook you need from [this page](https://github.com/pinkychow1010/digital-chinese-history-blog/tree/master/_notebooks). Search for the right title, right click and select "save link as". You will be able to download the Jupyter Notebook with the file extension ".ipynb" (You do not need an account in **GitHub** but it is recommanded that you sign up). Go back to Colab and click ***File*** -> ***Upload notebook***, select the notebook you just downloaded. Now you can run the notebook by yourself and start your coding journey.
 
 * **ALL** the tutorials provided here is ordered **by LEVELS (lv1: the easiest, lv4: the most difficult)** and it is recommanded to **FOLLOW THE ORDER** when you go through them
 
