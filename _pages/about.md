@@ -99,7 +99,7 @@ beautifulsoup4, Bokeh, geopandas, matplotlib, folium, matplotlib, networkx, nump
 
 #### How to use this Space 🚀:
 
-* All code displayed on this webpage is available as Jupyter Notebook and it is highly recommanded that you download them and try it out by yourself.
+* All code displayed on this webpage is available as **Jupyter Notebook** and it is highly recommanded that you download them and try it out by yourself.
 
 * If you are new to **Colab**, pleaese first click on [Colab](https://colab.research.google.com/) and begin your journey. Then download the notebook you need from [this page](https://github.com/pinkychow1010/digital-chinese-history-blog/tree/master/_notebooks). Search for the right title, right click and select "save link as". You will be able to download the Jupyter Notebook with the file extension ".ipynb" (You do not need an acocunt in **GitHub** but it is recommanded that you sign up). Go back to Colab and click *File* -> *Upload notebook*, select the notebook you just downloaded. Now you can run the notebook by yourself and start your coding journey.
 
