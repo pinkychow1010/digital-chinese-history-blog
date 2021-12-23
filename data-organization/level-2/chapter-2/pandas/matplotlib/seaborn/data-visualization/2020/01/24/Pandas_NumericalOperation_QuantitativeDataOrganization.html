@@ -2958,10 +2958,10 @@ Name: name, dtype: int64</pre>
 
 
 
-<div id="dbf4f343-d4ef-4b7e-9337-3f62bca9c354"></div>
+<div id="0ea29afd-4eb1-44b6-9786-6ca005ed8f12"></div>
 <div class="output_subarea output_javascript ">
 <script type="text/javascript">
-var element = $('#dbf4f343-d4ef-4b7e-9337-3f62bca9c354');
+var element = $('#0ea29afd-4eb1-44b6-9786-6ca005ed8f12');
 
     async function download(id, filename, size) {
       if (!google.colab.kernel.accessAllowed) {
@@ -3013,10 +3013,10 @@ var element = $('#dbf4f343-d4ef-4b7e-9337-3f62bca9c354');
 
 
 
-<div id="6376a3f6-d79c-4dd6-9fbf-252a8399c789"></div>
+<div id="d4c5b9c8-71ac-483b-9e71-44b5aa543ff6"></div>
 <div class="output_subarea output_javascript ">
 <script type="text/javascript">
-var element = $('#6376a3f6-d79c-4dd6-9fbf-252a8399c789');
+var element = $('#d4c5b9c8-71ac-483b-9e71-44b5aa543ff6');
 download("download_7fcd9482-8cfe-40a2-9294-cdc5956e1dcb", "UNESCO.csv", 210)
 </script>
 </div>
@@ -3121,6 +3121,24 @@ download("download_7fcd9482-8cfe-40a2-9294-cdc5956e1dcb", "UNESCO.csv", 210)
 </div>
 </div>
 </div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s1">'Country (EN)'</span><span class="p">,</span><span class="s2">"Name (EN)"</span><span class="p">,</span><span class="s2">"Date inscribed"</span><span class="p">,</span><span class="s2">"Category"</span><span class="p">]]</span> <span class="c1"># select multiple columns in a list []</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">"Country (EN)"</span><span class="p">:</span> <span class="s2">"country"</span><span class="p">,</span><span class="s2">"Name (EN)"</span><span class="p">:</span> <span class="s2">"name"</span><span class="p">,</span> <span class="s2">"Date inscribed"</span><span class="p">:</span> <span class="s2">"date"</span><span class="p">,</span> <span class="s2">"Category"</span><span class="p">:</span> <span class="s2">"type"</span><span class="p">})</span> <span class="c1"># rename the columns for easy reading</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
     
     
 <div class="cell border-box-sizing code_cell rendered">
