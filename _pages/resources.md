@@ -70,4 +70,9 @@ Here you can find some recommanded external resources for further learning.
 
 [CHGIS](https://chgis.fas.harvard.edu/)
 
+<br>
+
+[**More resources...**](https://github.com/pinkychow1010/digital-china)
+
+
 
