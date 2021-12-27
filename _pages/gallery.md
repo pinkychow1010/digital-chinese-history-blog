@@ -66,6 +66,17 @@ This is a circle packing chart displaying the distribution of family name in Son
 
 <br>
 
+
+## Example 8️⃣
+
+These are color stripes illustrating the occurences of wars in ancient China, created using **Plotly**.
+
+![]({{site.baseurl}}/images/stripes.jpg "Color Stripes")
+
+<br>
+
+
+
 (More coming soon ...)
 
 **📊 Happy Coding!**
