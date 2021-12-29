@@ -12,7 +12,7 @@ permalink: /about/
 
 ## Instructions
 
-#### WHY this space?
+#### **WHY this space?**
 
 🔎 Instead of introducing users to diverse tools (Javascript, HTML, CSS, Jekyll, R etc.), it only focus on ONE: **PYTHON**, which can be used to approach a wide range of tasks (without knowledge of other tools)
 
@@ -24,7 +24,7 @@ permalink: /about/
 
 <br>
 
-#### This is the RIGHT space for you if:
+#### **This is the RIGHT space for you if:**
 
 ⭐ You are **NEW TO PROGRAMMING** and do not know **WHERE TO START**
 
@@ -40,7 +40,7 @@ permalink: /about/
 
 <br>
 
-#### This is NOT the RIGHT space for you if:
+#### **This is NOT the RIGHT space for you if:**
 
 🤔 You **MASTER PROGRAMMING** already and wish to harness the potential of multiple programming languages
 
@@ -52,7 +52,7 @@ permalink: /about/
 
 <br>
 
-#### Summary of the tutorials:
+#### **Tutorial Summary:**
 
 🕹️ Introduction to Python Programming
 
@@ -66,14 +66,14 @@ permalink: /about/
 
 <br>
 
-#### Python Libraries covered:
+#### **Python Libraries covered:**
 
-beautifulsoup4, Bokeh, geopandas, matplotlib, folium, matplotlib, networkx, numpy, pandas, seaborn, urllib2, requests, re, SnowNLP, SpaCy, jieba
+beautifulsoup4, Bokeh, geopandas, folium, matplotlib, networkx, numpy, pandas, seaborn, urllib2, requests, re, SnowNLP, SpaCy, jieba, dash, plotly
 
 
 <br>
 
-#### You will be ABLE to:
+#### **You will be ABLE to:**
 
 👍 Write simple **PYTHON CODE** that fit your purposes (*Oh what is your purposes?* 😃)
 
@@ -85,7 +85,7 @@ beautifulsoup4, Bokeh, geopandas, matplotlib, folium, matplotlib, networkx, nump
 
 <br>
 
-#### You will NOT be ABLE to:
+#### **You will NOT be ABLE to:**
 
 🙅‍♀️ Know how to make a dynamic and highly interactive website yourself just by following the tutorials
 
@@ -97,7 +97,7 @@ beautifulsoup4, Bokeh, geopandas, matplotlib, folium, matplotlib, networkx, nump
 
 <br>
 
-#### How to use this Space 🚀:
+#### **How to use this Space 🚀:**
 
 * All code displayed on this webpage is available as **Jupyter Notebook** and it is highly recommanded that you download them and try it out by yourself.
 
@@ -105,7 +105,7 @@ beautifulsoup4, Bokeh, geopandas, matplotlib, folium, matplotlib, networkx, nump
 
   **1)** Recommanded Option: Go to the page for the lesson here. Right under the tags, there are four icons. Click on option **"Open in Colab"**. You will be  then able to view the notebook in Colab.
 
-  **2)** Another Option: Download the notebook you need from [this page](https://github.com/pinkychow1010/digital-chinese-history-blog/tree/master/_notebooks). Search for the right title, right click and select "save link as". You will be able to download the Jupyter Notebook with the file extension ".ipynb" (You do not need an account in **GitHub** but it is recommanded that you sign up). Go back to Colab and click ***File*** -> ***Upload notebook***, select the notebook you just downloaded. Now you can run the notebook by yourself and start your coding journey.
+  **2)** Alternative: Download the notebook you need from [this page](https://github.com/pinkychow1010/digital-chinese-history-blog/tree/master/_notebooks). Search for the right title, right click and select "save link as". You will be able to download the Jupyter Notebook with the file extension ".ipynb" (You do not need an account in **GitHub** but it is recommanded that you sign up). Go back to Colab and click ***File*** -> ***Upload notebook***, select the notebook you just downloaded. Now you can run the notebook by yourself and start your coding journey.
 
 * **ALL** the tutorials provided here is ordered **by LEVELS (lv1: the easiest, lv4: the most difficult)** and it is recommanded to **FOLLOW THE ORDER** when you go through them
 
@@ -125,9 +125,7 @@ beautifulsoup4, Bokeh, geopandas, matplotlib, folium, matplotlib, networkx, nump
 
 #### Please pay attention 💡:
 
-* 👷 indicates that the folder is currently under construction.
-
-* Copy the link to https://nbviewer.org/ for viewing if notebooks cannot be loaded.
+* Some chapters are currently still under construction.
 
 * This space is set up volunarily with limited time so please be understanding of the typo and writing mistakes not yet corrected.
 
