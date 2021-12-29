@@ -8,7 +8,7 @@ Here some example figures from the tutorials are displayed. After you follow the
 
 <br>
 
-## Example 1️⃣ 
+## Bubble Chart
 
 This is an interactive bubble chart plotted using **Plotly** together with a simple **Pandas** data frame. It shows the population (y-axis) and territory size (bubble size) (colored by maximum longevity of emperors) in different Chinese dynasties.
 
@@ -18,7 +18,7 @@ This is an interactive bubble chart plotted using **Plotly** together with a sim
 
 <br>
 
-## Example 2️⃣
+## Scatter Plot
 
 This is a simple scatter plot using **Matplotlib** and customized layout options. It shows how season keywords distribute in 孟浩然诗全集.
 
@@ -26,7 +26,7 @@ This is a simple scatter plot using **Matplotlib** and customized layout options
 
 <br>
 
-## Example 3️⃣
+## Network Chart
 
 This is a simple network chart created using **NetworkX** library in Python. It shows the relationsip between historical figures.
 
@@ -34,7 +34,7 @@ This is a simple network chart created using **NetworkX** library in Python. It 
 
 <br>
 
-## Example 4️⃣
+## Stacked Area Plot
 
 This is a variation of a stacked area plot created using **seaborn**. It shows development of UNESCO sites over time for the top ten countries having the most UNESCO sites.
 
@@ -42,7 +42,7 @@ This is a variation of a stacked area plot created using **seaborn**. It shows d
 
 <br>
 
-## Example 5️⃣
+## Bubble Time Line
 
 Using the same UNESCO example, this is a bubble chart showing the same temporal development. Yet, more information is embedded in the interactive hover labels using **Plotly**.
 
@@ -50,7 +50,7 @@ Using the same UNESCO example, this is a bubble chart showing the same temporal 
 
 <br>
 
-## Example 6️⃣
+## Chinese Word Cloud
 
 This is a word cloud created using **wordcloud** library together with **jieba** for processing Chinese texts. It shows the keywords generated from《杯酒释兵权考》by 丁则良.
 
@@ -58,7 +58,7 @@ This is a word cloud created using **wordcloud** library together with **jieba**
 
 <br>
 
-## Example 7️⃣
+## Circle Packing Chart
 
 This is a circle packing chart displaying the distribution of family name in Song Dynasty, created using **Circlify**.
 
@@ -67,11 +67,20 @@ This is a circle packing chart displaying the distribution of family name in Son
 <br>
 
 
-## Example 8️⃣
+## Color Stripes
 
 These are color stripes illustrating the occurences of wars in ancient China, created using **Plotly**.
 
 ![]({{site.baseurl}}/images/stripes.jpg "Color Stripes")
+
+<br>
+
+
+## Wind Rose Chart
+
+These is a polar bar chart created using **Plotly**.
+
+![]({{site.baseurl}}/images/polar.jpg "Wind Rose Chart")
 
 <br>
 
