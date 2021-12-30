@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
-<loc>https://pinkychow1010.github.io/digital-chinese-history-blog/level-3/chapter-3/matplotlib/data-visualization/2020/01/21/Intro_Data_Visualization.html</loc>
-<lastmod>2020-01-21T00:00:00-06:00</lastmod>
-</url>
-<url>
 <loc>https://pinkychow1010.github.io/digital-chinese-history-blog/re/level-2/chapter-2/2020/01/22/Regular_Expression_TextExtraction.html</loc>
 <lastmod>2020-01-22T00:00:00-06:00</lastmod>
 </url>
@@ -66,14 +62,11 @@
 <loc>https://pinkychow1010.github.io/digital-chinese-history-blog/page2/</loc>
 </url>
 <url>
-<loc>https://pinkychow1010.github.io/digital-chinese-history-blog/page3/</loc>
-</url>
-<url>
 <loc>https://pinkychow1010.github.io/digital-chinese-history-blog/data/ocr_example_page.pdf</loc>
-<lastmod>2021-12-30T03:06:24-06:00</lastmod>
+<lastmod>2021-12-30T03:15:06-06:00</lastmod>
 </url>
 <url>
 <loc>https://pinkychow1010.github.io/digital-chinese-history-blog/data/%E6%9D%AF%E9%85%92%E9%87%8A%E5%85%B5%E6%9D%83%E8%80%83_chapter.pdf</loc>
-<lastmod>2021-12-30T03:06:24-06:00</lastmod>
+<lastmod>2021-12-30T03:15:06-06:00</lastmod>
 </url>
 </urlset>
