@@ -44,6 +44,8 @@ Here you can find some recommanded external resources for further learning.
 
 ➼ [中研院臺灣史研究所](https://archives.ith.sinica.edu.tw/resources_list.php?page=1)
 
+➼ [中研院近史所](https://www.mh.sinica.edu.tw/OnLineDB.aspx)
+
 ➼ [清代職官資料庫](https://newarchive.ihp.sinica.edu.tw/officerc/officerkm2?@@0.4289407820016655)
 
 ➼ [維基文庫](https://zh.wikisource.org/wiki/Wikisource:%E9%A6%96%E9%A1%B5)
