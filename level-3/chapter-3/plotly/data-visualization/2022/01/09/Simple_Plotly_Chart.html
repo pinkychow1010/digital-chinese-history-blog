@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Simple Graphics using Plotly | 數位中國史部落格 Digital Chinese History</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="Simple Graphics using Plotly" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Interactive data visualization" />
+<meta property="og:description" content="Interactive data visualization" />
+<link rel="canonical" href="https://pinkychow1010.github.io/digital-chinese-history-blog/level-3/chapter-3/plotly/data-visualization/2022/01/09/Simple_Plotly_Chart.html" />
+<meta property="og:url" content="https://pinkychow1010.github.io/digital-chinese-history-blog/level-3/chapter-3/plotly/data-visualization/2022/01/09/Simple_Plotly_Chart.html" />
+<meta property="og:site_name" content="數位中國史部落格 Digital Chinese History" />
+<meta property="og:image" content="https://pinkychow1010.github.io/digital-chinese-history-blog/images/simc.JPG" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-01-09T00:00:00-06:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://pinkychow1010.github.io/digital-chinese-history-blog/images/simc.JPG" />
+<meta property="twitter:title" content="Simple Graphics using Plotly" />
+<script type="application/ld+json">
+{"url":"https://pinkychow1010.github.io/digital-chinese-history-blog/level-3/chapter-3/plotly/data-visualization/2022/01/09/Simple_Plotly_Chart.html","@type":"BlogPosting","headline":"Simple Graphics using Plotly","dateModified":"2022-01-09T00:00:00-06:00","datePublished":"2022-01-09T00:00:00-06:00","image":"https://pinkychow1010.github.io/digital-chinese-history-blog/images/simc.JPG","mainEntityOfPage":{"@type":"WebPage","@id":"https://pinkychow1010.github.io/digital-chinese-history-blog/level-3/chapter-3/plotly/data-visualization/2022/01/09/Simple_Plotly_Chart.html"},"description":"Interactive data visualization","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/digital-chinese-history-blog/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://pinkychow1010.github.io/digital-chinese-history-blog/feed.xml" title="數位中國史部落格
+Digital Chinese History
+" /><link rel="shortcut icon" type="image/x-icon" href="/digital-chinese-history-blog/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/digital-chinese-history-blog/">數位中國史部落格
+Digital Chinese History
+</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/digital-chinese-history-blog/about/">About</a><a class="page-link" href="/digital-chinese-history-blog/gallery/">Gallery</a><a class="page-link" href="/digital-chinese-history-blog/resources/">Resources</a><a class="page-link" href="/digital-chinese-history-blog/search/">Search</a><a class="page-link" href="/digital-chinese-history-blog/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Simple Graphics using Plotly</h1><p class="page-description">Interactive data visualization</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2022-01-09T00:00:00-06:00" itemprop="datePublished">
+        Jan 9, 2022
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      5 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/digital-chinese-history-blog/categories/#level-3">level-3</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/digital-chinese-history-blog/categories/#chapter-3">chapter-3</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/digital-chinese-history-blog/categories/#plotly">plotly</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/digital-chinese-history-blog/categories/#data-visualization">data-visualization</a>
+        
+      
+      </p>
+    
+
+    
+      
+        <div class="pb-5 d-flex flex-justify-center">
+          <div class="px-2">
+
+    <a href="https://github.com/pinkychow1010/digital-chinese-history-blog/tree/master/_notebooks/2022-01-09-Simple_Plotly_Chart.ipynb" role="button" target="_blank">
+<img class="notebook-badge-image" src="/digital-chinese-history-blog/assets/badges/github.svg" alt="View On GitHub">
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://mybinder.org/v2/gh/pinkychow1010/digital-chinese-history-blog/master?filepath=_notebooks%2F2022-01-09-Simple_Plotly_Chart.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/digital-chinese-history-blog/assets/badges/binder.svg" alt="Open In Binder"/>
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://colab.research.google.com/github/pinkychow1010/digital-chinese-history-blog/blob/master/_notebooks/2022-01-09-Simple_Plotly_Chart.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/digital-chinese-history-blog/assets/badges/colab.svg" alt="Open In Colab"/>
+    </a>
+</div>
+          <div class="px-2">
+  <a href="https://deepnote.com/launch?url=https%3A%2F%2Fgithub.com%2Fpinkychow1010%2Fdigital-chinese-history-blog%2Fblob%2Fmaster%2F_notebooks%2F2022-01-09-Simple_Plotly_Chart.ipynb" target="_blank">
+      <img class="notebook-badge-image" src="/digital-chinese-history-blog/assets/badges/deepnote.svg" alt="Launch in Deepnote"/>
+  </a>
+</div>
+
+        </div>
+      </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <ul id="toc" class="section-nav">
+<li class="toc-entry toc-h1"><a href="#Set-Up-Environment">Set Up Environment </a></li>
+<li class="toc-entry toc-h1"><a href="#Bar-Chart">Bar Chart </a></li>
+<li class="toc-entry toc-h1"><a href="#Creating-Data-Frame">Creating Data Frame </a></li>
+<li class="toc-entry toc-h1"><a href="#Plotting">Plotting </a></li>
+<li class="toc-entry toc-h1"><a href="#Lollipop-Chart">Lollipop Chart </a></li>
+<li class="toc-entry toc-h1"><a href="#Creating-Data-Frame">Creating Data Frame </a></li>
+<li class="toc-entry toc-h1"><a href="#Plotting">Plotting </a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#Previous-Lesson:-Simple-Bubble-Chart-using-plotly.express">Previous Lesson: Simple Bubble Chart using plotly.express </a></li>
+<li class="toc-entry toc-h2"><a href="#Next-Lesson:-Coming-soon...">Next Lesson: Coming soon... </a></li>
+<li class="toc-entry toc-h2"><a href="#Additional-information">Additional information </a></li>
+<li class="toc-entry toc-h2"><a href="#References:">References: </a></li>
+</ul>
+</li>
+</ul><body>
+<!--
+#################################################
+### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
+#################################################
+# file to edit: _notebooks/2022-01-09-Simple_Plotly_Chart.ipynb
+-->
+
+<div class="container" id="notebook-container">
+        
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In the last blog, we have created a bubble chart / scatter plot using Plotly. This time we are trying to make other types of plot: a simple bar chart and a lollipop chart using plotly.express and plotly.graph_objects. The creation of both charts begin with a Pandas data frame. Then we pass the data frame into Plotly for a basic plot, and update the layouts afterwards. The bar chart requires only one plotting action .bar(), whereas the lollipop chart requires two plotting actions: first creating the scatter plot, then with add the "stick" using add_shape().</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Set-Up-Environment">
+<a class="anchor" href="#Set-Up-Environment" aria-hidden="true"><span class="octicon octicon-link"></span></a>Set Up Environment<a class="anchor-link" href="#Set-Up-Environment"> </a>
+</h1>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
+
+<span class="c1"># library for creating random lengths of "stick" in the chart</span>
+<span class="kn">from</span> <span class="nn">random</span> <span class="kn">import</span> <span class="n">seed</span>
+<span class="kn">from</span> <span class="nn">random</span> <span class="kn">import</span> <span class="n">random</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Bar-Chart">
+<a class="anchor" href="#Bar-Chart" aria-hidden="true"><span class="octicon octicon-link"></span></a><strong>Bar Chart</strong><a class="anchor-link" href="#Bar-Chart"> </a>
+</h1>
+<h1 id="Creating-Data-Frame">
+<a class="anchor" href="#Creating-Data-Frame" aria-hidden="true"><span class="octicon octicon-link"></span></a>Creating Data Frame<a class="anchor-link" href="#Creating-Data-Frame"> </a>
+</h1>
+<p>In this example, we create a bar chart based on the records for the type of natural disaster recorded in <a href="http://tcss.ith.sinica.edu.tw/cgi-bin/gs32/gsweb.cgi/ccd=Lsc0Ou/webmge?db=article">《臺灣文獻叢刊》臺灣方志</a>. The data frame is created using a dictionary, created by passing column names and values.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">"Type of Natural Disaster"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"Fire"</span><span class="p">,</span><span class="s2">"Locust"</span><span class="p">,</span><span class="s2">"Drought"</span><span class="p">,</span><span class="s2">"Earthquake"</span><span class="p">,</span><span class="s2">"Flood"</span><span class="p">,</span><span class="s2">"Typhoon"</span><span class="p">,</span><span class="s2">"Storm"</span><span class="p">],</span>
+    <span class="s2">"Number of Record"</span><span class="p">:</span> <span class="p">[</span><span class="mi">63</span><span class="p">,</span><span class="mi">81</span><span class="p">,</span><span class="mi">86</span><span class="p">,</span><span class="mi">13</span><span class="p">,</span><span class="mi">138</span><span class="p">,</span><span class="mi">158</span><span class="p">,</span><span class="mi">8</span><span class="p">]</span>
+<span class="p">}</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Plotting">
+<a class="anchor" href="#Plotting" aria-hidden="true"><span class="octicon octicon-link"></span></a>Plotting<a class="anchor-link" href="#Plotting"> </a>
+</h1>
+<p>Then we can do the plotting by calling px.bar(). We can pass x, y, title and the figure size into the function. This will allow the creation of a simple bar chart in Plotly using default layout options. If we wish to change any parameters, we can update it using update_layout().</p>
+<p>Here, we will update the hover labels by changing the font size and the background color. We will also adjust the width of the bars. Finally, we pass fig.show() for the display of our plot.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>First, we define a set of color for the bars by passing them into a list.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="n">color_discrete_sequence</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'#1f77b4'</span><span class="p">,</span>  <span class="c1"># muted blue</span>
+    <span class="s1">'#ff7f0e'</span><span class="p">,</span>  <span class="c1"># safety orange</span>
+    <span class="s1">'#2ca02c'</span><span class="p">,</span>  <span class="c1"># cooked asparagus green</span>
+    <span class="s1">'#d62728'</span><span class="p">,</span>  <span class="c1"># brick red</span>
+    <span class="s1">'#9467bd'</span><span class="p">,</span>  <span class="c1"># muted purple</span>
+    <span class="s1">'#bcbd22'</span><span class="p">,</span>  <span class="c1"># curry yellow-green</span>
+    <span class="s1">'#e377c2'</span><span class="p">]</span>  <span class="c1"># raspberry yogurt pink</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Then, we plot the chart. With the title, we can pass the html tag <code>&lt;b&gt; &lt;/b&gt;</code> to style the words (bold), and for the color argument, we use 'Type of Natural Disaster', which mean every single column, we use a different colors. By doing so, a legend will be automatically created to explain the implication of colors. We can disable them later using <code>fig.update_layout(showlegend=False)</code>.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">'Number of Record'</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">'Type of Natural Disaster'</span><span class="p">,</span> 
+             <span class="n">title</span><span class="o">=</span><span class="s2">"&lt;b&gt;Disaster Records in 臺灣方志&lt;/b&gt;"</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span>
+             <span class="n">color</span><span class="o">=</span><span class="s2">"Type of Natural Disaster"</span><span class="p">,</span><span class="n">color_discrete_sequence</span><span class="o">=</span><span class="n">color_discrete_sequence</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Let's us disable out legend and adjust the width of the bars.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span><span class="n">showlegend</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">update_traces</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Then, we will adjust the hover labels before displaying out plot using <code>fig.show()</code>.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span>
+    <span class="n">hoverlabel</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span>
+        <span class="n">bgcolor</span><span class="o">=</span><span class="s2">"white"</span><span class="p">,</span>
+        <span class="n">font_size</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span>
+        <span class="n">font_family</span><span class="o">=</span><span class="s2">"Courier New"</span>
+    <span class="p">)</span>
+<span class="p">)</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+
+<meta charset="utf-8">
+
+    <div>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_SVG"></script><script type="text/javascript">if (window.MathJax) {MathJax.Hub.Config({SVG: {font: "STIX-Web"}});}</script>
+                <script type="text/javascript">window.PlotlyConfig = {MathJaxConfig: 'local'};</script>
+        <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>    
+            <div id="1d7db2a9-e8ef-4949-806b-742f377a7d9a" class="plotly-graph-div" style="height:500px; width:1000px;"></div>
+            <script type="text/javascript">
+                
+                    window.PLOTLYENV=window.PLOTLYENV || {};
+                    
+                if (document.getElementById("1d7db2a9-e8ef-4949-806b-742f377a7d9a")) {
+                    Plotly.newPlot(
+                        '1d7db2a9-e8ef-4949-806b-742f377a7d9a',
+                        [{"alignmentgroup": "True", "hoverlabel": {"namelength": 0}, "hovertemplate": "Type of Natural Disaster=%{x}<br>Number of Record=%{y}", "legendgroup": "Type of Natural Disaster=Fire", "marker": {"color": "#1f77b4"}, "name": "Type of Natural Disaster=Fire", "offsetgroup": "Type of Natural Disaster=Fire", "orientation": "v", "showlegend": true, "textposition": "auto", "type": "bar", "width": 0.5, "x": ["Fire"], "xaxis": "x", "y": [63], "yaxis": "y"}, {"alignmentgroup": "True", "hoverlabel": {"namelength": 0}, "hovertemplate": "Type of Natural Disaster=%{x}<br>Number of Record=%{y}", "legendgroup": "Type of Natural Disaster=Locust", "marker": {"color": "#ff7f0e"}, "name": "Type of Natural Disaster=Locust", "offsetgroup": "Type of Natural Disaster=Locust", "orientation": "v", "showlegend": true, "textposition": "auto", "type": "bar", "width": 0.5, "x": ["Locust"], "xaxis": "x", "y": [81], "yaxis": "y"}, {"alignmentgroup": "True", "hoverlabel": {"namelength": 0}, "hovertemplate": "Type of Natural Disaster=%{x}<br>Number of Record=%{y}", "legendgroup": "Type of Natural Disaster=Drought", "marker": {"color": "#2ca02c"}, "name": "Type of Natural Disaster=Drought", "offsetgroup": "Type of Natural Disaster=Drought", "orientation": "v", "showlegend": true, "textposition": "auto", "type": "bar", "width": 0.5, "x": ["Drought"], "xaxis": "x", "y": [86], "yaxis": "y"}, {"alignmentgroup": "True", "hoverlabel": {"namelength": 0}, "hovertemplate": "Type of Natural Disaster=%{x}<br>Number of Record=%{y}", "legendgroup": "Type of Natural Disaster=Earthquake", "marker": {"color": "#d62728"}, "name": "Type of Natural Disaster=Earthquake", "offsetgroup": "Type of Natural Disaster=Earthquake", "orientation": "v", "showlegend": true, "textposition": "auto", "type": "bar", "width": 0.5, "x": ["Earthquake"], "xaxis": "x", "y": [13], "yaxis": "y"}, {"alignmentgroup": "True", "hoverlabel": {"namelength": 0}, "hovertemplate": "Type of Natural Disaster=%{x}<br>Number of Record=%{y}", "legendgroup": "Type of Natural Disaster=Flood", "marker": {"color": "#9467bd"}, "name": "Type of Natural Disaster=Flood", "offsetgroup": "Type of Natural Disaster=Flood", "orientation": "v", "showlegend": true, "textposition": "auto", "type": "bar", "width": 0.5, "x": ["Flood"], "xaxis": "x", "y": [138], "yaxis": "y"}, {"alignmentgroup": "True", "hoverlabel": {"namelength": 0}, "hovertemplate": "Type of Natural Disaster=%{x}<br>Number of Record=%{y}", "legendgroup": "Type of Natural Disaster=Typhoon", "marker": {"color": "#bcbd22"}, "name": "Type of Natural Disaster=Typhoon", "offsetgroup": "Type of Natural Disaster=Typhoon", "orientation": "v", "showlegend": true, "textposition": "auto", "type": "bar", "width": 0.5, "x": ["Typhoon"], "xaxis": "x", "y": [158], "yaxis": "y"}, {"alignmentgroup": "True", "hoverlabel": {"namelength": 0}, "hovertemplate": "Type of Natural Disaster=%{x}<br>Number of Record=%{y}", "legendgroup": "Type of Natural Disaster=Storm", "marker": {"color": "#e377c2"}, "name": "Type of Natural Disaster=Storm", "offsetgroup": "Type of Natural Disaster=Storm", "orientation": "v", "showlegend": true, "textposition": "auto", "type": "bar", "width": 0.5, "x": ["Storm"], "xaxis": "x", "y": [8], "yaxis": "y"}],
+                        {"barmode": "relative", "height": 500, "hoverlabel": {"bgcolor": "white", "font": {"family": "Courier New", "size": 14}}, "legend": {"tracegroupgap": 0}, "showlegend": false, "template": {"data": {"bar": [{"error_x": {"color": "#2a3f5f"}, "error_y": {"color": "#2a3f5f"}, "marker": {"line": {"color": "#E5ECF6", "width": 0.5}}, "type": "bar"}], "barpolar": [{"marker": {"line": {"color": "#E5ECF6", "width": 0.5}}, "type": "barpolar"}], "carpet": [{"aaxis": {"endlinecolor": "#2a3f5f", "gridcolor": "white", "linecolor": "white", "minorgridcolor": "white", "startlinecolor": "#2a3f5f"}, "baxis": {"endlinecolor": "#2a3f5f", "gridcolor": "white", "linecolor": "white", "minorgridcolor": "white", "startlinecolor": "#2a3f5f"}, "type": "carpet"}], "choropleth": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "type": "choropleth"}], "contour": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "contour"}], "contourcarpet": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "type": "contourcarpet"}], "heatmap": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "heatmap"}], "heatmapgl": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "heatmapgl"}], "histogram": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "histogram"}], "histogram2d": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "histogram2d"}], "histogram2dcontour": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "histogram2dcontour"}], "mesh3d": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "type": "mesh3d"}], "parcoords": [{"line": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "parcoords"}], "pie": [{"automargin": true, "type": "pie"}], "scatter": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scatter"}], "scatter3d": [{"line": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scatter3d"}], "scattercarpet": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scattercarpet"}], "scattergeo": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scattergeo"}], "scattergl": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scattergl"}], "scattermapbox": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scattermapbox"}], "scatterpolar": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scatterpolar"}], "scatterpolargl": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scatterpolargl"}], "scatterternary": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scatterternary"}], "surface": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "surface"}], "table": [{"cells": {"fill": {"color": "#EBF0F8"}, "line": {"color": "white"}}, "header": {"fill": {"color": "#C8D4E3"}, "line": {"color": "white"}}, "type": "table"}]}, "layout": {"annotationdefaults": {"arrowcolor": "#2a3f5f", "arrowhead": 0, "arrowwidth": 1}, "coloraxis": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "colorscale": {"diverging": [[0, "#8e0152"], [0.1, "#c51b7d"], [0.2, "#de77ae"], [0.3, "#f1b6da"], [0.4, "#fde0ef"], [0.5, "#f7f7f7"], [0.6, "#e6f5d0"], [0.7, "#b8e186"], [0.8, "#7fbc41"], [0.9, "#4d9221"], [1, "#276419"]], "sequential": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "sequentialminus": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]]}, "colorway": ["#636efa", "#EF553B", "#00cc96", "#ab63fa", "#FFA15A", "#19d3f3", "#FF6692", "#B6E880", "#FF97FF", "#FECB52"], "font": {"color": "#2a3f5f"}, "geo": {"bgcolor": "white", "lakecolor": "white", "landcolor": "#E5ECF6", "showlakes": true, "showland": true, "subunitcolor": "white"}, "hoverlabel": {"align": "left"}, "hovermode": "closest", "mapbox": {"style": "light"}, "paper_bgcolor": "white", "plot_bgcolor": "#E5ECF6", "polar": {"angularaxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}, "bgcolor": "#E5ECF6", "radialaxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}}, "scene": {"xaxis": {"backgroundcolor": "#E5ECF6", "gridcolor": "white", "gridwidth": 2, "linecolor": "white", "showbackground": true, "ticks": "", "zerolinecolor": "white"}, "yaxis": {"backgroundcolor": "#E5ECF6", "gridcolor": "white", "gridwidth": 2, "linecolor": "white", "showbackground": true, "ticks": "", "zerolinecolor": "white"}, "zaxis": {"backgroundcolor": "#E5ECF6", "gridcolor": "white", "gridwidth": 2, "linecolor": "white", "showbackground": true, "ticks": "", "zerolinecolor": "white"}}, "shapedefaults": {"line": {"color": "#2a3f5f"}}, "ternary": {"aaxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}, "baxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}, "bgcolor": "#E5ECF6", "caxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}}, "title": {"x": 0.05}, "xaxis": {"automargin": true, "gridcolor": "white", "linecolor": "white", "ticks": "", "title": {"standoff": 15}, "zerolinecolor": "white", "zerolinewidth": 2}, "yaxis": {"automargin": true, "gridcolor": "white", "linecolor": "white", "ticks": "", "title": {"standoff": 15}, "zerolinecolor": "white", "zerolinewidth": 2}}}, "title": {"text": "<b>Disaster Records in \u81fa\u7063\u65b9\u5fd7</b>"}, "width": 1000, "xaxis": {"anchor": "y", "categoryarray": ["Fire", "Locust", "Drought", "Earthquake", "Flood", "Typhoon", "Storm"], "categoryorder": "array", "domain": [0.0, 1.0], "title": {"text": "Type of Natural Disaster"}}, "yaxis": {"anchor": "x", "domain": [0.0, 1.0], "title": {"text": "Number of Record"}}},
+                        {"responsive": true}
+                    ).then(function(){
+                            
+var gd = document.getElementById('1d7db2a9-e8ef-4949-806b-742f377a7d9a');
+var x = new MutationObserver(function (mutations, observer) {{
+        var display = window.getComputedStyle(gd).display;
+        if (!display || display === 'none') {{
+            console.log([gd, 'removed!']);
+            Plotly.purge(gd);
+            observer.disconnect();
+        }}
+}});
+
+// Listen for the removal of the full notebook cells
+var notebookContainer = gd.closest('#notebook-container');
+if (notebookContainer) {{
+    x.observe(notebookContainer, {childList: true});
+}}
+
+// Listen for the clearing of the current output cell
+var outputEl = gd.closest('.output');
+if (outputEl) {{
+    x.observe(outputEl, {childList: true});
+}}
+
+                        })
+                };
+                
+            </script>
+        </div>
+
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Lollipop-Chart">
+<a class="anchor" href="#Lollipop-Chart" aria-hidden="true"><span class="octicon octicon-link"></span></a><strong>Lollipop Chart</strong><a class="anchor-link" href="#Lollipop-Chart"> </a>
+</h1>
+<p>This time, let's us work with some qualitative data. We will try to plot a simple time line of the articles 胡適 had published in his life time. We want to label the data with the shorten titles while putting the full titles in our hover labels.</p>
+<h1 id="Creating-Data-Frame">
+<a class="anchor" href="#Creating-Data-Frame" aria-hidden="true"><span class="octicon octicon-link"></span></a>Creating Data Frame<a class="anchor-link" href="#Creating-Data-Frame"> </a>
+</h1>
+<p>Let's first create our data frame. In order to have a lollipop chart we need to define the y values. We would like the y values to be different for every titles so we can avoid text overlapping. It can be done using random library and random().</p>
+<p>We will also convert the date column to datetime using <code>pd.to_datetime()</code>.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">"date"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"1919-01-01"</span><span class="p">,</span><span class="s2">"1917-05-01"</span><span class="p">,</span><span class="s2">"1918-01-01"</span><span class="p">,</span><span class="s2">"1919-07-20"</span><span class="p">,</span><span class="s2">"1924-01-01"</span><span class="p">,</span><span class="s2">"1929-01-01"</span><span class="p">,</span><span class="s2">"1929-02-01"</span><span class="p">,</span><span class="s2">"1929-03-01"</span><span class="p">,</span><span class="s2">"1929-04-01"</span><span class="p">,</span><span class="s2">"1930-04-10"</span><span class="p">,</span><span class="s2">"1959-11-20"</span><span class="p">],</span>
+    <span class="s2">"title"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"文學改良芻議"</span><span class="p">,</span><span class="s2">"歷史的文學觀念論"</span><span class="p">,</span><span class="s2">"建設的文學革命論"</span><span class="p">,</span><span class="s2">"多研究些問題，少談些主義"</span><span class="p">,</span><span class="s2">"差不多先生傳"</span><span class="p">,</span><span class="s2">"人權與約法"</span><span class="p">,</span><span class="s2">"我們什麼時候才可有憲法—對於建國大綱的疑問"</span><span class="p">,</span><span class="s2">"知難，行亦不易—孫文先生的「行易知難」說述評"</span><span class="p">,</span><span class="s2">"新文化運動與國民黨"</span><span class="p">,</span><span class="s2">"我們走那條路"</span><span class="p">,</span><span class="s2">"容忍與自由"</span><span class="p">],</span>
+    <span class="s2">"sub"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"文學改良芻議"</span><span class="p">,</span><span class="s2">"歷史的文學觀念論"</span><span class="p">,</span><span class="s2">"建設的文學革命論"</span><span class="p">,</span><span class="s2">"多研究些問題，少談些主義"</span><span class="p">,</span><span class="s2">"差不多先生傳"</span><span class="p">,</span><span class="s2">"人權與約法"</span><span class="p">,</span><span class="s2">"我們什麼時候才可有憲法"</span><span class="p">,</span><span class="s2">"知難，行亦不易"</span><span class="p">,</span><span class="s2">"新文化運動與國民黨"</span><span class="p">,</span><span class="s2">"我們走那條路"</span><span class="p">,</span><span class="s2">"容忍與自由"</span><span class="p">],</span>
+<span class="p">}</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">'date'</span><span class="p">]</span> <span class="o">=</span>  <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">'date'</span><span class="p">],</span> <span class="nb">format</span><span class="o">=</span><span class="s1">'%Y-%m-</span><span class="si">%d</span><span class="s1">'</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">'y'</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">random</span><span class="p">()</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">title</span><span class="p">))]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="n">df</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+
+  <div id="df-dd4bdfc0-9295-41d5-bbff-f2818e253d2e">
+    <div class="colab-df-container">
+      <div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>date</th>
+      <th>title</th>
+      <th>sub</th>
+      <th>y</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1919-01-01</td>
+      <td>文學改良芻議</td>
+      <td>文學改良芻議</td>
+      <td>0.043649</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1917-05-01</td>
+      <td>歷史的文學觀念論</td>
+      <td>歷史的文學觀念論</td>
+      <td>0.729784</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1918-01-01</td>
+      <td>建設的文學革命論</td>
+      <td>建設的文學革命論</td>
+      <td>0.281129</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1919-07-20</td>
+      <td>多研究些問題，少談些主義</td>
+      <td>多研究些問題，少談些主義</td>
+      <td>0.544732</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1924-01-01</td>
+      <td>差不多先生傳</td>
+      <td>差不多先生傳</td>
+      <td>0.704270</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>1929-01-01</td>
+      <td>人權與約法</td>
+      <td>人權與約法</td>
+      <td>0.699685</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>1929-02-01</td>
+      <td>我們什麼時候才可有憲法—對於建國大綱的疑問</td>
+      <td>我們什麼時候才可有憲法</td>
+      <td>0.651569</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>1929-03-01</td>
+      <td>知難，行亦不易—孫文先生的「行易知難」說述評</td>
+      <td>知難，行亦不易</td>
+      <td>0.262863</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>1929-04-01</td>
+      <td>新文化運動與國民黨</td>
+      <td>新文化運動與國民黨</td>
+      <td>0.116383</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>1930-04-10</td>
+      <td>我們走那條路</td>
+      <td>我們走那條路</td>
+      <td>0.443837</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>1959-11-20</td>
+      <td>容忍與自由</td>
+      <td>容忍與自由</td>
+      <td>0.266778</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+      <button class="colab-df-convert" onclick="convertToInteractive('df-dd4bdfc0-9295-41d5-bbff-f2818e253d2e')" title="Convert this dataframe to an interactive table." style="display:none;">
+        
+  &lt;svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+       width="24px"&gt;
+    <path d="M0 0h24v24H0V0z" fill="none"></path>
+    <path d="M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z"></path><path d="M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z"></path>
+  &lt;/svg&gt;
+      </button>
+      
+  <style>
+    .colab-df-container {
+      display:flex;
+      flex-wrap:wrap;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+      <script>
+        const buttonEl =
+          document.querySelector('#df-dd4bdfc0-9295-41d5-bbff-f2818e253d2e button.colab-df-convert');
+        buttonEl.style.display =
+          google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+        async function convertToInteractive(key) {
+          const element = document.querySelector('#df-dd4bdfc0-9295-41d5-bbff-f2818e253d2e');
+          const dataTable =
+            await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                     [key], {});
+          if (!dataTable) return;
+
+          const docLinkHtml = 'Like what you see? Visit the ' +
+            '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+            + ' to learn more about interactive tables.';
+          element.innerHTML = '';
+          dataTable['output_type'] = 'display_data';
+          await google.colab.output.renderOutput(dataTable, element);
+          const docLink = document.createElement('div');
+          docLink.innerHTML = docLinkHtml;
+          element.appendChild(docLink);
+        }
+      </script>
+    </div>
+  </div>
+  
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Plotting">
+<a class="anchor" href="#Plotting" aria-hidden="true"><span class="octicon octicon-link"></span></a>Plotting<a class="anchor-link" href="#Plotting"> </a>
+</h1>
+<p>This time, we create the figure using plotly.graph_objects. We can draw the sticks using <code>fig.add_shape(type='line')</code>. It will be put in a loop so we can draw mulitple sticks for every row instead. x0, x1, y0, y1 mean the coordinates of the shape. As it is a line, x0 equals x1, and y0 and y1 refers to the beginning (always 0) and ending point (depends on y column) of the stick. Other options include the color of the sticks.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="kn">import</span> <span class="nn">plotly.graph_objects</span> <span class="k">as</span> <span class="nn">go</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
+
+<span class="c1"># Draw lines</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)):</span>
+               <span class="n">fig</span><span class="o">.</span><span class="n">add_shape</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s1">'line'</span><span class="p">,</span> <span class="c1"># draw line</span>
+                              <span class="n">x0</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">"date"</span><span class="p">][</span><span class="n">i</span><span class="p">],</span> <span class="n">y0</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="c1"># our line</span>
+                              <span class="n">x1</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">"date"</span><span class="p">][</span><span class="n">i</span><span class="p">],</span>
+                              <span class="n">y1</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">"y"</span><span class="p">][</span><span class="n">i</span><span class="p">],</span>
+                              <span class="n">opacity</span><span class="o">=</span><span class="mf">0.65</span><span class="p">,</span> <span class="c1"># transparency</span>
+                              <span class="n">line</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">'darkblue'</span><span class="p">,</span> <span class="n">width</span> <span class="o">=</span> <span class="mi">5</span><span class="p">))</span> <span class="c1"># line color and width</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Then we will plot the dots using <code>fig.add_trace(go.Scatter())</code>. We will use the text to indicate the static labels and customdata indicate the full titles. <code>mode="markers+text"</code> means both markers and static labels will be shown. We will also use other customization options and html tags for our hovertemplate.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="n">fig</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span><span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">"date"</span><span class="p">],</span> 
+                         <span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">"y"</span><span class="p">],</span>
+                         <span class="n">text</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s2">"sub"</span><span class="p">],</span> <span class="c1"># static labels</span>
+                         <span class="n">customdata</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s2">"title"</span><span class="p">],</span> <span class="c1"># hover labels</span>
+                         <span class="n">mode</span><span class="o">=</span><span class="s2">"markers+text"</span><span class="p">,</span> <span class="c1"># display static labels</span>
+                         <span class="n">hovertemplate</span> <span class="o">=</span> <span class="c1"># what to shown in hover labels</span>
+                          <span class="s1">'&lt;extra&gt;&lt;br&gt;&lt;b&gt;Date&lt;/b&gt;: %</span><span class="si">{x}</span><span class="s1">&lt;br&gt;&lt;/extra&gt;'</span><span class="o">+</span>
+                          <span class="s1">'&lt;extra&gt;&lt;b&gt;%</span><span class="si">{customdata}</span><span class="s1">&lt;/b&gt;&lt;/extra&gt;'</span><span class="p">,</span>
+                         <span class="n">textposition</span><span class="o">=</span><span class="s2">"top center"</span><span class="p">,</span>
+                         <span class="n">marker_color</span> <span class="o">=</span><span class="s1">'darkblue'</span><span class="p">,</span> <span class="c1"># layout for the dots</span>
+                         <span class="n">marker_size</span>  <span class="o">=</span> <span class="mi">16</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Then, we add a title to our plot, and change other options including template, figure size, and y range. We will also disable y axis and ticks, as well as adjust layout for x axis and ticks.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span><span class="n">title_text</span> <span class="o">=</span> 
+                   <span class="s2">"胡適 文章與期刊"</span><span class="p">,</span>
+                   <span class="n">title_font_size</span> <span class="o">=</span> <span class="mi">30</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">layout</span><span class="o">.</span><span class="n">template</span> <span class="o">=</span> <span class="s2">"simple_white"</span> <span class="c1"># layout template</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="mi">1250</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">400</span><span class="p">)</span> <span class="c1"># figure size</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span><span class="n">yaxis_visible</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">yaxis_showticklabels</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="c1"># y axis and ticks</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span><span class="n">yaxis_range</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mf">1.5</span><span class="p">])</span> <span class="c1"># y range</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">update_xaxes</span><span class="p">(</span><span class="n">tickfont_size</span><span class="o">=</span><span class="mi">24</span><span class="p">,</span> <span class="n">ticks</span><span class="o">=</span><span class="s2">"outside"</span><span class="p">,</span> <span class="n">ticklen</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">tickwidth</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span> <span class="c1"># x axis and ticks</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span> <span class="c1"># diaply plot</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+
+<meta charset="utf-8">
+
+    <div>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_SVG"></script><script type="text/javascript">if (window.MathJax) {MathJax.Hub.Config({SVG: {font: "STIX-Web"}});}</script>
+                <script type="text/javascript">window.PlotlyConfig = {MathJaxConfig: 'local'};</script>
+        <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>    
+            <div id="8c21eae4-b089-4c96-9cfb-6d18678911f8" class="plotly-graph-div" style="height:400px; width:1250px;"></div>
+            <script type="text/javascript">
+                
+                    window.PLOTLYENV=window.PLOTLYENV || {};
+                    
+                if (document.getElementById("8c21eae4-b089-4c96-9cfb-6d18678911f8")) {
+                    Plotly.newPlot(
+                        '8c21eae4-b089-4c96-9cfb-6d18678911f8',
+                        [{"customdata": ["\u6587\u5b78\u6539\u826f\u82bb\u8b70", "\u6b77\u53f2\u7684\u6587\u5b78\u89c0\u5ff5\u8ad6", "\u5efa\u8a2d\u7684\u6587\u5b78\u9769\u547d\u8ad6", "\u591a\u7814\u7a76\u4e9b\u554f\u984c\uff0c\u5c11\u8ac7\u4e9b\u4e3b\u7fa9", "\u5dee\u4e0d\u591a\u5148\u751f\u50b3", "\u4eba\u6b0a\u8207\u7d04\u6cd5", "\u6211\u5011\u4ec0\u9ebc\u6642\u5019\u624d\u53ef\u6709\u61b2\u6cd5\u2014\u5c0d\u65bc\u5efa\u570b\u5927\u7db1\u7684\u7591\u554f", "\u77e5\u96e3\uff0c\u884c\u4ea6\u4e0d\u6613\u2014\u5b6b\u6587\u5148\u751f\u7684\u300c\u884c\u6613\u77e5\u96e3\u300d\u8aaa\u8ff0\u8a55", "\u65b0\u6587\u5316\u904b\u52d5\u8207\u570b\u6c11\u9ee8", "\u6211\u5011\u8d70\u90a3\u689d\u8def", "\u5bb9\u5fcd\u8207\u81ea\u7531"], "hovertemplate": "<extra><br><b>Date</b>: %{x}<br></extra><extra><b>%{customdata}</b></extra>", "marker": {"color": "darkblue", "size": 16}, "mode": "markers+text", "text": ["\u6587\u5b78\u6539\u826f\u82bb\u8b70", "\u6b77\u53f2\u7684\u6587\u5b78\u89c0\u5ff5\u8ad6", "\u5efa\u8a2d\u7684\u6587\u5b78\u9769\u547d\u8ad6", "\u591a\u7814\u7a76\u4e9b\u554f\u984c\uff0c\u5c11\u8ac7\u4e9b\u4e3b\u7fa9", "\u5dee\u4e0d\u591a\u5148\u751f\u50b3", "\u4eba\u6b0a\u8207\u7d04\u6cd5", "\u6211\u5011\u4ec0\u9ebc\u6642\u5019\u624d\u53ef\u6709\u61b2\u6cd5", "\u77e5\u96e3\uff0c\u884c\u4ea6\u4e0d\u6613", "\u65b0\u6587\u5316\u904b\u52d5\u8207\u570b\u6c11\u9ee8", "\u6211\u5011\u8d70\u90a3\u689d\u8def", "\u5bb9\u5fcd\u8207\u81ea\u7531"], "textposition": "top center", "type": "scatter", "x": ["1919-01-01T00:00:00", "1917-05-01T00:00:00", "1918-01-01T00:00:00", "1919-07-20T00:00:00", "1924-01-01T00:00:00", "1929-01-01T00:00:00", "1929-02-01T00:00:00", "1929-03-01T00:00:00", "1929-04-01T00:00:00", "1930-04-10T00:00:00", "1959-11-20T00:00:00"], "y": [0.04364894043788137, 0.7297836848846382, 0.28112932903593824, 0.5447320318876779, 0.7042700346592663, 0.6996848625657862, 0.651569477576969, 0.26286349838935064, 0.1163832091838275, 0.4438369543888724, 0.2667777125085652]}],
+                        {"height": 400, "shapes": [{"line": {"color": "darkblue", "width": 5}, "opacity": 0.65, "type": "line", "x0": "1919-01-01T00:00:00", "x1": "1919-01-01T00:00:00", "y0": 0, "y1": 0.04364894043788137}, {"line": {"color": "darkblue", "width": 5}, "opacity": 0.65, "type": "line", "x0": "1917-05-01T00:00:00", "x1": "1917-05-01T00:00:00", "y0": 0, "y1": 0.7297836848846382}, {"line": {"color": "darkblue", "width": 5}, "opacity": 0.65, "type": "line", "x0": "1918-01-01T00:00:00", "x1": "1918-01-01T00:00:00", "y0": 0, "y1": 0.28112932903593824}, {"line": {"color": "darkblue", "width": 5}, "opacity": 0.65, "type": "line", "x0": "1919-07-20T00:00:00", "x1": "1919-07-20T00:00:00", "y0": 0, "y1": 0.5447320318876779}, {"line": {"color": "darkblue", "width": 5}, "opacity": 0.65, "type": "line", "x0": "1924-01-01T00:00:00", "x1": "1924-01-01T00:00:00", "y0": 0, "y1": 0.7042700346592663}, {"line": {"color": "darkblue", "width": 5}, "opacity": 0.65, "type": "line", "x0": "1929-01-01T00:00:00", "x1": "1929-01-01T00:00:00", "y0": 0, "y1": 0.6996848625657862}, {"line": {"color": "darkblue", "width": 5}, "opacity": 0.65, "type": "line", "x0": "1929-02-01T00:00:00", "x1": "1929-02-01T00:00:00", "y0": 0, "y1": 0.651569477576969}, {"line": {"color": "darkblue", "width": 5}, "opacity": 0.65, "type": "line", "x0": "1929-03-01T00:00:00", "x1": "1929-03-01T00:00:00", "y0": 0, "y1": 0.26286349838935064}, {"line": {"color": "darkblue", "width": 5}, "opacity": 0.65, "type": "line", "x0": "1929-04-01T00:00:00", "x1": "1929-04-01T00:00:00", "y0": 0, "y1": 0.1163832091838275}, {"line": {"color": "darkblue", "width": 5}, "opacity": 0.65, "type": "line", "x0": "1930-04-10T00:00:00", "x1": "1930-04-10T00:00:00", "y0": 0, "y1": 0.4438369543888724}, {"line": {"color": "darkblue", "width": 5}, "opacity": 0.65, "type": "line", "x0": "1959-11-20T00:00:00", "x1": "1959-11-20T00:00:00", "y0": 0, "y1": 0.2667777125085652}], "template": {"data": {"bar": [{"error_x": {"color": "rgb(36,36,36)"}, "error_y": {"color": "rgb(36,36,36)"}, "marker": {"line": {"color": "white", "width": 0.5}}, "type": "bar"}], "barpolar": [{"marker": {"line": {"color": "white", "width": 0.5}}, "type": "barpolar"}], "carpet": [{"aaxis": {"endlinecolor": "rgb(36,36,36)", "gridcolor": "white", "linecolor": "white", "minorgridcolor": "white", "startlinecolor": "rgb(36,36,36)"}, "baxis": {"endlinecolor": "rgb(36,36,36)", "gridcolor": "white", "linecolor": "white", "minorgridcolor": "white", "startlinecolor": "rgb(36,36,36)"}, "type": "carpet"}], "choropleth": [{"colorbar": {"outlinewidth": 10, "tickcolor": "rgb(36,36,36)", "ticklen": 8, "ticks": "outside", "tickwidth": 2}, "type": "choropleth"}], "contour": [{"colorbar": {"outlinewidth": 10, "tickcolor": "rgb(36,36,36)", "ticklen": 8, "ticks": "outside", "tickwidth": 2}, "colorscale": [[0.0, "#440154"], [0.1111111111111111, "#482878"], [0.2222222222222222, "#3e4989"], [0.3333333333333333, "#31688e"], [0.4444444444444444, "#26828e"], [0.5555555555555556, "#1f9e89"], [0.6666666666666666, "#35b779"], [0.7777777777777778, "#6ece58"], [0.8888888888888888, "#b5de2b"], [1.0, "#fde725"]], "type": "contour"}], "contourcarpet": [{"colorbar": {"outlinewidth": 10, "tickcolor": "rgb(36,36,36)", "ticklen": 8, "ticks": "outside", "tickwidth": 2}, "type": "contourcarpet"}], "heatmap": [{"colorbar": {"outlinewidth": 10, "tickcolor": "rgb(36,36,36)", "ticklen": 8, "ticks": "outside", "tickwidth": 2}, "colorscale": [[0.0, "#440154"], [0.1111111111111111, "#482878"], [0.2222222222222222, "#3e4989"], [0.3333333333333333, "#31688e"], [0.4444444444444444, "#26828e"], [0.5555555555555556, "#1f9e89"], [0.6666666666666666, "#35b779"], [0.7777777777777778, "#6ece58"], [0.8888888888888888, "#b5de2b"], [1.0, "#fde725"]], "type": "heatmap"}], "heatmapgl": [{"colorbar": {"outlinewidth": 10, "tickcolor": "rgb(36,36,36)", "ticklen": 8, "ticks": "outside", "tickwidth": 2}, "colorscale": [[0.0, "#440154"], [0.1111111111111111, "#482878"], [0.2222222222222222, "#3e4989"], [0.3333333333333333, "#31688e"], [0.4444444444444444, "#26828e"], [0.5555555555555556, "#1f9e89"], [0.6666666666666666, "#35b779"], [0.7777777777777778, "#6ece58"], [0.8888888888888888, "#b5de2b"], [1.0, "#fde725"]], "type": "heatmapgl"}], "histogram": [{"marker": {"line": {"color": "white", "width": 0.6}}, "type": "histogram"}], "histogram2d": [{"colorbar": {"outlinewidth": 10, "tickcolor": "rgb(36,36,36)", "ticklen": 8, "ticks": "outside", "tickwidth": 2}, "colorscale": [[0.0, "#440154"], [0.1111111111111111, "#482878"], [0.2222222222222222, "#3e4989"], [0.3333333333333333, "#31688e"], [0.4444444444444444, "#26828e"], [0.5555555555555556, "#1f9e89"], [0.6666666666666666, "#35b779"], [0.7777777777777778, "#6ece58"], [0.8888888888888888, "#b5de2b"], [1.0, "#fde725"]], "type": "histogram2d"}], "histogram2dcontour": [{"colorbar": {"outlinewidth": 10, "tickcolor": "rgb(36,36,36)", "ticklen": 8, "ticks": "outside", "tickwidth": 2}, "colorscale": [[0.0, "#440154"], [0.1111111111111111, "#482878"], [0.2222222222222222, "#3e4989"], [0.3333333333333333, "#31688e"], [0.4444444444444444, "#26828e"], [0.5555555555555556, "#1f9e89"], [0.6666666666666666, "#35b779"], [0.7777777777777778, "#6ece58"], [0.8888888888888888, "#b5de2b"], [1.0, "#fde725"]], "type": "histogram2dcontour"}], "mesh3d": [{"colorbar": {"outlinewidth": 10, "tickcolor": "rgb(36,36,36)", "ticklen": 8, "ticks": "outside", "tickwidth": 2}, "type": "mesh3d"}], "parcoords": [{"line": {"colorbar": {"outlinewidth": 10, "tickcolor": "rgb(36,36,36)", "ticklen": 8, "ticks": "outside", "tickwidth": 2}}, "type": "parcoords"}], "pie": [{"automargin": true, "type": "pie"}], "scatter": [{"marker": {"colorbar": {"outlinewidth": 10, "tickcolor": "rgb(36,36,36)", "ticklen": 8, "ticks": "outside", "tickwidth": 2}}, "type": "scatter"}], "scatter3d": [{"line": {"colorbar": {"outlinewidth": 10, "tickcolor": "rgb(36,36,36)", "ticklen": 8, "ticks": "outside", "tickwidth": 2}}, "marker": {"colorbar": {"outlinewidth": 10, "tickcolor": "rgb(36,36,36)", "ticklen": 8, "ticks": "outside", "tickwidth": 2}}, "type": "scatter3d"}], "scattercarpet": [{"marker": {"colorbar": {"outlinewidth": 10, "tickcolor": "rgb(36,36,36)", "ticklen": 8, "ticks": "outside", "tickwidth": 2}}, "type": "scattercarpet"}], "scattergeo": [{"marker": {"colorbar": {"outlinewidth": 10, "tickcolor": "rgb(36,36,36)", "ticklen": 8, "ticks": "outside", "tickwidth": 2}}, "type": "scattergeo"}], "scattergl": [{"marker": {"colorbar": {"outlinewidth": 10, "tickcolor": "rgb(36,36,36)", "ticklen": 8, "ticks": "outside", "tickwidth": 2}}, "type": "scattergl"}], "scattermapbox": [{"marker": {"colorbar": {"outlinewidth": 10, "tickcolor": "rgb(36,36,36)", "ticklen": 8, "ticks": "outside", "tickwidth": 2}}, "type": "scattermapbox"}], "scatterpolar": [{"marker": {"colorbar": {"outlinewidth": 10, "tickcolor": "rgb(36,36,36)", "ticklen": 8, "ticks": "outside", "tickwidth": 2}}, "type": "scatterpolar"}], "scatterpolargl": [{"marker": {"colorbar": {"outlinewidth": 10, "tickcolor": "rgb(36,36,36)", "ticklen": 8, "ticks": "outside", "tickwidth": 2}}, "type": "scatterpolargl"}], "scatterternary": [{"marker": {"colorbar": {"outlinewidth": 10, "tickcolor": "rgb(36,36,36)", "ticklen": 8, "ticks": "outside", "tickwidth": 2}}, "type": "scatterternary"}], "surface": [{"colorbar": {"outlinewidth": 10, "tickcolor": "rgb(36,36,36)", "ticklen": 8, "ticks": "outside", "tickwidth": 2}, "colorscale": [[0.0, "#440154"], [0.1111111111111111, "#482878"], [0.2222222222222222, "#3e4989"], [0.3333333333333333, "#31688e"], [0.4444444444444444, "#26828e"], [0.5555555555555556, "#1f9e89"], [0.6666666666666666, "#35b779"], [0.7777777777777778, "#6ece58"], [0.8888888888888888, "#b5de2b"], [1.0, "#fde725"]], "type": "surface"}], "table": [{"cells": {"fill": {"color": "rgb(237,237,237)"}, "line": {"color": "white"}}, "header": {"fill": {"color": "rgb(217,217,217)"}, "line": {"color": "white"}}, "type": "table"}]}, "layout": {"annotationdefaults": {"arrowhead": 0, "arrowwidth": 1}, "coloraxis": {"colorbar": {"outlinewidth": 10, "tickcolor": "rgb(36,36,36)", "ticklen": 8, "ticks": "outside", "tickwidth": 2}}, "colorscale": {"diverging": [[0.0, "rgb(103,0,31)"], [0.1, "rgb(178,24,43)"], [0.2, "rgb(214,96,77)"], [0.3, "rgb(244,165,130)"], [0.4, "rgb(253,219,199)"], [0.5, "rgb(247,247,247)"], [0.6, "rgb(209,229,240)"], [0.7, "rgb(146,197,222)"], [0.8, "rgb(67,147,195)"], [0.9, "rgb(33,102,172)"], [1.0, "rgb(5,48,97)"]], "sequential": [[0.0, "#440154"], [0.1111111111111111, "#482878"], [0.2222222222222222, "#3e4989"], [0.3333333333333333, "#31688e"], [0.4444444444444444, "#26828e"], [0.5555555555555556, "#1f9e89"], [0.6666666666666666, "#35b779"], [0.7777777777777778, "#6ece58"], [0.8888888888888888, "#b5de2b"], [1.0, "#fde725"]], "sequentialminus": [[0.0, "#440154"], [0.1111111111111111, "#482878"], [0.2222222222222222, "#3e4989"], [0.3333333333333333, "#31688e"], [0.4444444444444444, "#26828e"], [0.5555555555555556, "#1f9e89"], [0.6666666666666666, "#35b779"], [0.7777777777777778, "#6ece58"], [0.8888888888888888, "#b5de2b"], [1.0, "#fde725"]]}, "colorway": ["#1F77B4", "#FF7F0E", "#2CA02C", "#D62728", "#9467BD", "#8C564B", "#E377C2", "#7F7F7F", "#BCBD22", "#17BECF"], "font": {"color": "rgb(36,36,36)"}, "geo": {"bgcolor": "white", "lakecolor": "white", "landcolor": "white", "showlakes": true, "showland": true, "subunitcolor": "white"}, "hoverlabel": {"align": "left"}, "hovermode": "closest", "mapbox": {"style": "light"}, "paper_bgcolor": "white", "plot_bgcolor": "white", "polar": {"angularaxis": {"gridcolor": "rgb(232,232,232)", "linecolor": "rgb(36,36,36)", "showgrid": false, "showline": true, "ticks": "outside"}, "bgcolor": "white", "radialaxis": {"gridcolor": "rgb(232,232,232)", "linecolor": "rgb(36,36,36)", "showgrid": false, "showline": true, "ticks": "outside"}}, "scene": {"xaxis": {"backgroundcolor": "white", "gridcolor": "rgb(232,232,232)", "gridwidth": 2, "linecolor": "rgb(36,36,36)", "showbackground": true, "showgrid": false, "showline": true, "ticks": "outside", "zeroline": false, "zerolinecolor": "rgb(36,36,36)"}, "yaxis": {"backgroundcolor": "white", "gridcolor": "rgb(232,232,232)", "gridwidth": 2, "linecolor": "rgb(36,36,36)", "showbackground": true, "showgrid": false, "showline": true, "ticks": "outside", "zeroline": false, "zerolinecolor": "rgb(36,36,36)"}, "zaxis": {"backgroundcolor": "white", "gridcolor": "rgb(232,232,232)", "gridwidth": 2, "linecolor": "rgb(36,36,36)", "showbackground": true, "showgrid": false, "showline": true, "ticks": "outside", "zeroline": false, "zerolinecolor": "rgb(36,36,36)"}}, "shapedefaults": {"fillcolor": "black", "line": {"width": 0}, "opacity": 0.3}, "ternary": {"aaxis": {"gridcolor": "rgb(232,232,232)", "linecolor": "rgb(36,36,36)", "showgrid": false, "showline": true, "ticks": "outside"}, "baxis": {"gridcolor": "rgb(232,232,232)", "linecolor": "rgb(36,36,36)", "showgrid": false, "showline": true, "ticks": "outside"}, "bgcolor": "white", "caxis": {"gridcolor": "rgb(232,232,232)", "linecolor": "rgb(36,36,36)", "showgrid": false, "showline": true, "ticks": "outside"}}, "title": {"x": 0.05}, "xaxis": {"automargin": true, "gridcolor": "rgb(232,232,232)", "linecolor": "rgb(36,36,36)", "showgrid": false, "showline": true, "ticks": "outside", "title": {"standoff": 15}, "zeroline": false, "zerolinecolor": "rgb(36,36,36)"}, "yaxis": {"automargin": true, "gridcolor": "rgb(232,232,232)", "linecolor": "rgb(36,36,36)", "showgrid": false, "showline": true, "ticks": "outside", "title": {"standoff": 15}, "zeroline": false, "zerolinecolor": "rgb(36,36,36)"}}}, "title": {"font": {"size": 30}, "text": "\u80e1\u9069 \u6587\u7ae0\u8207\u671f\u520a"}, "width": 1250, "xaxis": {"tickfont": {"size": 24}, "ticklen": 20, "ticks": "outside", "tickwidth": 5}, "yaxis": {"range": [0, 1.5], "showticklabels": false, "visible": false}},
+                        {"responsive": true}
+                    ).then(function(){
+                            
+var gd = document.getElementById('8c21eae4-b089-4c96-9cfb-6d18678911f8');
+var x = new MutationObserver(function (mutations, observer) {{
+        var display = window.getComputedStyle(gd).display;
+        if (!display || display === 'none') {{
+            console.log([gd, 'removed!']);
+            Plotly.purge(gd);
+            observer.disconnect();
+        }}
+}});
+
+// Listen for the removal of the full notebook cells
+var notebookContainer = gd.closest('#notebook-container');
+if (notebookContainer) {{
+    x.observe(notebookContainer, {childList: true});
+}}
+
+// Listen for the clearing of the current output cell
+var outputEl = gd.closest('.output');
+if (outputEl) {{
+    x.observe(outputEl, {childList: true});
+}}
+
+                        })
+                };
+                
+            </script>
+        </div>
+
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Previous-Lesson:-Simple-Bubble-Chart-using-plotly.express">
+<a class="anchor" href="#Previous-Lesson:-Simple-Bubble-Chart-using-plotly.express" aria-hidden="true"><span class="octicon octicon-link"></span></a>Previous Lesson: <a href="https://pinkychow1010.github.io/digital-chinese-history-blog/level-3/chapter-3/matplotlib/data-visualization/2021/12/30/Simple_Bubble_Chart.html">Simple Bubble Chart using plotly.express</a><a class="anchor-link" href="#Previous-Lesson:-Simple-Bubble-Chart-using-plotly.express"> </a>
+</h2>
+<h2 id="Next-Lesson:-Coming-soon...">
+<a class="anchor" href="#Next-Lesson:-Coming-soon..." aria-hidden="true"><span class="octicon octicon-link"></span></a>Next Lesson: Coming soon...<a class="anchor-link" href="#Next-Lesson:-Coming-soon..."> </a>
+</h2>
+<p><br>
+<br></p>
+<hr>
+<h2 id="Additional-information">
+<a class="anchor" href="#Additional-information" aria-hidden="true"><span class="octicon octicon-link"></span></a><strong>Additional information</strong><a class="anchor-link" href="#Additional-information"> </a>
+</h2>
+<p>This notebook is provided for educational purpose and feel free to report any issue on GitHub.</p>
+<p><br></p>
+<p><strong>Author:</strong> <a href="https://www.linkedin.com/in/ka-hei-chow-231345188/">Ka Hei, Chow</a></p>
+<p><strong>License:</strong> The code in this notebook is licensed under the <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons by Attribution 4.0 license</a>.</p>
+<p><strong>Last modified:</strong> December 2021</p>
+<p><br></p>
+<hr>
+<p><br></p>
+<h2 id="References:">
+<a class="anchor" href="#References:" aria-hidden="true"><span class="octicon octicon-link"></span></a><strong>References:</strong><a class="anchor-link" href="#References:"> </a>
+</h2>
+<p><a href="https://plotly.com/python/">Plotly</a></p>
+
+</div>
+</div>
+</div>
+</div>
+
+
+</body>
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="pinkychow1010/digital-chinese-history-blog"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/digital-chinese-history-blog/level-3/chapter-3/plotly/data-visualization/2022/01/09/Simple_Plotly_Chart.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/digital-chinese-history-blog/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/digital-chinese-history-blog/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/digital-chinese-history-blog/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>This site focuses on Python and aims to support users to conduct academic research in the humanities using open source programming languages.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/pinkychow1010" target="_blank" title="pinkychow1010"><svg class="svg-icon grey"><use xlink:href="/digital-chinese-history-blog/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/pinkychow1010" target="_blank" title="pinkychow1010"><svg class="svg-icon grey"><use xlink:href="/digital-chinese-history-blog/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
