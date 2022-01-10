@@ -1,0 +1,2649 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Bubble Timeline using plotly.express | 數位中國史部落格 Digital Chinese History</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="Bubble Timeline using plotly.express" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Interactive data visualization" />
+<meta property="og:description" content="Interactive data visualization" />
+<link rel="canonical" href="https://pinkychow1010.github.io/digital-chinese-history-blog/level-3/chapter-3/plotly.express/data-visualization/2022/01/10/Plotly_Bubble_Timeline.html" />
+<meta property="og:url" content="https://pinkychow1010.github.io/digital-chinese-history-blog/level-3/chapter-3/plotly.express/data-visualization/2022/01/10/Plotly_Bubble_Timeline.html" />
+<meta property="og:site_name" content="數位中國史部落格 Digital Chinese History" />
+<meta property="og:image" content="https://pinkychow1010.github.io/digital-chinese-history-blog/images/timeline.JPG" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-01-10T00:00:00-06:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://pinkychow1010.github.io/digital-chinese-history-blog/images/timeline.JPG" />
+<meta property="twitter:title" content="Bubble Timeline using plotly.express" />
+<script type="application/ld+json">
+{"url":"https://pinkychow1010.github.io/digital-chinese-history-blog/level-3/chapter-3/plotly.express/data-visualization/2022/01/10/Plotly_Bubble_Timeline.html","@type":"BlogPosting","headline":"Bubble Timeline using plotly.express","dateModified":"2022-01-10T00:00:00-06:00","datePublished":"2022-01-10T00:00:00-06:00","image":"https://pinkychow1010.github.io/digital-chinese-history-blog/images/timeline.JPG","mainEntityOfPage":{"@type":"WebPage","@id":"https://pinkychow1010.github.io/digital-chinese-history-blog/level-3/chapter-3/plotly.express/data-visualization/2022/01/10/Plotly_Bubble_Timeline.html"},"description":"Interactive data visualization","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/digital-chinese-history-blog/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://pinkychow1010.github.io/digital-chinese-history-blog/feed.xml" title="數位中國史部落格
+Digital Chinese History
+" /><link rel="shortcut icon" type="image/x-icon" href="/digital-chinese-history-blog/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/digital-chinese-history-blog/">數位中國史部落格
+Digital Chinese History
+</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/digital-chinese-history-blog/about/">About</a><a class="page-link" href="/digital-chinese-history-blog/gallery/">Gallery</a><a class="page-link" href="/digital-chinese-history-blog/resources/">Resources</a><a class="page-link" href="/digital-chinese-history-blog/search/">Search</a><a class="page-link" href="/digital-chinese-history-blog/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Bubble Timeline using plotly.express</h1><p class="page-description">Interactive data visualization</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2022-01-10T00:00:00-06:00" itemprop="datePublished">
+        Jan 10, 2022
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      11 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/digital-chinese-history-blog/categories/#level-3">level-3</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/digital-chinese-history-blog/categories/#chapter-3">chapter-3</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/digital-chinese-history-blog/categories/#plotly.express">plotly.express</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/digital-chinese-history-blog/categories/#data-visualization">data-visualization</a>
+        
+      
+      </p>
+    
+
+    
+      
+        <div class="pb-5 d-flex flex-justify-center">
+          <div class="px-2">
+
+    <a href="https://github.com/pinkychow1010/digital-chinese-history-blog/tree/master/_notebooks/2022-01-10-Plotly_Bubble_Timeline.ipynb" role="button" target="_blank">
+<img class="notebook-badge-image" src="/digital-chinese-history-blog/assets/badges/github.svg" alt="View On GitHub">
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://mybinder.org/v2/gh/pinkychow1010/digital-chinese-history-blog/master?filepath=_notebooks%2F2022-01-10-Plotly_Bubble_Timeline.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/digital-chinese-history-blog/assets/badges/binder.svg" alt="Open In Binder"/>
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://colab.research.google.com/github/pinkychow1010/digital-chinese-history-blog/blob/master/_notebooks/2022-01-10-Plotly_Bubble_Timeline.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/digital-chinese-history-blog/assets/badges/colab.svg" alt="Open In Colab"/>
+    </a>
+</div>
+          <div class="px-2">
+  <a href="https://deepnote.com/launch?url=https%3A%2F%2Fgithub.com%2Fpinkychow1010%2Fdigital-chinese-history-blog%2Fblob%2Fmaster%2F_notebooks%2F2022-01-10-Plotly_Bubble_Timeline.ipynb" target="_blank">
+      <img class="notebook-badge-image" src="/digital-chinese-history-blog/assets/badges/deepnote.svg" alt="Launch in Deepnote"/>
+  </a>
+</div>
+
+        </div>
+      </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <ul id="toc" class="section-nav">
+<li class="toc-entry toc-h2"><a href="#plotly.express">plotly.express </a></li>
+<li class="toc-entry toc-h2"><a href="#Data-Cleaning">Data Cleaning </a></li>
+<li class="toc-entry toc-h2"><a href="#Data-Visualization">Data Visualization </a></li>
+<li class="toc-entry toc-h2"><a href="#Almost-Done!">Almost Done! </a></li>
+<li class="toc-entry toc-h2"><a href="#Customization">Customization </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#Adjust-Data-Frame">Adjust Data Frame </a></li>
+<li class="toc-entry toc-h3"><a href="#Ploting">Ploting </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#Previous-Lesson:-Simple-Bubble-Chart">Previous Lesson: Simple Bubble Chart </a></li>
+<li class="toc-entry toc-h2"><a href="#Next-Lesson:-Coming-soon...">Next Lesson: Coming soon... </a></li>
+<li class="toc-entry toc-h2"><a href="#Additional-information">Additional information </a></li>
+<li class="toc-entry toc-h2"><a href="#References:">References: </a></li>
+</ul><body>
+<!--
+#################################################
+### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
+#################################################
+# file to edit: _notebooks/2022-01-10-Plotly_Bubble_Timeline.ipynb
+-->
+
+<div class="container" id="notebook-container">
+        
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="plotly.express">
+<a class="anchor" href="#plotly.express" aria-hidden="true"><span class="octicon octicon-link"></span></a>plotly.express<a class="anchor-link" href="#plotly.express"> </a>
+</h2>
+<p>Hi there! In the last tutorial, we began to explore the potential of <strong>plotly.express</strong>, which is a wrapper for Plotly.py to allow more interaction in our graphics. Last time we made a simple scatter plot/ bubble chart. This time we will continue with a variation of bubble chart to represent temporal development of the UNESCO inscriptions in different countries. This timeline is characterised by the bubbles along the x-axis with varied sizes and can be used to <strong>contrast temporal trends of multiply categories</strong>.</p>
+<p>In order to create the timeline, we first have to import needed libraries, and read the data into a <strong>pandas</strong> data frame.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="kn">import</span> <span class="nn">io</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="c1"># read data</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s1">'https://examples.opendatasoft.com/explore/dataset/world-heritage-unesco-list/download/?format=csv&amp;timezone=Europe/Berlin&amp;lang=en&amp;use_labels_for_header=true&amp;csv_separator=%3B'</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">";"</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+
+  <div id="df-8ddd3fc6-6b0b-441e-8167-9ca0469d48b8">
+    <div class="colab-df-container">
+      <div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name (EN)</th>
+      <th>Name (FR)</th>
+      <th>Short description (EN)</th>
+      <th>Short Description (FR)</th>
+      <th>Justification (EN)</th>
+      <th>Justification (FR)</th>
+      <th>Date inscribed</th>
+      <th>Danger list</th>
+      <th>Longitude</th>
+      <th>Latitude</th>
+      <th>Area hectares</th>
+      <th>Category</th>
+      <th>Country (EN)</th>
+      <th>Country (FR)</th>
+      <th>Continent (EN)</th>
+      <th>Continent (FR)</th>
+      <th>Geographical coordinates</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Architectural, Residential and Cultural Comple...</td>
+      <td>Ensemble architectural, résidentiel et culture...</td>
+      <td>The Architectural, Residential and Cultural Co...</td>
+      <td>L’ensemble architectural, résidentiel et cultu...</td>
+      <td>Criterion (ii): The architectural, residential...</td>
+      <td>Critère (ii) : L’ensemble architectural, résid...</td>
+      <td>2005-01-01</td>
+      <td>NaN</td>
+      <td>26.691390</td>
+      <td>53.222780</td>
+      <td>0.00</td>
+      <td>Cultural</td>
+      <td>Belarus</td>
+      <td>Bélarus</td>
+      <td>Europe and North America</td>
+      <td>Europe et Amérique du nord</td>
+      <td>53.22278,26.69139</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Rock Paintings of the Sierra de San Francisco</td>
+      <td>Peintures rupestres de la Sierra de San Francisco</td>
+      <td>From c. 100 B.C. to A.D. 1300, the Sierra de S...</td>
+      <td>Dans la réserve d'El Vizcaíno, en Basse-Califo...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>1993-01-01</td>
+      <td>NaN</td>
+      <td>-112.916110</td>
+      <td>27.655560</td>
+      <td>182600.00</td>
+      <td>Cultural</td>
+      <td>Mexico</td>
+      <td>Mexique</td>
+      <td>Latin America and the Caribbean</td>
+      <td>Amérique latine et Caraïbes</td>
+      <td>27.65556,-112.91611</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Monastery of Horezu</td>
+      <td>Monastère de Horezu</td>
+      <td>Founded in 1690 by Prince Constantine Brancova...</td>
+      <td>Fondé en 1690 par le prince Constantin Brancov...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>1993-01-01</td>
+      <td>NaN</td>
+      <td>24.016667</td>
+      <td>45.183333</td>
+      <td>22.48</td>
+      <td>Cultural</td>
+      <td>Romania</td>
+      <td>Roumanie</td>
+      <td>Europe and North America</td>
+      <td>Europe et Amérique du nord</td>
+      <td>45.18333333,24.01666667</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Mount Etna</td>
+      <td>Mont Etna</td>
+      <td>Mount Etna is an iconic site encompassing 19,2...</td>
+      <td>Ce site emblématique recouvre une zone inhabit...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>2013-01-01</td>
+      <td>NaN</td>
+      <td>14.996667</td>
+      <td>37.756111</td>
+      <td>19237.00</td>
+      <td>Natural</td>
+      <td>Italy</td>
+      <td>Italie</td>
+      <td>Europe and North America</td>
+      <td>Europe et Amérique du nord</td>
+      <td>37.7561111111,14.9966666667</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Belfries of Belgium and France</td>
+      <td>Beffrois de Belgique et de France</td>
+      <td>Twenty-three belfries in the north of France a...</td>
+      <td>Vingt-trois beffrois, situés dans le nord de l...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>1999-01-01</td>
+      <td>NaN</td>
+      <td>3.231390</td>
+      <td>50.174440</td>
+      <td>0.00</td>
+      <td>Cultural</td>
+      <td>Belgium,France</td>
+      <td>Belgique,France</td>
+      <td>Europe and North America</td>
+      <td>Europe et Amérique du nord</td>
+      <td>50.17444,3.23139</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+      <button class="colab-df-convert" onclick="convertToInteractive('df-8ddd3fc6-6b0b-441e-8167-9ca0469d48b8')" title="Convert this dataframe to an interactive table." style="display:none;">
+        
+  &lt;svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+       width="24px"&gt;
+    <path d="M0 0h24v24H0V0z" fill="none"></path>
+    <path d="M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z"></path><path d="M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z"></path>
+  &lt;/svg&gt;
+      </button>
+      
+  <style>
+    .colab-df-container {
+      display:flex;
+      flex-wrap:wrap;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+      <script>
+        const buttonEl =
+          document.querySelector('#df-8ddd3fc6-6b0b-441e-8167-9ca0469d48b8 button.colab-df-convert');
+        buttonEl.style.display =
+          google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+        async function convertToInteractive(key) {
+          const element = document.querySelector('#df-8ddd3fc6-6b0b-441e-8167-9ca0469d48b8');
+          const dataTable =
+            await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                     [key], {});
+          if (!dataTable) return;
+
+          const docLinkHtml = 'Like what you see? Visit the ' +
+            '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+            + ' to learn more about interactive tables.';
+          element.innerHTML = '';
+          dataTable['output_type'] = 'display_data';
+          await google.colab.output.renderOutput(dataTable, element);
+          const docLink = document.createElement('div');
+          docLink.innerHTML = docLinkHtml;
+          element.appendChild(docLink);
+        }
+      </script>
+    </div>
+  </div>
+  
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Data-Cleaning">
+<a class="anchor" href="#Data-Cleaning" aria-hidden="true"><span class="octicon octicon-link"></span></a>Data Cleaning<a class="anchor-link" href="#Data-Cleaning"> </a>
+</h2>
+<p>We need to start with some preprocessing and data cleaning. We will start with <strong>subsetting and renaming</strong> the columns, followed by a calculation of total UNESCO sites in the "top 10 countries" using <strong>groupby()</strong> (we do not need this data frame for the plot, only list of the top 10 countries). We will sort the values using <strong>sort_vales(by=['name'])</strong> to order the countries from the most to the least UNESCO sites.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s2">"Name (EN)"</span><span class="p">,</span><span class="s2">"Date inscribed"</span><span class="p">,</span><span class="s2">"Category"</span><span class="p">,</span><span class="s2">"Country (EN)"</span><span class="p">,</span><span class="s2">"Continent (EN)"</span><span class="p">]]</span> <span class="c1"># select multiple columns in a list []</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">"Name (EN)"</span><span class="p">:</span> <span class="s2">"name"</span><span class="p">,</span> <span class="s2">"Date inscribed"</span><span class="p">:</span> <span class="s2">"date"</span><span class="p">,</span> <span class="s2">"Category"</span><span class="p">:</span> <span class="s2">"type"</span><span class="p">,</span> <span class="s2">"Country (EN)"</span><span class="p">:</span> <span class="s2">"country"</span><span class="p">,</span> <span class="s2">"Continent (EN)"</span><span class="p">:</span> <span class="s2">"continent"</span><span class="p">})</span> <span class="c1"># rename the columns for easy reading</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="n">top_10</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">"country"</span><span class="p">])</span><span class="o">.</span><span class="n">count</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s1">'name'</span><span class="p">],</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">top_10</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+
+  <div id="df-e5cadd66-9b95-495e-af37-2e112b1bf1dd">
+    <div class="colab-df-container">
+      <div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>name</th>
+      <th>date</th>
+      <th>type</th>
+      <th>continent</th>
+    </tr>
+    <tr>
+      <th>country</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>China</th>
+      <td>49</td>
+      <td>49</td>
+      <td>49</td>
+      <td>49</td>
+    </tr>
+    <tr>
+      <th>Italy</th>
+      <td>47</td>
+      <td>47</td>
+      <td>47</td>
+      <td>47</td>
+    </tr>
+    <tr>
+      <th>Spain</th>
+      <td>41</td>
+      <td>41</td>
+      <td>41</td>
+      <td>41</td>
+    </tr>
+    <tr>
+      <th>France</th>
+      <td>38</td>
+      <td>38</td>
+      <td>38</td>
+      <td>38</td>
+    </tr>
+    <tr>
+      <th>Germany</th>
+      <td>35</td>
+      <td>35</td>
+      <td>35</td>
+      <td>35</td>
+    </tr>
+    <tr>
+      <th>Mexico</th>
+      <td>34</td>
+      <td>34</td>
+      <td>34</td>
+      <td>34</td>
+    </tr>
+    <tr>
+      <th>India</th>
+      <td>33</td>
+      <td>33</td>
+      <td>33</td>
+      <td>33</td>
+    </tr>
+    <tr>
+      <th>United Kingdom of Great Britain and Northern Ireland</th>
+      <td>27</td>
+      <td>27</td>
+      <td>27</td>
+      <td>27</td>
+    </tr>
+    <tr>
+      <th>Russian Federation</th>
+      <td>21</td>
+      <td>21</td>
+      <td>21</td>
+      <td>21</td>
+    </tr>
+    <tr>
+      <th>Iran (Islamic Republic of)</th>
+      <td>21</td>
+      <td>21</td>
+      <td>21</td>
+      <td>21</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+      <button class="colab-df-convert" onclick="convertToInteractive('df-e5cadd66-9b95-495e-af37-2e112b1bf1dd')" title="Convert this dataframe to an interactive table." style="display:none;">
+        
+  &lt;svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+       width="24px"&gt;
+    <path d="M0 0h24v24H0V0z" fill="none"></path>
+    <path d="M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z"></path><path d="M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z"></path>
+  &lt;/svg&gt;
+      </button>
+      
+  <style>
+    .colab-df-container {
+      display:flex;
+      flex-wrap:wrap;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+      <script>
+        const buttonEl =
+          document.querySelector('#df-e5cadd66-9b95-495e-af37-2e112b1bf1dd button.colab-df-convert');
+        buttonEl.style.display =
+          google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+        async function convertToInteractive(key) {
+          const element = document.querySelector('#df-e5cadd66-9b95-495e-af37-2e112b1bf1dd');
+          const dataTable =
+            await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                     [key], {});
+          if (!dataTable) return;
+
+          const docLinkHtml = 'Like what you see? Visit the ' +
+            '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+            + ' to learn more about interactive tables.';
+          element.innerHTML = '';
+          dataTable['output_type'] = 'display_data';
+          await google.colab.output.renderOutput(dataTable, element);
+          const docLink = document.createElement('div');
+          docLink.innerHTML = docLinkHtml;
+          element.appendChild(docLink);
+        }
+      </script>
+    </div>
+  </div>
+  
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Get the top 10 countries as a numpy array.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="n">sub_cnty</span> <span class="o">=</span> <span class="n">top_10</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">values</span>
+<span class="n">sub_cnty</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array(['China', 'Italy', 'Spain', 'France', 'Germany', 'Mexico', 'India',
+       'United Kingdom of Great Britain and Northern Ireland',
+       'Russian Federation', 'Iran (Islamic Republic of)'], dtype=object)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>With the information of the top 10 countries, we can now delete all the rows from other countries using <strong>isin(sub_cnty)</strong>. We will then group the rows by <strong>country</strong> and <strong>date</strong> and count the rows for every country and every year. We will then reset the index.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="n">top_df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">'country'</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">sub_cnty</span><span class="p">)]</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">'country'</span><span class="p">,</span><span class="s1">'date'</span><span class="p">])</span><span class="o">.</span><span class="n">count</span><span class="p">()[</span><span class="s1">'name'</span><span class="p">]</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="n">top_df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+
+  <div id="df-7002aefc-aa30-4c44-8410-d743bc602179">
+    <div class="colab-df-container">
+      <div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>country</th>
+      <th>date</th>
+      <th>name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>China</td>
+      <td>1987-01-01</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>China</td>
+      <td>1990-01-01</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>China</td>
+      <td>1992-01-01</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>China</td>
+      <td>1994-01-01</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>China</td>
+      <td>1996-01-01</td>
+      <td>2</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+      <button class="colab-df-convert" onclick="convertToInteractive('df-7002aefc-aa30-4c44-8410-d743bc602179')" title="Convert this dataframe to an interactive table." style="display:none;">
+        
+  &lt;svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+       width="24px"&gt;
+    <path d="M0 0h24v24H0V0z" fill="none"></path>
+    <path d="M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z"></path><path d="M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z"></path>
+  &lt;/svg&gt;
+      </button>
+      
+  <style>
+    .colab-df-container {
+      display:flex;
+      flex-wrap:wrap;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+      <script>
+        const buttonEl =
+          document.querySelector('#df-7002aefc-aa30-4c44-8410-d743bc602179 button.colab-df-convert');
+        buttonEl.style.display =
+          google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+        async function convertToInteractive(key) {
+          const element = document.querySelector('#df-7002aefc-aa30-4c44-8410-d743bc602179');
+          const dataTable =
+            await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                     [key], {});
+          if (!dataTable) return;
+
+          const docLinkHtml = 'Like what you see? Visit the ' +
+            '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+            + ' to learn more about interactive tables.';
+          element.innerHTML = '';
+          dataTable['output_type'] = 'display_data';
+          await google.colab.output.renderOutput(dataTable, element);
+          const docLink = document.createElement('div');
+          docLink.innerHTML = docLinkHtml;
+          element.appendChild(docLink);
+        }
+      </script>
+    </div>
+  </div>
+  
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>As we need only the information of year, not the full date, we will create a new column <strong>year</strong>. We can extrate the year by first interpreting the <strong>date</strong> column as date time, then take the year values (simply with <strong>.year</strong>).</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="n">top_df</span><span class="p">[</span><span class="s1">'year'</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DatetimeIndex</span><span class="p">(</span><span class="n">top_df</span><span class="p">[</span><span class="s1">'date'</span><span class="p">])</span><span class="o">.</span><span class="n">year</span> <span class="c1"># set up a new year column</span>
+
+<span class="n">top_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+
+  <div id="df-df4c0f7b-a2b7-4932-964d-d19439873932">
+    <div class="colab-df-container">
+      <div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>country</th>
+      <th>date</th>
+      <th>name</th>
+      <th>year</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>China</td>
+      <td>1987-01-01</td>
+      <td>6</td>
+      <td>1987</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>China</td>
+      <td>1990-01-01</td>
+      <td>1</td>
+      <td>1990</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>China</td>
+      <td>1992-01-01</td>
+      <td>3</td>
+      <td>1992</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>China</td>
+      <td>1994-01-01</td>
+      <td>4</td>
+      <td>1994</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>China</td>
+      <td>1996-01-01</td>
+      <td>2</td>
+      <td>1996</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+      <button class="colab-df-convert" onclick="convertToInteractive('df-df4c0f7b-a2b7-4932-964d-d19439873932')" title="Convert this dataframe to an interactive table." style="display:none;">
+        
+  &lt;svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+       width="24px"&gt;
+    <path d="M0 0h24v24H0V0z" fill="none"></path>
+    <path d="M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z"></path><path d="M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z"></path>
+  &lt;/svg&gt;
+      </button>
+      
+  <style>
+    .colab-df-container {
+      display:flex;
+      flex-wrap:wrap;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+      <script>
+        const buttonEl =
+          document.querySelector('#df-df4c0f7b-a2b7-4932-964d-d19439873932 button.colab-df-convert');
+        buttonEl.style.display =
+          google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+        async function convertToInteractive(key) {
+          const element = document.querySelector('#df-df4c0f7b-a2b7-4932-964d-d19439873932');
+          const dataTable =
+            await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                     [key], {});
+          if (!dataTable) return;
+
+          const docLinkHtml = 'Like what you see? Visit the ' +
+            '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+            + ' to learn more about interactive tables.';
+          element.innerHTML = '';
+          dataTable['output_type'] = 'display_data';
+          await google.colab.output.renderOutput(dataTable, element);
+          const docLink = document.createElement('div');
+          docLink.innerHTML = docLinkHtml;
+          element.appendChild(docLink);
+        }
+      </script>
+    </div>
+  </div>
+  
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now we will group by again with the <strong>country</strong> and <strong>year</strong> and get the sum (count of inscriptions every year).</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="n">group_df</span> <span class="o">=</span> <span class="n">top_df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s2">"country"</span><span class="p">,</span><span class="s2">"year"</span><span class="p">])</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">country_list</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">group_df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">get_level_values</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+<span class="n">year_list</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">group_df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">get_level_values</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>As we want need the <strong>country</strong> and <strong>year</strong> column not only as index. We will assign the columns again.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="n">group_df</span><span class="p">[</span><span class="s1">'country'</span><span class="p">]</span> <span class="o">=</span> <span class="n">country_list</span>
+<span class="n">group_df</span><span class="p">[</span><span class="s1">'year'</span><span class="p">]</span> <span class="o">=</span> <span class="n">year_list</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Renaming the <strong>name</strong> column to <strong>count</strong>.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="n">group_df</span> <span class="o">=</span> <span class="n">group_df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">"name"</span><span class="p">:</span> <span class="s2">"count"</span><span class="p">})</span>
+<span class="n">group_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+
+  <div id="df-e75c5e91-1036-4fed-b665-b78bd3ed0873">
+    <div class="colab-df-container">
+      <div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th>count</th>
+      <th>country</th>
+      <th>year</th>
+    </tr>
+    <tr>
+      <th>country</th>
+      <th>year</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="5" valign="top">China</th>
+      <th>1987</th>
+      <td>6</td>
+      <td>China</td>
+      <td>1987</td>
+    </tr>
+    <tr>
+      <th>1990</th>
+      <td>1</td>
+      <td>China</td>
+      <td>1990</td>
+    </tr>
+    <tr>
+      <th>1992</th>
+      <td>3</td>
+      <td>China</td>
+      <td>1992</td>
+    </tr>
+    <tr>
+      <th>1994</th>
+      <td>4</td>
+      <td>China</td>
+      <td>1994</td>
+    </tr>
+    <tr>
+      <th>1996</th>
+      <td>2</td>
+      <td>China</td>
+      <td>1996</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+      <button class="colab-df-convert" onclick="convertToInteractive('df-e75c5e91-1036-4fed-b665-b78bd3ed0873')" title="Convert this dataframe to an interactive table." style="display:none;">
+        
+  &lt;svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+       width="24px"&gt;
+    <path d="M0 0h24v24H0V0z" fill="none"></path>
+    <path d="M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z"></path><path d="M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z"></path>
+  &lt;/svg&gt;
+      </button>
+      
+  <style>
+    .colab-df-container {
+      display:flex;
+      flex-wrap:wrap;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+      <script>
+        const buttonEl =
+          document.querySelector('#df-e75c5e91-1036-4fed-b665-b78bd3ed0873 button.colab-df-convert');
+        buttonEl.style.display =
+          google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+        async function convertToInteractive(key) {
+          const element = document.querySelector('#df-e75c5e91-1036-4fed-b665-b78bd3ed0873');
+          const dataTable =
+            await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                     [key], {});
+          if (!dataTable) return;
+
+          const docLinkHtml = 'Like what you see? Visit the ' +
+            '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+            + ' to learn more about interactive tables.';
+          element.innerHTML = '';
+          dataTable['output_type'] = 'display_data';
+          await google.colab.output.renderOutput(dataTable, element);
+          const docLink = document.createElement('div');
+          docLink.innerHTML = docLinkHtml;
+          element.appendChild(docLink);
+        }
+      </script>
+    </div>
+  </div>
+  
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>To improve the visuals, we will simplified the name of UK.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="n">group_df</span><span class="p">[</span><span class="s1">'country'</span><span class="p">]</span> <span class="o">=</span> <span class="n">group_df</span><span class="p">[</span><span class="s1">'country'</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">'United Kingdom of Great Britain and Northern Ireland'</span><span class="p">,</span><span class="s1">'United Kingdom'</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Data-Visualization">
+<a class="anchor" href="#Data-Visualization" aria-hidden="true"><span class="octicon octicon-link"></span></a>Data Visualization<a class="anchor-link" href="#Data-Visualization"> </a>
+</h2>
+<p>To make a interactive scatter plot in plotly.express, we only need to use <strong>px.scatter()</strong>. It is highly compatible with <strong>pandas</strong>, so we can input a <strong>pandas</strong> data frame, and specify <strong>x</strong> and <strong>y</strong> (as well as <strong>size</strong> and <strong>color</strong> which are optional) with the column names.</p>
+<p>Every changes in layout we can change using update_layout(). All the options can be found <a href="https://plotly.com/python-api-reference/generated/plotly.express.scatter">here</a>.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">group_df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">"year"</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">"country"</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="s2">"count"</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"country"</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span><span class="n">showlegend</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+
+<meta charset="utf-8">
+
+    <div>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_SVG"></script><script type="text/javascript">if (window.MathJax) {MathJax.Hub.Config({SVG: {font: "STIX-Web"}});}</script>
+                <script type="text/javascript">window.PlotlyConfig = {MathJaxConfig: 'local'};</script>
+        <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>    
+            <div id="e784494c-fded-4b43-9444-2ee0270c6515" class="plotly-graph-div" style="height:525px; width:100%;"></div>
+            <script type="text/javascript">
+                
+                    window.PLOTLYENV=window.PLOTLYENV || {};
+                    
+                if (document.getElementById("e784494c-fded-4b43-9444-2ee0270c6515")) {
+                    Plotly.newPlot(
+                        'e784494c-fded-4b43-9444-2ee0270c6515',
+                        [{"hoverlabel": {"namelength": 0}, "hovertemplate": "country=%{y}<br>year=%{x}<br>count=%{marker.size}", "legendgroup": "country=China", "marker": {"color": "#636efa", "size": [6, 1, 3, 4, 2, 3, 2, 2, 4, 1, 1, 1, 1, 2, 2, 2, 1, 2, 1, 2, 2, 1, 1, 2], "sizemode": "area", "sizeref": 0.025, "symbol": "circle"}, "mode": "markers", "name": "country=China", "showlegend": true, "type": "scatter", "x": [1987, 1990, 1992, 1994, 1996, 1997, 1998, 1999, 2000, 2001, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016], "xaxis": "x", "y": ["China", "China", "China", "China", "China", "China", "China", "China", "China", "China", "China", "China", "China", "China", "China", "China", "China", "China", "China", "China", "China", "China", "China", "China"], "yaxis": "y"}, {"hoverlabel": {"namelength": 0}, "hovertemplate": "country=%{y}<br>year=%{x}<br>count=%{marker.size}", "legendgroup": "country=France", "marker": {"color": "#EF553B", "size": [5, 5, 1, 3, 1, 1, 2, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 2, 2, 1, 1, 1, 2], "sizemode": "area", "sizeref": 0.025, "symbol": "circle"}, "mode": "markers", "name": "country=France", "showlegend": true, "type": "scatter", "x": [1979, 1981, 1982, 1983, 1985, 1988, 1991, 1992, 1995, 1996, 1997, 1998, 1999, 2000, 2001, 2005, 2007, 2008, 2010, 2011, 2012, 2014, 2015], "xaxis": "x", "y": ["France", "France", "France", "France", "France", "France", "France", "France", "France", "France", "France", "France", "France", "France", "France", "France", "France", "France", "France", "France", "France", "France", "France"], "yaxis": "y"}, {"hoverlabel": {"namelength": 0}, "hovertemplate": "country=%{y}<br>year=%{x}<br>count=%{marker.size}", "legendgroup": "country=Germany", "marker": {"color": "#00cc96", "size": [1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 1, 3, 1, 2, 2, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1], "sizemode": "area", "sizeref": 0.025, "symbol": "circle"}, "mode": "markers", "name": "country=Germany", "showlegend": true, "type": "scatter", "x": [1978, 1981, 1983, 1984, 1985, 1986, 1987, 1990, 1991, 1992, 1993, 1994, 1995, 1996, 1998, 1999, 2000, 2001, 2002, 2004, 2006, 2008, 2011, 2012, 2013, 2014, 2015], "xaxis": "x", "y": ["Germany", "Germany", "Germany", "Germany", "Germany", "Germany", "Germany", "Germany", "Germany", "Germany", "Germany", "Germany", "Germany", "Germany", "Germany", "Germany", "Germany", "Germany", "Germany", "Germany", "Germany", "Germany", "Germany", "Germany", "Germany", "Germany", "Germany"], "yaxis": "y"}, {"hoverlabel": {"namelength": 0}, "hovertemplate": "country=%{y}<br>year=%{x}<br>count=%{marker.size}", "legendgroup": "country=India", "marker": {"color": "#ab63fa", "size": [4, 2, 3, 4, 3, 1, 1, 2, 1, 1, 1, 2, 1, 1, 1, 1, 2, 2], "sizemode": "area", "sizeref": 0.025, "symbol": "circle"}, "mode": "markers", "name": "country=India", "showlegend": true, "type": "scatter", "x": [1983, 1984, 1985, 1986, 1987, 1988, 1989, 1993, 1999, 2002, 2003, 2004, 2007, 2010, 2012, 2013, 2014, 2016], "xaxis": "x", "y": ["India", "India", "India", "India", "India", "India", "India", "India", "India", "India", "India", "India", "India", "India", "India", "India", "India", "India"], "yaxis": "y"}, {"hoverlabel": {"namelength": 0}, "hovertemplate": "country=%{y}<br>year=%{x}<br>count=%{marker.size}", "legendgroup": "country=Iran (Islamic Republic of)", "marker": {"color": "#FFA15A", "size": [3, 1, 2, 1, 1, 1, 1, 2, 1, 2, 1, 1, 2, 2], "sizemode": "area", "sizeref": 0.025, "symbol": "circle"}, "mode": "markers", "name": "country=Iran (Islamic Republic of)", "showlegend": true, "type": "scatter", "x": [1979, 2003, 2004, 2005, 2006, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016], "xaxis": "x", "y": ["Iran (Islamic Republic of)", "Iran (Islamic Republic of)", "Iran (Islamic Republic of)", "Iran (Islamic Republic of)", "Iran (Islamic Republic of)", "Iran (Islamic Republic of)", "Iran (Islamic Republic of)", "Iran (Islamic Republic of)", "Iran (Islamic Republic of)", "Iran (Islamic Republic of)", "Iran (Islamic Republic of)", "Iran (Islamic Republic of)", "Iran (Islamic Republic of)", "Iran (Islamic Republic of)"], "yaxis": "y"}, {"hoverlabel": {"namelength": 0}, "hovertemplate": "country=%{y}<br>year=%{x}<br>count=%{marker.size}", "legendgroup": "country=Italy", "marker": {"color": "#19d3f3", "size": [1, 1, 1, 2, 1, 1, 1, 4, 4, 10, 3, 1, 3, 1, 1, 1, 2, 1, 1, 1, 1, 1, 2, 1, 1], "sizemode": "area", "sizeref": 0.025, "symbol": "circle"}, "mode": "markers", "name": "country=Italy", "showlegend": true, "type": "scatter", "x": [1979, 1980, 1982, 1987, 1990, 1993, 1994, 1995, 1996, 1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2008, 2009, 2011, 2013, 2014, 2015], "xaxis": "x", "y": ["Italy", "Italy", "Italy", "Italy", "Italy", "Italy", "Italy", "Italy", "Italy", "Italy", "Italy", "Italy", "Italy", "Italy", "Italy", "Italy", "Italy", "Italy", "Italy", "Italy", "Italy", "Italy", "Italy", "Italy", "Italy"], "yaxis": "y"}, {"hoverlabel": {"namelength": 0}, "hovertemplate": "country=%{y}<br>year=%{x}<br>count=%{marker.size}", "legendgroup": "country=Mexico", "marker": {"color": "#FF6692", "size": [6, 2, 1, 1, 3, 1, 2, 1, 2, 2, 1, 1, 1, 1, 1, 1, 2, 2, 1, 1, 1], "sizemode": "area", "sizeref": 0.025, "symbol": "circle"}, "mode": "markers", "name": "country=Mexico", "showlegend": true, "type": "scatter", "x": [1987, 1988, 1991, 1992, 1993, 1994, 1996, 1997, 1998, 1999, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2010, 2013, 2015, 2016], "xaxis": "x", "y": ["Mexico", "Mexico", "Mexico", "Mexico", "Mexico", "Mexico", "Mexico", "Mexico", "Mexico", "Mexico", "Mexico", "Mexico", "Mexico", "Mexico", "Mexico", "Mexico", "Mexico", "Mexico", "Mexico", "Mexico", "Mexico"], "yaxis": "y"}, {"hoverlabel": {"namelength": 0}, "hovertemplate": "country=%{y}<br>year=%{x}<br>count=%{marker.size}", "legendgroup": "country=Russian Federation", "marker": {"color": "#B6E880", "size": [3, 3, 1, 1, 1, 2, 1, 2, 1, 1, 1, 1, 1, 1, 1], "sizemode": "area", "sizeref": 0.025, "symbol": "circle"}, "mode": "markers", "name": "country=Russian Federation", "showlegend": true, "type": "scatter", "x": [1990, 1992, 1993, 1994, 1995, 1996, 1999, 2000, 2001, 2003, 2004, 2005, 2010, 2012, 2014], "xaxis": "x", "y": ["Russian Federation", "Russian Federation", "Russian Federation", "Russian Federation", "Russian Federation", "Russian Federation", "Russian Federation", "Russian Federation", "Russian Federation", "Russian Federation", "Russian Federation", "Russian Federation", "Russian Federation", "Russian Federation", "Russian Federation"], "yaxis": "y"}, {"hoverlabel": {"namelength": 0}, "hovertemplate": "country=%{y}<br>year=%{x}<br>count=%{marker.size}", "legendgroup": "country=Spain", "marker": {"color": "#FF97FF", "size": [5, 5, 4, 1, 1, 1, 3, 2, 3, 2, 2, 5, 1, 1, 1, 1, 1, 1, 1], "sizemode": "area", "sizeref": 0.025, "symbol": "circle"}, "mode": "markers", "name": "country=Spain", "showlegend": true, "type": "scatter", "x": [1984, 1985, 1986, 1987, 1988, 1991, 1993, 1996, 1997, 1998, 1999, 2000, 2001, 2003, 2006, 2007, 2009, 2011, 2016], "xaxis": "x", "y": ["Spain", "Spain", "Spain", "Spain", "Spain", "Spain", "Spain", "Spain", "Spain", "Spain", "Spain", "Spain", "Spain", "Spain", "Spain", "Spain", "Spain", "Spain", "Spain"], "yaxis": "y"}, {"hoverlabel": {"namelength": 0}, "hovertemplate": "country=%{y}<br>year=%{x}<br>count=%{marker.size}", "legendgroup": "country=United Kingdom", "marker": {"color": "#FECB52", "size": [7, 2, 3, 2, 1, 1, 2, 3, 1, 1, 1, 1, 1, 1], "sizemode": "area", "sizeref": 0.025, "symbol": "circle"}, "mode": "markers", "name": "country=United Kingdom", "showlegend": true, "type": "scatter", "x": [1986, 1987, 1988, 1995, 1997, 1999, 2000, 2001, 2003, 2004, 2006, 2009, 2015, 2016], "xaxis": "x", "y": ["United Kingdom", "United Kingdom", "United Kingdom", "United Kingdom", "United Kingdom", "United Kingdom", "United Kingdom", "United Kingdom", "United Kingdom", "United Kingdom", "United Kingdom", "United Kingdom", "United Kingdom", "United Kingdom"], "yaxis": "y"}],
+                        {"legend": {"itemsizing": "constant", "tracegroupgap": 0}, "margin": {"t": 60}, "showlegend": false, "template": {"data": {"bar": [{"error_x": {"color": "#2a3f5f"}, "error_y": {"color": "#2a3f5f"}, "marker": {"line": {"color": "#E5ECF6", "width": 0.5}}, "type": "bar"}], "barpolar": [{"marker": {"line": {"color": "#E5ECF6", "width": 0.5}}, "type": "barpolar"}], "carpet": [{"aaxis": {"endlinecolor": "#2a3f5f", "gridcolor": "white", "linecolor": "white", "minorgridcolor": "white", "startlinecolor": "#2a3f5f"}, "baxis": {"endlinecolor": "#2a3f5f", "gridcolor": "white", "linecolor": "white", "minorgridcolor": "white", "startlinecolor": "#2a3f5f"}, "type": "carpet"}], "choropleth": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "type": "choropleth"}], "contour": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "contour"}], "contourcarpet": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "type": "contourcarpet"}], "heatmap": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "heatmap"}], "heatmapgl": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "heatmapgl"}], "histogram": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "histogram"}], "histogram2d": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "histogram2d"}], "histogram2dcontour": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "histogram2dcontour"}], "mesh3d": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "type": "mesh3d"}], "parcoords": [{"line": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "parcoords"}], "pie": [{"automargin": true, "type": "pie"}], "scatter": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scatter"}], "scatter3d": [{"line": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scatter3d"}], "scattercarpet": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scattercarpet"}], "scattergeo": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scattergeo"}], "scattergl": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scattergl"}], "scattermapbox": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scattermapbox"}], "scatterpolar": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scatterpolar"}], "scatterpolargl": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scatterpolargl"}], "scatterternary": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scatterternary"}], "surface": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "surface"}], "table": [{"cells": {"fill": {"color": "#EBF0F8"}, "line": {"color": "white"}}, "header": {"fill": {"color": "#C8D4E3"}, "line": {"color": "white"}}, "type": "table"}]}, "layout": {"annotationdefaults": {"arrowcolor": "#2a3f5f", "arrowhead": 0, "arrowwidth": 1}, "coloraxis": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "colorscale": {"diverging": [[0, "#8e0152"], [0.1, "#c51b7d"], [0.2, "#de77ae"], [0.3, "#f1b6da"], [0.4, "#fde0ef"], [0.5, "#f7f7f7"], [0.6, "#e6f5d0"], [0.7, "#b8e186"], [0.8, "#7fbc41"], [0.9, "#4d9221"], [1, "#276419"]], "sequential": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "sequentialminus": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]]}, "colorway": ["#636efa", "#EF553B", "#00cc96", "#ab63fa", "#FFA15A", "#19d3f3", "#FF6692", "#B6E880", "#FF97FF", "#FECB52"], "font": {"color": "#2a3f5f"}, "geo": {"bgcolor": "white", "lakecolor": "white", "landcolor": "#E5ECF6", "showlakes": true, "showland": true, "subunitcolor": "white"}, "hoverlabel": {"align": "left"}, "hovermode": "closest", "mapbox": {"style": "light"}, "paper_bgcolor": "white", "plot_bgcolor": "#E5ECF6", "polar": {"angularaxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}, "bgcolor": "#E5ECF6", "radialaxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}}, "scene": {"xaxis": {"backgroundcolor": "#E5ECF6", "gridcolor": "white", "gridwidth": 2, "linecolor": "white", "showbackground": true, "ticks": "", "zerolinecolor": "white"}, "yaxis": {"backgroundcolor": "#E5ECF6", "gridcolor": "white", "gridwidth": 2, "linecolor": "white", "showbackground": true, "ticks": "", "zerolinecolor": "white"}, "zaxis": {"backgroundcolor": "#E5ECF6", "gridcolor": "white", "gridwidth": 2, "linecolor": "white", "showbackground": true, "ticks": "", "zerolinecolor": "white"}}, "shapedefaults": {"line": {"color": "#2a3f5f"}}, "ternary": {"aaxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}, "baxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}, "bgcolor": "#E5ECF6", "caxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}}, "title": {"x": 0.05}, "xaxis": {"automargin": true, "gridcolor": "white", "linecolor": "white", "ticks": "", "title": {"standoff": 15}, "zerolinecolor": "white", "zerolinewidth": 2}, "yaxis": {"automargin": true, "gridcolor": "white", "linecolor": "white", "ticks": "", "title": {"standoff": 15}, "zerolinecolor": "white", "zerolinewidth": 2}}}, "xaxis": {"anchor": "y", "domain": [0.0, 1.0], "title": {"text": "year"}}, "yaxis": {"anchor": "x", "categoryarray": ["United Kingdom", "Spain", "Russian Federation", "Mexico", "Italy", "Iran (Islamic Republic of)", "India", "Germany", "France", "China"], "categoryorder": "array", "domain": [0.0, 1.0], "title": {"text": "country"}}},
+                        {"responsive": true}
+                    ).then(function(){
+                            
+var gd = document.getElementById('e784494c-fded-4b43-9444-2ee0270c6515');
+var x = new MutationObserver(function (mutations, observer) {{
+        var display = window.getComputedStyle(gd).display;
+        if (!display || display === 'none') {{
+            console.log([gd, 'removed!']);
+            Plotly.purge(gd);
+            observer.disconnect();
+        }}
+}});
+
+// Listen for the removal of the full notebook cells
+var notebookContainer = gd.closest('#notebook-container');
+if (notebookContainer) {{
+    x.observe(notebookContainer, {childList: true});
+}}
+
+// Listen for the clearing of the current output cell
+var outputEl = gd.closest('.output');
+if (outputEl) {{
+    x.observe(outputEl, {childList: true});
+}}
+
+                        })
+                };
+                
+            </script>
+        </div>
+
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Almost-Done!">
+<a class="anchor" href="#Almost-Done!" aria-hidden="true"><span class="octicon octicon-link"></span></a>Almost Done!<a class="anchor-link" href="#Almost-Done!"> </a>
+</h2>
+<p>Good job! Let's look at our plot. It is interactive so you can <em>pan around</em> and <em>zoom in/ out</em>. If you put your mouse on the bubbles, you will also get information such as the country name and <strong>counts</strong> at a specific year. It is the default Plotly option.</p>
+<p>However, we can also gain control over <strong>what information we want to put in the hover labels</strong>, as well as the <strong>layout</strong> (like the font, fontsize and so on). Isn't it much cooler if we can show names of all UNESCO sites instead of the count?!</p>
+<p>Also, we can control to display hover labels for the whole xaxis instead of an individual bubble, which means, we can display all UNESCO sites inscripted in a year! Let's say we also want to display a <strong>moving yaxis</strong> too.</p>
+<p>Let's do all the adjustments mentioned above.</p>
+<p><br></p>
+<h2 id="Customization">
+<a class="anchor" href="#Customization" aria-hidden="true"><span class="octicon octicon-link"></span></a>Customization<a class="anchor-link" href="#Customization"> </a>
+</h2>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+
+  <div id="df-6448200b-4de4-4ce1-9848-808573a2f08e">
+    <div class="colab-df-container">
+      <div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>name</th>
+      <th>date</th>
+      <th>type</th>
+      <th>country</th>
+      <th>continent</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Architectural, Residential and Cultural Comple...</td>
+      <td>2005-01-01</td>
+      <td>Cultural</td>
+      <td>Belarus</td>
+      <td>Europe and North America</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Rock Paintings of the Sierra de San Francisco</td>
+      <td>1993-01-01</td>
+      <td>Cultural</td>
+      <td>Mexico</td>
+      <td>Latin America and the Caribbean</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Monastery of Horezu</td>
+      <td>1993-01-01</td>
+      <td>Cultural</td>
+      <td>Romania</td>
+      <td>Europe and North America</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Mount Etna</td>
+      <td>2013-01-01</td>
+      <td>Natural</td>
+      <td>Italy</td>
+      <td>Europe and North America</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Belfries of Belgium and France</td>
+      <td>1999-01-01</td>
+      <td>Cultural</td>
+      <td>Belgium,France</td>
+      <td>Europe and North America</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+      <button class="colab-df-convert" onclick="convertToInteractive('df-6448200b-4de4-4ce1-9848-808573a2f08e')" title="Convert this dataframe to an interactive table." style="display:none;">
+        
+  &lt;svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+       width="24px"&gt;
+    <path d="M0 0h24v24H0V0z" fill="none"></path>
+    <path d="M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z"></path><path d="M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z"></path>
+  &lt;/svg&gt;
+      </button>
+      
+  <style>
+    .colab-df-container {
+      display:flex;
+      flex-wrap:wrap;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+      <script>
+        const buttonEl =
+          document.querySelector('#df-6448200b-4de4-4ce1-9848-808573a2f08e button.colab-df-convert');
+        buttonEl.style.display =
+          google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+        async function convertToInteractive(key) {
+          const element = document.querySelector('#df-6448200b-4de4-4ce1-9848-808573a2f08e');
+          const dataTable =
+            await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                     [key], {});
+          if (!dataTable) return;
+
+          const docLinkHtml = 'Like what you see? Visit the ' +
+            '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+            + ' to learn more about interactive tables.';
+          element.innerHTML = '';
+          dataTable['output_type'] = 'display_data';
+          await google.colab.output.renderOutput(dataTable, element);
+          const docLink = document.createElement('div');
+          docLink.innerHTML = docLinkHtml;
+          element.appendChild(docLink);
+        }
+      </script>
+    </div>
+  </div>
+  
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Adjust-Data-Frame">
+<a class="anchor" href="#Adjust-Data-Frame" aria-hidden="true"><span class="octicon octicon-link"></span></a><strong>Adjust Data Frame</strong><a class="anchor-link" href="#Adjust-Data-Frame"> </a>
+</h3>
+<p>As we need the information about UNESCO site name this time, we need to make use of <strong>df</strong> to make a subset for the top 10 countries then merged with our <strong>group_df</strong>. Let's go back to <strong>df</strong> and do some cleaning. First, we add the <strong>year</strong> column for df too. We group by <strong>country</strong> and <strong>year</strong>, and do a transformation here.</p>
+<p>It is a bit tricky. The transformation aims to get all the rows with same country and year, and join all the values from <strong>['name']</strong> separated with a comma (,). This transformation is only done to the top 10 countries <strong>df[df['country'].isin(sub_cnty)]</strong>. As this is repeatedly done for every row, we will end up with rows that are duplicated, so we will remove them.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">'year'</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DatetimeIndex</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">'date'</span><span class="p">])</span><span class="o">.</span><span class="n">year</span>
+
+<span class="c1"># join the site names</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">'site'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">'country'</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">sub_cnty</span><span class="p">)]</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">'country'</span><span class="p">,</span><span class="s1">'year'</span><span class="p">])[</span><span class="s1">'name'</span><span class="p">]</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="s1">', '</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+
+<span class="c1"># remove duplicates</span>
+<span class="n">df</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span>
+
+<span class="c1"># look at the rows for China</span>
+<span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">"country"</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"China"</span><span class="p">]</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+
+  <div id="df-d0fbf486-8942-4103-9084-c174287501d3">
+    <div class="colab-df-container">
+      <div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>name</th>
+      <th>date</th>
+      <th>type</th>
+      <th>country</th>
+      <th>continent</th>
+      <th>year</th>
+      <th>site</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>5</th>
+      <td>Sichuan Giant Panda Sanctuaries - Wolong, Mt S...</td>
+      <td>2006-01-01</td>
+      <td>Natural</td>
+      <td>China</td>
+      <td>Asia and the Pacific</td>
+      <td>2006</td>
+      <td>Sichuan Giant Panda Sanctuaries - Wolong, Mt S...</td>
+    </tr>
+    <tr>
+      <th>32</th>
+      <td>Tusi Sites</td>
+      <td>2015-01-01</td>
+      <td>Cultural</td>
+      <td>China</td>
+      <td>Asia and the Pacific</td>
+      <td>2015</td>
+      <td>Tusi Sites</td>
+    </tr>
+    <tr>
+      <th>38</th>
+      <td>The Great Wall</td>
+      <td>1987-01-01</td>
+      <td>Cultural</td>
+      <td>China</td>
+      <td>Asia and the Pacific</td>
+      <td>1987</td>
+      <td>The Great Wall, Mausoleum of the First Qin Emp...</td>
+    </tr>
+    <tr>
+      <th>68</th>
+      <td>Mausoleum of the First Qin Emperor</td>
+      <td>1987-01-01</td>
+      <td>Cultural</td>
+      <td>China</td>
+      <td>Asia and the Pacific</td>
+      <td>1987</td>
+      <td>The Great Wall, Mausoleum of the First Qin Emp...</td>
+    </tr>
+    <tr>
+      <th>72</th>
+      <td>Chengjiang Fossil Site</td>
+      <td>2012-01-01</td>
+      <td>Natural</td>
+      <td>China</td>
+      <td>Asia and the Pacific</td>
+      <td>2012</td>
+      <td>Chengjiang Fossil Site, Site of Xanadu</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+      <button class="colab-df-convert" onclick="convertToInteractive('df-d0fbf486-8942-4103-9084-c174287501d3')" title="Convert this dataframe to an interactive table." style="display:none;">
+        
+  &lt;svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+       width="24px"&gt;
+    <path d="M0 0h24v24H0V0z" fill="none"></path>
+    <path d="M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z"></path><path d="M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z"></path>
+  &lt;/svg&gt;
+      </button>
+      
+  <style>
+    .colab-df-container {
+      display:flex;
+      flex-wrap:wrap;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+      <script>
+        const buttonEl =
+          document.querySelector('#df-d0fbf486-8942-4103-9084-c174287501d3 button.colab-df-convert');
+        buttonEl.style.display =
+          google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+        async function convertToInteractive(key) {
+          const element = document.querySelector('#df-d0fbf486-8942-4103-9084-c174287501d3');
+          const dataTable =
+            await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                     [key], {});
+          if (!dataTable) return;
+
+          const docLinkHtml = 'Like what you see? Visit the ' +
+            '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+            + ' to learn more about interactive tables.';
+          element.innerHTML = '';
+          dataTable['output_type'] = 'display_data';
+          await google.colab.output.renderOutput(dataTable, element);
+          const docLink = document.createElement('div');
+          docLink.innerHTML = docLinkHtml;
+          element.appendChild(docLink);
+        }
+      </script>
+    </div>
+  </div>
+  
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Make sure only top 10 countries are included.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="n">df_sub</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">'country'</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">sub_cnty</span><span class="p">)]</span>
+<span class="n">df_sub</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+
+  <div id="df-21715db6-b8cf-4769-a0e6-e3c532a6a72b">
+    <div class="colab-df-container">
+      <div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>name</th>
+      <th>date</th>
+      <th>type</th>
+      <th>country</th>
+      <th>continent</th>
+      <th>year</th>
+      <th>site</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>Rock Paintings of the Sierra de San Francisco</td>
+      <td>1993-01-01</td>
+      <td>Cultural</td>
+      <td>Mexico</td>
+      <td>Latin America and the Caribbean</td>
+      <td>1993</td>
+      <td>Rock Paintings of the Sierra de San Francisco,...</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+      <button class="colab-df-convert" onclick="convertToInteractive('df-21715db6-b8cf-4769-a0e6-e3c532a6a72b')" title="Convert this dataframe to an interactive table." style="display:none;">
+        
+  &lt;svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+       width="24px"&gt;
+    <path d="M0 0h24v24H0V0z" fill="none"></path>
+    <path d="M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z"></path><path d="M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z"></path>
+  &lt;/svg&gt;
+      </button>
+      
+  <style>
+    .colab-df-container {
+      display:flex;
+      flex-wrap:wrap;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+      <script>
+        const buttonEl =
+          document.querySelector('#df-21715db6-b8cf-4769-a0e6-e3c532a6a72b button.colab-df-convert');
+        buttonEl.style.display =
+          google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+        async function convertToInteractive(key) {
+          const element = document.querySelector('#df-21715db6-b8cf-4769-a0e6-e3c532a6a72b');
+          const dataTable =
+            await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                     [key], {});
+          if (!dataTable) return;
+
+          const docLinkHtml = 'Like what you see? Visit the ' +
+            '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+            + ' to learn more about interactive tables.';
+          element.innerHTML = '';
+          dataTable['output_type'] = 'display_data';
+          await google.colab.output.renderOutput(dataTable, element);
+          const docLink = document.createElement('div');
+          docLink.innerHTML = docLinkHtml;
+          element.appendChild(docLink);
+        }
+      </script>
+    </div>
+  </div>
+  
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="n">group_df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+
+  <div id="df-d10f0e0c-8765-4b97-ae2f-ecb72706fe6c">
+    <div class="colab-df-container">
+      <div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th>count</th>
+      <th>country</th>
+      <th>year</th>
+    </tr>
+    <tr>
+      <th>country</th>
+      <th>year</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>China</th>
+      <th>1987</th>
+      <td>6</td>
+      <td>China</td>
+      <td>1987</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+      <button class="colab-df-convert" onclick="convertToInteractive('df-d10f0e0c-8765-4b97-ae2f-ecb72706fe6c')" title="Convert this dataframe to an interactive table." style="display:none;">
+        
+  &lt;svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+       width="24px"&gt;
+    <path d="M0 0h24v24H0V0z" fill="none"></path>
+    <path d="M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z"></path><path d="M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z"></path>
+  &lt;/svg&gt;
+      </button>
+      
+  <style>
+    .colab-df-container {
+      display:flex;
+      flex-wrap:wrap;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+      <script>
+        const buttonEl =
+          document.querySelector('#df-d10f0e0c-8765-4b97-ae2f-ecb72706fe6c button.colab-df-convert');
+        buttonEl.style.display =
+          google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+        async function convertToInteractive(key) {
+          const element = document.querySelector('#df-d10f0e0c-8765-4b97-ae2f-ecb72706fe6c');
+          const dataTable =
+            await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                     [key], {});
+          if (!dataTable) return;
+
+          const docLinkHtml = 'Like what you see? Visit the ' +
+            '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+            + ' to learn more about interactive tables.';
+          element.innerHTML = '';
+          dataTable['output_type'] = 'display_data';
+          await google.colab.output.renderOutput(dataTable, element);
+          const docLink = document.createElement('div');
+          docLink.innerHTML = docLinkHtml;
+          element.appendChild(docLink);
+        }
+      </script>
+    </div>
+  </div>
+  
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="n">group_df</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now, we have the name information from <strong>df_sub</strong>. We can merge it to our <strong>group_df</strong> data frame using the keys <strong>"country"</strong> and <strong>"year"</strong>. We select only the relevant columns <strong>[["country","year","site","count"]]</strong>, and call the new data frame <strong>final</strong>.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="n">final</span> <span class="o">=</span> <span class="n">df_sub</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">group_df</span><span class="p">,</span> <span class="n">left_on</span><span class="o">=</span><span class="p">[</span><span class="s2">"country"</span><span class="p">,</span><span class="s2">"year"</span><span class="p">],</span> <span class="n">right_on</span><span class="o">=</span><span class="p">[</span><span class="s2">"country"</span><span class="p">,</span><span class="s2">"year"</span><span class="p">])</span>
+
+<span class="n">final</span> <span class="o">=</span> <span class="n">final</span><span class="p">[[</span><span class="s2">"country"</span><span class="p">,</span><span class="s2">"year"</span><span class="p">,</span><span class="s2">"site"</span><span class="p">,</span><span class="s2">"count"</span><span class="p">]]</span>
+<span class="n">final</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+
+  <div id="df-4083fc13-bc67-4209-b3e6-cedc7a7792ac">
+    <div class="colab-df-container">
+      <div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>country</th>
+      <th>year</th>
+      <th>site</th>
+      <th>count</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Mexico</td>
+      <td>1993</td>
+      <td>Rock Paintings of the Sierra de San Francisco,...</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Mexico</td>
+      <td>1993</td>
+      <td>Rock Paintings of the Sierra de San Francisco,...</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Mexico</td>
+      <td>1993</td>
+      <td>Rock Paintings of the Sierra de San Francisco,...</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Italy</td>
+      <td>2013</td>
+      <td>Mount Etna, Medici Villas and Gardens in Tuscany</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Italy</td>
+      <td>2013</td>
+      <td>Mount Etna, Medici Villas and Gardens in Tuscany</td>
+      <td>2</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+      <button class="colab-df-convert" onclick="convertToInteractive('df-4083fc13-bc67-4209-b3e6-cedc7a7792ac')" title="Convert this dataframe to an interactive table." style="display:none;">
+        
+  &lt;svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+       width="24px"&gt;
+    <path d="M0 0h24v24H0V0z" fill="none"></path>
+    <path d="M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z"></path><path d="M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z"></path>
+  &lt;/svg&gt;
+      </button>
+      
+  <style>
+    .colab-df-container {
+      display:flex;
+      flex-wrap:wrap;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+      <script>
+        const buttonEl =
+          document.querySelector('#df-4083fc13-bc67-4209-b3e6-cedc7a7792ac button.colab-df-convert');
+        buttonEl.style.display =
+          google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+        async function convertToInteractive(key) {
+          const element = document.querySelector('#df-4083fc13-bc67-4209-b3e6-cedc7a7792ac');
+          const dataTable =
+            await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                     [key], {});
+          if (!dataTable) return;
+
+          const docLinkHtml = 'Like what you see? Visit the ' +
+            '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+            + ' to learn more about interactive tables.';
+          element.innerHTML = '';
+          dataTable['output_type'] = 'display_data';
+          await google.colab.output.renderOutput(dataTable, element);
+          const docLink = document.createElement('div');
+          docLink.innerHTML = docLinkHtml;
+          element.appendChild(docLink);
+        }
+      </script>
+    </div>
+  </div>
+  
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Great! Almost everything is ready. We only need to replace the comma with a <code>&lt;br&gt;</code> to make sure every item will be put in a new line in the hover labels.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="n">final</span><span class="o">.</span><span class="n">site</span> <span class="o">=</span> <span class="n">final</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">', '</span><span class="p">,</span> <span class="s1">'&lt;br&gt;'</span><span class="p">))</span>
+<span class="n">final</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0    Rock Paintings of the Sierra de San Francisco&lt;...
+1    Rock Paintings of the Sierra de San Francisco&lt;...
+2    Rock Paintings of the Sierra de San Francisco&lt;...
+3    Mount Etna&lt;br&gt;Medici Villas and Gardens in Tus...
+4    Mount Etna&lt;br&gt;Medici Villas and Gardens in Tus...
+Name: site, dtype: object</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Ploting">
+<a class="anchor" href="#Ploting" aria-hidden="true"><span class="octicon octicon-link"></span></a><strong>Ploting</strong><a class="anchor-link" href="#Ploting"> </a>
+</h3>
+<p>Now, let's do our plot again using <strong>px.scatter()</strong>.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">final</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">"year"</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">"country"</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="s2">"count"</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"country"</span><span class="p">,</span>
+                 <span class="n">custom_data</span><span class="o">=</span><span class="p">[</span><span class="s1">'year'</span><span class="p">,</span> <span class="s1">'site'</span><span class="p">])</span>
+<span class="c1"># remove legend</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span><span class="n">showlegend</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="c1"># show labels for whole x axis</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span><span class="n">hovermode</span><span class="o">=</span><span class="s1">'x'</span><span class="p">)</span>
+
+<span class="c1"># change layout for hover labels</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span>
+    <span class="n">hoverlabel</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span>
+        <span class="n">bgcolor</span><span class="o">=</span><span class="s2">"white"</span><span class="p">,</span>
+        <span class="n">font_size</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span>
+        <span class="n">font_family</span><span class="o">=</span><span class="s2">"Rockwell"</span>
+    <span class="p">)</span>
+<span class="p">)</span>
+
+<span class="c1"># control info for hover labels using custom_data we specified above in pxscatter()</span>
+<span class="c1"># join items with new line &lt;br&gt;</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">update_traces</span><span class="p">(</span>
+    <span class="n">hovertemplate</span><span class="o">=</span><span class="s2">"&lt;br&gt;"</span><span class="o">.</span><span class="n">join</span><span class="p">([</span>
+        <span class="s2">"%</span><span class="si">{y}</span><span class="s2">"</span><span class="p">,</span>
+        <span class="s2">"Site: %</span><span class="si">{customdata[1]}</span><span class="s2">"</span>
+    <span class="p">])</span>
+<span class="p">)</span>
+
+<span class="c1"># add title, x- and y- labels, and a moving line along x axis</span>
+<span class="c1"># change font styles for the texts inside plot (y ticks and so on)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span>
+    <span class="n">title</span><span class="o">=</span><span class="p">{</span>
+        <span class="s1">'text'</span><span class="p">:</span> <span class="s2">"Timeline of UNESCO Inscriptions"</span><span class="p">,</span>
+        <span class="s1">'y'</span><span class="p">:</span><span class="mf">0.95</span><span class="p">,</span>
+        <span class="s1">'x'</span><span class="p">:</span><span class="mf">0.5</span><span class="p">,</span>
+        <span class="s1">'xanchor'</span><span class="p">:</span> <span class="s1">'center'</span><span class="p">,</span>
+        <span class="s1">'yanchor'</span><span class="p">:</span> <span class="s1">'top'</span><span class="p">},</span>
+    <span class="n">xaxis_title</span><span class="o">=</span><span class="s2">"Year of Inscription"</span><span class="p">,</span>
+    <span class="n">yaxis_title</span><span class="o">=</span><span class="s2">"Top 10 Countries"</span><span class="p">,</span>
+    <span class="n">xaxis</span><span class="o">=</span><span class="p">{</span><span class="s1">'showspikes'</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s1">'spikemode'</span><span class="p">:</span> <span class="s1">'across'</span><span class="p">,</span>
+        <span class="s1">'spikesnap'</span><span class="p">:</span> <span class="s1">'cursor'</span><span class="p">,</span>
+        <span class="s1">'showline'</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s1">'showgrid'</span><span class="p">:</span> <span class="kc">True</span><span class="p">},</span>
+    <span class="n">font</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span>
+        <span class="n">family</span><span class="o">=</span><span class="s2">"Rockwell"</span><span class="p">,</span>
+        <span class="n">size</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span>
+        <span class="n">color</span><span class="o">=</span><span class="s2">"black"</span>
+    <span class="p">)</span>
+<span class="p">)</span>
+
+<span class="c1"># display out plot</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+
+<meta charset="utf-8">
+
+    <div>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_SVG"></script><script type="text/javascript">if (window.MathJax) {MathJax.Hub.Config({SVG: {font: "STIX-Web"}});}</script>
+                <script type="text/javascript">window.PlotlyConfig = {MathJaxConfig: 'local'};</script>
+        <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>    
+            <div id="43d2f56f-a9af-4f91-84e7-7e06605cd7d0" class="plotly-graph-div" style="height:525px; width:100%;"></div>
+            <script type="text/javascript">
+                
+                    window.PLOTLYENV=window.PLOTLYENV || {};
+                    
+                if (document.getElementById("43d2f56f-a9af-4f91-84e7-7e06605cd7d0")) {
+                    Plotly.newPlot(
+                        '43d2f56f-a9af-4f91-84e7-7e06605cd7d0',
+                        [{"customdata": [[1993, "Rock Paintings of the Sierra de San Francisco<br>Whale Sanctuary of El Vizcaino<br>Historic Centre of Zacatecas"], [1993, "Rock Paintings of the Sierra de San Francisco<br>Whale Sanctuary of El Vizcaino<br>Historic Centre of Zacatecas"], [1993, "Rock Paintings of the Sierra de San Francisco<br>Whale Sanctuary of El Vizcaino<br>Historic Centre of Zacatecas"], [2004, "Luis Barrag\u00e1n House and Studio"], [2003, "Franciscan Missions in the Sierra Gorda of Quer\u00e9taro"], [2007, "Central University City Campus of the <i>Universidad Nacional Aut\u00f3noma de M\u00e9xico</i> (UNAM)"], [1992, "El Tajin<br>Pre-Hispanic City"], [2008, "Protective town of San Miguel and the Sanctuary of Jes\u00fas Nazareno de Atotonilco<br>Monarch Butterfly Biosphere Reserve"], [2008, "Protective town of San Miguel and the Sanctuary of Jes\u00fas Nazareno de Atotonilco<br>Monarch Butterfly Biosphere Reserve"], [1997, "Hospicio Caba\u00f1as<br>Guadalajara"], [2015, "Aqueduct of Padre Tembleque Hydraulic System"], [1987, "Pre-Hispanic City of Teotihuacan<br>Sian Ka'an<br>Historic Centre of Puebla<br>Pre-Hispanic City and National Park of Palenque<br>Historic Centre of Oaxaca and Archaeological Site of Monte Alb\u00e1n<br>Historic Centre of Mexico City and Xochimilco"], [1987, "Pre-Hispanic City of Teotihuacan<br>Sian Ka'an<br>Historic Centre of Puebla<br>Pre-Hispanic City and National Park of Palenque<br>Historic Centre of Oaxaca and Archaeological Site of Monte Alb\u00e1n<br>Historic Centre of Mexico City and Xochimilco"], [1987, "Pre-Hispanic City of Teotihuacan<br>Sian Ka'an<br>Historic Centre of Puebla<br>Pre-Hispanic City and National Park of Palenque<br>Historic Centre of Oaxaca and Archaeological Site of Monte Alb\u00e1n<br>Historic Centre of Mexico City and Xochimilco"], [1987, "Pre-Hispanic City of Teotihuacan<br>Sian Ka'an<br>Historic Centre of Puebla<br>Pre-Hispanic City and National Park of Palenque<br>Historic Centre of Oaxaca and Archaeological Site of Monte Alb\u00e1n<br>Historic Centre of Mexico City and Xochimilco"], [1987, "Pre-Hispanic City of Teotihuacan<br>Sian Ka'an<br>Historic Centre of Puebla<br>Pre-Hispanic City and National Park of Palenque<br>Historic Centre of Oaxaca and Archaeological Site of Monte Alb\u00e1n<br>Historic Centre of Mexico City and Xochimilco"], [1987, "Pre-Hispanic City of Teotihuacan<br>Sian Ka'an<br>Historic Centre of Puebla<br>Pre-Hispanic City and National Park of Palenque<br>Historic Centre of Oaxaca and Archaeological Site of Monte Alb\u00e1n<br>Historic Centre of Mexico City and Xochimilco"], [1996, "Historic Monuments Zone of Quer\u00e9taro<br>Pre-Hispanic Town of Uxmal"], [1996, "Historic Monuments Zone of Quer\u00e9taro<br>Pre-Hispanic Town of Uxmal"], [1999, "Archaeological Monuments Zone of Xochicalco<br>Historic Fortified Town of Campeche"], [1999, "Archaeological Monuments Zone of Xochicalco<br>Historic Fortified Town of Campeche"], [1994, "Earliest 16th-Century Monasteries on the Slopes of Popocatepetl"], [2006, "Agave Landscape and Ancient Industrial Facilities of Tequila"], [1988, "Pre-Hispanic City of Chichen-Itza<br>Historic Town of Guanajuato and Adjacent Mines"], [1988, "Pre-Hispanic City of Chichen-Itza<br>Historic Town of Guanajuato and Adjacent Mines"], [2013, "El Pinacate and Gran Desierto de Altar Biosphere Reserve"], [2010, "Camino Real de Tierra Adentro<br>Prehistoric Caves of Yagul and Mitla in the Central Valley of Oaxaca"], [2010, "Camino Real de Tierra Adentro<br>Prehistoric Caves of Yagul and Mitla in the Central Valley of Oaxaca"], [2016, "Archipi\u00e9lago de Revillagigedo"], [1998, "Archaeological Zone of Paquim\u00e9<br>Casas Grandes<br>Historic Monuments Zone of Tlacotalpan"], [1998, "Archaeological Zone of Paquim\u00e9<br>Casas Grandes<br>Historic Monuments Zone of Tlacotalpan"], [2005, "Islands and Protected Areas of the Gulf of California"], [2002, "Ancient Maya City and Protected Tropical Forests of Calakmul<br>Campeche"], [1991, "Historic Centre of Morelia"]], "hoverlabel": {"namelength": 0}, "hovertemplate": "%{y}<br>Site: %{customdata[1]}", "legendgroup": "country=Mexico", "marker": {"color": "#636efa", "size": [3, 3, 3, 1, 1, 1, 1, 2, 2, 1, 1, 6, 6, 6, 6, 6, 6, 2, 2, 2, 2, 1, 1, 2, 2, 1, 2, 2, 1, 2, 2, 1, 1, 1], "sizemode": "area", "sizeref": 0.025, "symbol": "circle"}, "mode": "markers", "name": "country=Mexico", "showlegend": true, "type": "scatter", "x": [1993, 1993, 1993, 2004, 2003, 2007, 1992, 2008, 2008, 1997, 2015, 1987, 1987, 1987, 1987, 1987, 1987, 1996, 1996, 1999, 1999, 1994, 2006, 1988, 1988, 2013, 2010, 2010, 2016, 1998, 1998, 2005, 2002, 1991], "xaxis": "x", "y": ["Mexico", "Mexico", "Mexico", "Mexico", "Mexico", "Mexico", "Mexico", "Mexico", "Mexico", "Mexico", "Mexico", "Mexico", "Mexico", "Mexico", "Mexico", "Mexico", "Mexico", "Mexico", "Mexico", "Mexico", "Mexico", "Mexico", "Mexico", "Mexico", "Mexico", "Mexico", "Mexico", "Mexico", "Mexico", "Mexico", "Mexico", "Mexico", "Mexico", "Mexico"], "yaxis": "y"}, {"customdata": [[2013, "Mount Etna<br>Medici Villas and Gardens in Tuscany"], [2013, "Mount Etna<br>Medici Villas and Gardens in Tuscany"], [2004, "Val d'Orcia<br>Etruscan Necropolises of Cerveteri and Tarquinia"], [2004, "Val d'Orcia<br>Etruscan Necropolises of Cerveteri and Tarquinia"], [1995, "Historic Centre of Siena<br>Crespi d'Adda<br>Historic Centre of Naples<br>Ferrara<br>City of the Renaissance<br>and its Po Delta"], [1995, "Historic Centre of Siena<br>Crespi d'Adda<br>Historic Centre of Naples<br>Ferrara<br>City of the Renaissance<br>and its Po Delta"], [1995, "Historic Centre of Siena<br>Crespi d'Adda<br>Historic Centre of Naples<br>Ferrara<br>City of the Renaissance<br>and its Po Delta"], [1995, "Historic Centre of Siena<br>Crespi d'Adda<br>Historic Centre of Naples<br>Ferrara<br>City of the Renaissance<br>and its Po Delta"], [1997, "18th-Century Royal Palace at Caserta with the Park<br>the Aqueduct of Vanvitelli<br>and the San Leucio Complex<br>Archaeological Areas of Pompei<br>Herculaneum and Torre Annunziata<br>Cathedral<br>Torre Civica and Piazza Grande<br>Modena<br>Su Nuraxi di Barumini<br>Villa Romana del Casale<br>Residences of the Royal House of Savoy<br>Costiera Amalfitana<br>Archaeological Area of Agrigento<br>Botanical Garden (Orto Botanico)<br>Padua<br>Portovenere<br>Cinque Terre<br>and the Islands (Palmaria<br>Tino and Tinetto)"], [1997, "18th-Century Royal Palace at Caserta with the Park<br>the Aqueduct of Vanvitelli<br>and the San Leucio Complex<br>Archaeological Areas of Pompei<br>Herculaneum and Torre Annunziata<br>Cathedral<br>Torre Civica and Piazza Grande<br>Modena<br>Su Nuraxi di Barumini<br>Villa Romana del Casale<br>Residences of the Royal House of Savoy<br>Costiera Amalfitana<br>Archaeological Area of Agrigento<br>Botanical Garden (Orto Botanico)<br>Padua<br>Portovenere<br>Cinque Terre<br>and the Islands (Palmaria<br>Tino and Tinetto)"], [1997, "18th-Century Royal Palace at Caserta with the Park<br>the Aqueduct of Vanvitelli<br>and the San Leucio Complex<br>Archaeological Areas of Pompei<br>Herculaneum and Torre Annunziata<br>Cathedral<br>Torre Civica and Piazza Grande<br>Modena<br>Su Nuraxi di Barumini<br>Villa Romana del Casale<br>Residences of the Royal House of Savoy<br>Costiera Amalfitana<br>Archaeological Area of Agrigento<br>Botanical Garden (Orto Botanico)<br>Padua<br>Portovenere<br>Cinque Terre<br>and the Islands (Palmaria<br>Tino and Tinetto)"], [1997, "18th-Century Royal Palace at Caserta with the Park<br>the Aqueduct of Vanvitelli<br>and the San Leucio Complex<br>Archaeological Areas of Pompei<br>Herculaneum and Torre Annunziata<br>Cathedral<br>Torre Civica and Piazza Grande<br>Modena<br>Su Nuraxi di Barumini<br>Villa Romana del Casale<br>Residences of the Royal House of Savoy<br>Costiera Amalfitana<br>Archaeological Area of Agrigento<br>Botanical Garden (Orto Botanico)<br>Padua<br>Portovenere<br>Cinque Terre<br>and the Islands (Palmaria<br>Tino and Tinetto)"], [1997, "18th-Century Royal Palace at Caserta with the Park<br>the Aqueduct of Vanvitelli<br>and the San Leucio Complex<br>Archaeological Areas of Pompei<br>Herculaneum and Torre Annunziata<br>Cathedral<br>Torre Civica and Piazza Grande<br>Modena<br>Su Nuraxi di Barumini<br>Villa Romana del Casale<br>Residences of the Royal House of Savoy<br>Costiera Amalfitana<br>Archaeological Area of Agrigento<br>Botanical Garden (Orto Botanico)<br>Padua<br>Portovenere<br>Cinque Terre<br>and the Islands (Palmaria<br>Tino and Tinetto)"], [1997, "18th-Century Royal Palace at Caserta with the Park<br>the Aqueduct of Vanvitelli<br>and the San Leucio Complex<br>Archaeological Areas of Pompei<br>Herculaneum and Torre Annunziata<br>Cathedral<br>Torre Civica and Piazza Grande<br>Modena<br>Su Nuraxi di Barumini<br>Villa Romana del Casale<br>Residences of the Royal House of Savoy<br>Costiera Amalfitana<br>Archaeological Area of Agrigento<br>Botanical Garden (Orto Botanico)<br>Padua<br>Portovenere<br>Cinque Terre<br>and the Islands (Palmaria<br>Tino and Tinetto)"], [1997, "18th-Century Royal Palace at Caserta with the Park<br>the Aqueduct of Vanvitelli<br>and the San Leucio Complex<br>Archaeological Areas of Pompei<br>Herculaneum and Torre Annunziata<br>Cathedral<br>Torre Civica and Piazza Grande<br>Modena<br>Su Nuraxi di Barumini<br>Villa Romana del Casale<br>Residences of the Royal House of Savoy<br>Costiera Amalfitana<br>Archaeological Area of Agrigento<br>Botanical Garden (Orto Botanico)<br>Padua<br>Portovenere<br>Cinque Terre<br>and the Islands (Palmaria<br>Tino and Tinetto)"], [1997, "18th-Century Royal Palace at Caserta with the Park<br>the Aqueduct of Vanvitelli<br>and the San Leucio Complex<br>Archaeological Areas of Pompei<br>Herculaneum and Torre Annunziata<br>Cathedral<br>Torre Civica and Piazza Grande<br>Modena<br>Su Nuraxi di Barumini<br>Villa Romana del Casale<br>Residences of the Royal House of Savoy<br>Costiera Amalfitana<br>Archaeological Area of Agrigento<br>Botanical Garden (Orto Botanico)<br>Padua<br>Portovenere<br>Cinque Terre<br>and the Islands (Palmaria<br>Tino and Tinetto)"], [1997, "18th-Century Royal Palace at Caserta with the Park<br>the Aqueduct of Vanvitelli<br>and the San Leucio Complex<br>Archaeological Areas of Pompei<br>Herculaneum and Torre Annunziata<br>Cathedral<br>Torre Civica and Piazza Grande<br>Modena<br>Su Nuraxi di Barumini<br>Villa Romana del Casale<br>Residences of the Royal House of Savoy<br>Costiera Amalfitana<br>Archaeological Area of Agrigento<br>Botanical Garden (Orto Botanico)<br>Padua<br>Portovenere<br>Cinque Terre<br>and the Islands (Palmaria<br>Tino and Tinetto)"], [1997, "18th-Century Royal Palace at Caserta with the Park<br>the Aqueduct of Vanvitelli<br>and the San Leucio Complex<br>Archaeological Areas of Pompei<br>Herculaneum and Torre Annunziata<br>Cathedral<br>Torre Civica and Piazza Grande<br>Modena<br>Su Nuraxi di Barumini<br>Villa Romana del Casale<br>Residences of the Royal House of Savoy<br>Costiera Amalfitana<br>Archaeological Area of Agrigento<br>Botanical Garden (Orto Botanico)<br>Padua<br>Portovenere<br>Cinque Terre<br>and the Islands (Palmaria<br>Tino and Tinetto)"], [1998, "Historic Centre of Urbino<br>Archaeological Area and the Patriarchal Basilica of Aquileia<br>Cilento and Vallo di Diano National Park with the Archeological Sites of Paestum and Velia<br>and the Certosa di Padula"], [1998, "Historic Centre of Urbino<br>Archaeological Area and the Patriarchal Basilica of Aquileia<br>Cilento and Vallo di Diano National Park with the Archeological Sites of Paestum and Velia<br>and the Certosa di Padula"], [1998, "Historic Centre of Urbino<br>Archaeological Area and the Patriarchal Basilica of Aquileia<br>Cilento and Vallo di Diano National Park with the Archeological Sites of Paestum and Velia<br>and the Certosa di Padula"], [2009, "The Dolomites"], [1999, "Villa Adriana (Tivoli)"], [2002, "Late Baroque Towns of the Val di Noto (South-Eastern Sicily)"], [1987, "Venice and its Lagoon<br>Piazza del Duomo<br>Pisa"], [1987, "Venice and its Lagoon<br>Piazza del Duomo<br>Pisa"], [1980, "Church and Dominican Convent of Santa Maria delle Grazie with \u201cThe Last Supper\u201d by Leonardo da Vinci"], [1996, "Early Christian Monuments of Ravenna<br>Castel del Monte<br>The <I>Trulli</I> of Alberobello<br>Historic Centre of the City of Pienza"], [1996, "Early Christian Monuments of Ravenna<br>Castel del Monte<br>The <I>Trulli</I> of Alberobello<br>Historic Centre of the City of Pienza"], [1996, "Early Christian Monuments of Ravenna<br>Castel del Monte<br>The <I>Trulli</I> of Alberobello<br>Historic Centre of the City of Pienza"], [1996, "Early Christian Monuments of Ravenna<br>Castel del Monte<br>The <I>Trulli</I> of Alberobello<br>Historic Centre of the City of Pienza"], [1990, "Historic Centre of San Gimignano"], [1993, "The Sassi and the Park of the Rupestrian Churches of Matera"], [1994, "City of Vicenza and the Palladian Villas of the Veneto"], [2001, "Villa d'Este<br>Tivoli"], [2005, "Syracuse and the Rocky Necropolis of Pantalica"], [2000, "Isole Eolie (Aeolian Islands)<br>Assisi<br>the Basilica of San Francesco and Other Franciscan Sites<br>City of Verona"], [2000, "Isole Eolie (Aeolian Islands)<br>Assisi<br>the Basilica of San Francesco and Other Franciscan Sites<br>City of Verona"], [2000, "Isole Eolie (Aeolian Islands)<br>Assisi<br>the Basilica of San Francesco and Other Franciscan Sites<br>City of Verona"], [1982, "Historic Centre of Florence"], [1979, "Rock Drawings in Valcamonica"], [2008, "Mantua and Sabbioneta"], [2015, "Arab-Norman Palermo and the Cathedral Churches of Cefal\u00fa and Monreale"], [2003, "<I>Sacri Monti</I> of Piedmont and Lombardy"], [2014, "Vineyard Landscape of Piedmont: Langhe-Roero and Monferrato"], [2006, "Genoa: <i>Le Strade Nuove</i> and the system of the<i> Palazzi dei Rolli</i>"], [2011, "Longobards in Italy. Places of the Power (568-774 A.D.)"]], "hoverlabel": {"namelength": 0}, "hovertemplate": "%{y}<br>Site: %{customdata[1]}", "legendgroup": "country=Italy", "marker": {"color": "#EF553B", "size": [2, 2, 2, 2, 4, 4, 4, 4, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 3, 3, 3, 1, 1, 1, 2, 2, 1, 4, 4, 4, 4, 1, 1, 1, 1, 1, 3, 3, 3, 1, 1, 1, 1, 1, 1, 1, 1], "sizemode": "area", "sizeref": 0.025, "symbol": "circle"}, "mode": "markers", "name": "country=Italy", "showlegend": true, "type": "scatter", "x": [2013, 2013, 2004, 2004, 1995, 1995, 1995, 1995, 1997, 1997, 1997, 1997, 1997, 1997, 1997, 1997, 1997, 1997, 1998, 1998, 1998, 2009, 1999, 2002, 1987, 1987, 1980, 1996, 1996, 1996, 1996, 1990, 1993, 1994, 2001, 2005, 2000, 2000, 2000, 1982, 1979, 2008, 2015, 2003, 2014, 2006, 2011], "xaxis": "x", "y": ["Italy", "Italy", "Italy", "Italy", "Italy", "Italy", "Italy", "Italy", "Italy", "Italy", "Italy", "Italy", "Italy", "Italy", "Italy", "Italy", "Italy", "Italy", "Italy", "Italy", "Italy", "Italy", "Italy", "Italy", "Italy", "Italy", "Italy", "Italy", "Italy", "Italy", "Italy", "Italy", "Italy", "Italy", "Italy", "Italy", "Italy", "Italy", "Italy", "Italy", "Italy", "Italy", "Italy", "Italy", "Italy", "Italy", "Italy"], "yaxis": "y"}, {"customdata": [[2006, "Sichuan Giant Panda Sanctuaries - Wolong<br>Mt Siguniang and Jiajin Mountains<br>Yin Xu"], [2006, "Sichuan Giant Panda Sanctuaries - Wolong<br>Mt Siguniang and Jiajin Mountains<br>Yin Xu"], [2015, "Tusi Sites"], [1987, "The Great Wall<br>Mausoleum of the First Qin Emperor<br>Imperial Palaces of the Ming and Qing Dynasties in Beijing and Shenyang<br>Peking Man Site at Zhoukoudian<br>Mount Taishan<br>Mogao Caves"], [1987, "The Great Wall<br>Mausoleum of the First Qin Emperor<br>Imperial Palaces of the Ming and Qing Dynasties in Beijing and Shenyang<br>Peking Man Site at Zhoukoudian<br>Mount Taishan<br>Mogao Caves"], [1987, "The Great Wall<br>Mausoleum of the First Qin Emperor<br>Imperial Palaces of the Ming and Qing Dynasties in Beijing and Shenyang<br>Peking Man Site at Zhoukoudian<br>Mount Taishan<br>Mogao Caves"], [1987, "The Great Wall<br>Mausoleum of the First Qin Emperor<br>Imperial Palaces of the Ming and Qing Dynasties in Beijing and Shenyang<br>Peking Man Site at Zhoukoudian<br>Mount Taishan<br>Mogao Caves"], [1987, "The Great Wall<br>Mausoleum of the First Qin Emperor<br>Imperial Palaces of the Ming and Qing Dynasties in Beijing and Shenyang<br>Peking Man Site at Zhoukoudian<br>Mount Taishan<br>Mogao Caves"], [1987, "The Great Wall<br>Mausoleum of the First Qin Emperor<br>Imperial Palaces of the Ming and Qing Dynasties in Beijing and Shenyang<br>Peking Man Site at Zhoukoudian<br>Mount Taishan<br>Mogao Caves"], [2012, "Chengjiang Fossil Site<br>Site of Xanadu"], [2012, "Chengjiang Fossil Site<br>Site of Xanadu"], [1996, "Mount Emei Scenic Area<br>including Leshan Giant Buddha Scenic Area<br>Lushan National Park"], [1996, "Mount Emei Scenic Area<br>including Leshan Giant Buddha Scenic Area<br>Lushan National Park"], [1994, "Temple and Cemetery of Confucius and the Kong Family Mansion in Qufu<br>Mountain Resort and its Outlying Temples<br>Chengde<br>Ancient Building Complex in the Wudang Mountains<br>Historic Ensemble of the Potala Palace<br>Lhasa"], [1994, "Temple and Cemetery of Confucius and the Kong Family Mansion in Qufu<br>Mountain Resort and its Outlying Temples<br>Chengde<br>Ancient Building Complex in the Wudang Mountains<br>Historic Ensemble of the Potala Palace<br>Lhasa"], [1994, "Temple and Cemetery of Confucius and the Kong Family Mansion in Qufu<br>Mountain Resort and its Outlying Temples<br>Chengde<br>Ancient Building Complex in the Wudang Mountains<br>Historic Ensemble of the Potala Palace<br>Lhasa"], [1994, "Temple and Cemetery of Confucius and the Kong Family Mansion in Qufu<br>Mountain Resort and its Outlying Temples<br>Chengde<br>Ancient Building Complex in the Wudang Mountains<br>Historic Ensemble of the Potala Palace<br>Lhasa"], [2008, "Fujian <em>Tulou</em><br>Mount Sanqingshan National Park"], [2008, "Fujian <em>Tulou</em><br>Mount Sanqingshan National Park"], [1992, "Huanglong Scenic and Historic Interest Area<br>Wulingyuan Scenic and Historic Interest Area<br>Jiuzhaigou Valley Scenic and Historic Interest Area"], [1992, "Huanglong Scenic and Historic Interest Area<br>Wulingyuan Scenic and Historic Interest Area<br>Jiuzhaigou Valley Scenic and Historic Interest Area"], [1992, "Huanglong Scenic and Historic Interest Area<br>Wulingyuan Scenic and Historic Interest Area<br>Jiuzhaigou Valley Scenic and Historic Interest Area"], [1999, "Dazu Rock Carvings<br>Mount Wuyi"], [1999, "Dazu Rock Carvings<br>Mount Wuyi"], [2000, "Imperial Tombs of the Ming and Qing Dynasties<br>Mount Qingcheng and the Dujiangyan Irrigation System<br>Ancient Villages in Southern Anhui \u2013 Xidi and Hongcun<br>Longmen Grottoes"], [2000, "Imperial Tombs of the Ming and Qing Dynasties<br>Mount Qingcheng and the Dujiangyan Irrigation System<br>Ancient Villages in Southern Anhui \u2013 Xidi and Hongcun<br>Longmen Grottoes"], [2000, "Imperial Tombs of the Ming and Qing Dynasties<br>Mount Qingcheng and the Dujiangyan Irrigation System<br>Ancient Villages in Southern Anhui \u2013 Xidi and Hongcun<br>Longmen Grottoes"], [2000, "Imperial Tombs of the Ming and Qing Dynasties<br>Mount Qingcheng and the Dujiangyan Irrigation System<br>Ancient Villages in Southern Anhui \u2013 Xidi and Hongcun<br>Longmen Grottoes"], [2016, "Hubei Shennongjia<br>Zuojiang Huashan Rock Art Cultural Landscape"], [2016, "Hubei Shennongjia<br>Zuojiang Huashan Rock Art Cultural Landscape"], [1990, "Mount Huangshan"], [2011, "West Lake Cultural Landscape of Hangzhou"], [2003, "Three Parallel Rivers of Yunnan Protected Areas"], [2007, "South China Karst<br>Kaiping Diaolou and Villages"], [2007, "South China Karst<br>Kaiping Diaolou and Villages"], [2013, "Cultural Landscape of Honghe Hani Rice Terraces<br>Xinjiang Tianshan"], [2013, "Cultural Landscape of Honghe Hani Rice Terraces<br>Xinjiang Tianshan"], [2005, "Historic Centre of Macao"], [2010, "China Danxia<br>Historic Monuments of Dengfeng in \u201cThe Centre of Heaven and Earth\u201d"], [2010, "China Danxia<br>Historic Monuments of Dengfeng in \u201cThe Centre of Heaven and Earth\u201d"], [2001, "Yungang Grottoes"], [1998, "Summer Palace<br>an Imperial Garden in Beijing<br>Temple of Heaven: an Imperial Sacrificial Altar in Beijing"], [1998, "Summer Palace<br>an Imperial Garden in Beijing<br>Temple of Heaven: an Imperial Sacrificial Altar in Beijing"], [2014, "The Grand Canal"], [1997, "Old Town of Lijiang<br>Classical Gardens of Suzhou<br>Ancient City of Ping Yao"], [1997, "Old Town of Lijiang<br>Classical Gardens of Suzhou<br>Ancient City of Ping Yao"], [1997, "Old Town of Lijiang<br>Classical Gardens of Suzhou<br>Ancient City of Ping Yao"], [2009, "Mount Wutai"], [2004, "Capital Cities and Tombs of the Ancient Koguryo Kingdom"]], "hoverlabel": {"namelength": 0}, "hovertemplate": "%{y}<br>Site: %{customdata[1]}", "legendgroup": "country=China", "marker": {"color": "#00cc96", "size": [2, 2, 1, 6, 6, 6, 6, 6, 6, 2, 2, 2, 2, 4, 4, 4, 4, 2, 2, 3, 3, 3, 2, 2, 4, 4, 4, 4, 2, 2, 1, 1, 1, 2, 2, 2, 2, 1, 2, 2, 1, 2, 2, 1, 3, 3, 3, 1, 1], "sizemode": "area", "sizeref": 0.025, "symbol": "circle"}, "mode": "markers", "name": "country=China", "showlegend": true, "type": "scatter", "x": [2006, 2006, 2015, 1987, 1987, 1987, 1987, 1987, 1987, 2012, 2012, 1996, 1996, 1994, 1994, 1994, 1994, 2008, 2008, 1992, 1992, 1992, 1999, 1999, 2000, 2000, 2000, 2000, 2016, 2016, 1990, 2011, 2003, 2007, 2007, 2013, 2013, 2005, 2010, 2010, 2001, 1998, 1998, 2014, 1997, 1997, 1997, 2009, 2004], "xaxis": "x", "y": ["China", "China", "China", "China", "China", "China", "China", "China", "China", "China", "China", "China", "China", "China", "China", "China", "China", "China", "China", "China", "China", "China", "China", "China", "China", "China", "China", "China", "China", "China", "China", "China", "China", "China", "China", "China", "China", "China", "China", "China", "China", "China", "China", "China", "China", "China", "China", "China", "China"], "yaxis": "y"}, {"customdata": [[1990, "Kizhi Pogost<br>Kremlin and Red Square<br>Moscow<br>Historic Centre of Saint Petersburg and Related Groups of Monuments"], [1990, "Kizhi Pogost<br>Kremlin and Red Square<br>Moscow<br>Historic Centre of Saint Petersburg and Related Groups of Monuments"], [1990, "Kizhi Pogost<br>Kremlin and Red Square<br>Moscow<br>Historic Centre of Saint Petersburg and Related Groups of Monuments"], [1999, "Western Caucasus"], [2003, "Citadel<br>Ancient City and Fortress Buildings of Derbent"], [1995, "Virgin Komi Forests"], [1992, "Historic Monuments of Novgorod and Surroundings<br>Cultural and Historic Ensemble of the Solovetsky Islands<br>White Monuments of Vladimir and Suzdal"], [1992, "Historic Monuments of Novgorod and Surroundings<br>Cultural and Historic Ensemble of the Solovetsky Islands<br>White Monuments of Vladimir and Suzdal"], [1992, "Historic Monuments of Novgorod and Surroundings<br>Cultural and Historic Ensemble of the Solovetsky Islands<br>White Monuments of Vladimir and Suzdal"], [2004, "Ensemble of the Novodevichy Convent"], [2005, "Historical Centre of the City of Yaroslavl"], [2014, "Bolgar Historical and Archaeological Complex"], [1994, "Church of the Ascension<br>Kolomenskoye"], [2000, "Historic and Architectural Complex of the Kazan Kremlin<br>Ensemble of the Ferapontov Monastery"], [2000, "Historic and Architectural Complex of the Kazan Kremlin<br>Ensemble of the Ferapontov Monastery"], [1993, "Architectural Ensemble of the Trinity Sergius Lavra in Sergiev Posad"], [2010, "Putorana Plateau"], [1996, "Volcanoes of Kamchatka<br>Lake Baikal"], [1996, "Volcanoes of Kamchatka<br>Lake Baikal"], [2001, "Central Sikhote-Alin"], [2012, "Lena Pillars Nature Park"]], "hoverlabel": {"namelength": 0}, "hovertemplate": "%{y}<br>Site: %{customdata[1]}", "legendgroup": "country=Russian Federation", "marker": {"color": "#ab63fa", "size": [3, 3, 3, 1, 1, 1, 3, 3, 3, 1, 1, 1, 1, 2, 2, 1, 1, 2, 2, 1, 1], "sizemode": "area", "sizeref": 0.025, "symbol": "circle"}, "mode": "markers", "name": "country=Russian Federation", "showlegend": true, "type": "scatter", "x": [1990, 1990, 1990, 1999, 2003, 1995, 1992, 1992, 1992, 2004, 2005, 2014, 1994, 2000, 2000, 1993, 2010, 1996, 1996, 2001, 2012], "xaxis": "x", "y": ["Russian Federation", "Russian Federation", "Russian Federation", "Russian Federation", "Russian Federation", "Russian Federation", "Russian Federation", "Russian Federation", "Russian Federation", "Russian Federation", "Russian Federation", "Russian Federation", "Russian Federation", "Russian Federation", "Russian Federation", "Russian Federation", "Russian Federation", "Russian Federation", "Russian Federation", "Russian Federation", "Russian Federation"], "yaxis": "y"}, {"customdata": [[1979, "Tchogha Zanbil<br>Persepolis<br>Meidan Emam<br>Esfahan"], [1979, "Tchogha Zanbil<br>Persepolis<br>Meidan Emam<br>Esfahan"], [1979, "Tchogha Zanbil<br>Persepolis<br>Meidan Emam<br>Esfahan"], [2012, "Gonbad-e Q\u0101bus<br>Masjed-e J\u0101m\u00e9 of Isfahan"], [2012, "Gonbad-e Q\u0101bus<br>Masjed-e J\u0101m\u00e9 of Isfahan"], [2010, "Tabriz Historic Bazaar Complex<br>Sheikh Safi al-din Kh\u0101neg\u0101h and Shrine Ensemble in Ardabil"], [2010, "Tabriz Historic Bazaar Complex<br>Sheikh Safi al-din Kh\u0101neg\u0101h and Shrine Ensemble in Ardabil"], [2004, "Pasargadae<br>Bam and its Cultural Landscape"], [2004, "Pasargadae<br>Bam and its Cultural Landscape"], [2009, "Shushtar Historical Hydraulic System"], [2008, "Armenian Monastic Ensembles of Iran"], [2006, "Bisotun"], [2014, "Shahr-i Sokhta"], [2011, "The Persian Garden"], [2015, "Susa<br>Cultural Landscape of Maymand"], [2015, "Susa<br>Cultural Landscape of Maymand"], [2016, "Lut Desert<br>The Persian Qanat"], [2016, "Lut Desert<br>The Persian Qanat"], [2013, "Golestan Palace"], [2003, "Takht-e Soleyman"], [2005, "Soltaniyeh"]], "hoverlabel": {"namelength": 0}, "hovertemplate": "%{y}<br>Site: %{customdata[1]}", "legendgroup": "country=Iran (Islamic Republic of)", "marker": {"color": "#FFA15A", "size": [3, 3, 3, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 2, 2, 2, 2, 1, 1, 1], "sizemode": "area", "sizeref": 0.025, "symbol": "circle"}, "mode": "markers", "name": "country=Iran (Islamic Republic of)", "showlegend": true, "type": "scatter", "x": [1979, 1979, 1979, 2012, 2012, 2010, 2010, 2004, 2004, 2009, 2008, 2006, 2014, 2011, 2015, 2015, 2016, 2016, 2013, 2003, 2005], "xaxis": "x", "y": ["Iran (Islamic Republic of)", "Iran (Islamic Republic of)", "Iran (Islamic Republic of)", "Iran (Islamic Republic of)", "Iran (Islamic Republic of)", "Iran (Islamic Republic of)", "Iran (Islamic Republic of)", "Iran (Islamic Republic of)", "Iran (Islamic Republic of)", "Iran (Islamic Republic of)", "Iran (Islamic Republic of)", "Iran (Islamic Republic of)", "Iran (Islamic Republic of)", "Iran (Islamic Republic of)", "Iran (Islamic Republic of)", "Iran (Islamic Republic of)", "Iran (Islamic Republic of)", "Iran (Islamic Republic of)", "Iran (Islamic Republic of)", "Iran (Islamic Republic of)", "Iran (Islamic Republic of)"], "yaxis": "y"}, {"customdata": [[2002, "Historic Centres of Stralsund and Wismar<br>Upper Middle Rhine Valley"], [2002, "Historic Centres of Stralsund and Wismar<br>Upper Middle Rhine Valley"], [1991, "Abbey and Altenm\u00fcnster of Lorsch"], [2014, "Carolingian Westwork and Civitas Corvey"], [1994, "V\u00f6lklingen Ironworks<br>Collegiate Church<br>Castle and Old Town of Quedlinburg"], [1994, "V\u00f6lklingen Ironworks<br>Collegiate Church<br>Castle and Old Town of Quedlinburg"], [2001, "Zollverein Coal Mine Industrial Complex in Essen"], [1986, "Roman Monuments<br>Cathedral of St Peter and Church of Our Lady in Trier"], [1998, "Classical Weimar"], [2006, "Old town of Regensburg with Stadtamhof"], [1984, "Castles of Augustusburg and Falkenlust at Br\u00fchl"], [2008, "Berlin Modernism Housing Estates"], [1985, "St Mary's Cathedral and St Michael's Church at Hildesheim"], [1996, "Cologne Cathedral<br>Luther Memorials in Eisleben and Wittenberg<br>Bauhaus and its Sites in Weimar and Dessau"], [1996, "Cologne Cathedral<br>Luther Memorials in Eisleben and Wittenberg<br>Bauhaus and its Sites in Weimar and Dessau"], [1996, "Cologne Cathedral<br>Luther Memorials in Eisleben and Wittenberg<br>Bauhaus and its Sites in Weimar and Dessau"], [1993, "Town of Bamberg<br>Maulbronn Monastery Complex"], [1993, "Town of Bamberg<br>Maulbronn Monastery Complex"], [2004, "Town Hall and Roland on the Marketplace of Bremen"], [2012, "Margravial Opera House Bayreuth"], [1995, "Messel Pit Fossil Site"], [1999, "Museumsinsel (Museum Island)<br>Berlin<br>Wartburg Castle"], [1999, "Museumsinsel (Museum Island)<br>Berlin<br>Wartburg Castle"], [2000, "Garden Kingdom of Dessau-W\u00f6rlitz<br>Monastic Island of Reichenau"], [2000, "Garden Kingdom of Dessau-W\u00f6rlitz<br>Monastic Island of Reichenau"], [1981, "Speyer Cathedral<br>W\u00fcrzburg Residence with the Court Gardens and Residence Square"], [1981, "Speyer Cathedral<br>W\u00fcrzburg Residence with the Court Gardens and Residence Square"], [1992, "Mines of Rammelsberg<br>Historic Town of Goslar and Upper Harz Water Management  System"], [1978, "Aachen Cathedral"], [2015, "Speicherstadt and Kontorhaus District with Chilehaus"], [1990, "Palaces and Parks of Potsdam and Berlin"], [1987, "Hanseatic City of L\u00fcbeck"], [2013, "Bergpark Wilhelmsh\u00f6he"], [1983, "Pilgrimage Church of Wies"], [2011, "Fagus Factory in Alfeld"]], "hoverlabel": {"namelength": 0}, "hovertemplate": "%{y}<br>Site: %{customdata[1]}", "legendgroup": "country=Germany", "marker": {"color": "#19d3f3", "size": [2, 2, 1, 1, 2, 2, 1, 1, 1, 1, 1, 1, 1, 3, 3, 3, 2, 2, 1, 1, 1, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1], "sizemode": "area", "sizeref": 0.025, "symbol": "circle"}, "mode": "markers", "name": "country=Germany", "showlegend": true, "type": "scatter", "x": [2002, 2002, 1991, 2014, 1994, 1994, 2001, 1986, 1998, 2006, 1984, 2008, 1985, 1996, 1996, 1996, 1993, 1993, 2004, 2012, 1995, 1999, 1999, 2000, 2000, 1981, 1981, 1992, 1978, 2015, 1990, 1987, 2013, 1983, 2011], "xaxis": "x", "y": ["Germany", "Germany", "Germany", "Germany", "Germany", "Germany", "Germany", "Germany", "Germany", "Germany", "Germany", "Germany", "Germany", "Germany", "Germany", "Germany", "Germany", "Germany", "Germany", "Germany", "Germany", "Germany", "Germany", "Germany", "Germany", "Germany", "Germany", "Germany", "Germany", "Germany", "Germany", "Germany", "Germany", "Germany", "Germany"], "yaxis": "y"}, {"customdata": [[1989, "Buddhist Monuments at Sanchi"], [2004, "Chhatrapati Shivaji Terminus (formerly Victoria Terminus)<br>Champaner-Pavagadh Archaeological Park"], [2004, "Chhatrapati Shivaji Terminus (formerly Victoria Terminus)<br>Champaner-Pavagadh Archaeological Park"], [1984, "Sun Temple<br>Kon\u00e2rak<br>Group of Monuments at Mahabalipuram"], [1984, "Sun Temple<br>Kon\u00e2rak<br>Group of Monuments at Mahabalipuram"], [1988, "Nanda Devi and Valley of Flowers National Parks"], [2014, "Great Himalayan National Park Conservation Area<br>Rani-ki-Vav (the Queen\u2019s Stepwell) at Patan<br>Gujarat"], [2014, "Great Himalayan National Park Conservation Area<br>Rani-ki-Vav (the Queen\u2019s Stepwell) at Patan<br>Gujarat"], [1983, "Ellora Caves<br>Agra Fort<br>Ajanta Caves<br>Taj Mahal"], [1983, "Ellora Caves<br>Agra Fort<br>Ajanta Caves<br>Taj Mahal"], [1983, "Ellora Caves<br>Agra Fort<br>Ajanta Caves<br>Taj Mahal"], [1983, "Ellora Caves<br>Agra Fort<br>Ajanta Caves<br>Taj Mahal"], [1986, "Fatehpur Sikri<br>Khajuraho Group of Monuments<br>Group of Monuments at Hampi<br>Churches and Convents of Goa"], [1986, "Fatehpur Sikri<br>Khajuraho Group of Monuments<br>Group of Monuments at Hampi<br>Churches and Convents of Goa"], [1986, "Fatehpur Sikri<br>Khajuraho Group of Monuments<br>Group of Monuments at Hampi<br>Churches and Convents of Goa"], [1986, "Fatehpur Sikri<br>Khajuraho Group of Monuments<br>Group of Monuments at Hampi<br>Churches and Convents of Goa"], [1993, "Humayun's Tomb<br>Delhi<br>Qutb Minar and its Monuments<br>Delhi"], [1993, "Humayun's Tomb<br>Delhi<br>Qutb Minar and its Monuments<br>Delhi"], [1987, "Group of Monuments at Pattadakal<br>Elephanta Caves<br>Great Living Chola Temples"], [1987, "Group of Monuments at Pattadakal<br>Elephanta Caves<br>Great Living Chola Temples"], [1987, "Group of Monuments at Pattadakal<br>Elephanta Caves<br>Great Living Chola Temples"], [1985, "Manas Wildlife Sanctuary<br>Keoladeo National Park<br>Kaziranga National Park"], [1985, "Manas Wildlife Sanctuary<br>Keoladeo National Park<br>Kaziranga National Park"], [1985, "Manas Wildlife Sanctuary<br>Keoladeo National Park<br>Kaziranga National Park"], [2010, "The Jantar Mantar<br>Jaipur"], [1999, "Mountain Railways of India"], [2016, "Khangchendzonga National Park<br>Archaeological Site of Nalanda <i>Mahavihara</i> (Nalanda University) at Nalanda<br>Bihar"], [2016, "Khangchendzonga National Park<br>Archaeological Site of Nalanda <i>Mahavihara</i> (Nalanda University) at Nalanda<br>Bihar"], [2003, "Rock Shelters of Bhimbetka"], [2013, "Hill Forts of Rajasthan"], [2002, "Mahabodhi Temple Complex at Bodh Gaya"], [2012, "Western Ghats"], [2007, "Red Fort Complex"]], "hoverlabel": {"namelength": 0}, "hovertemplate": "%{y}<br>Site: %{customdata[1]}", "legendgroup": "country=India", "marker": {"color": "#FF6692", "size": [1, 2, 2, 2, 2, 1, 2, 2, 4, 4, 4, 4, 4, 4, 4, 4, 2, 2, 3, 3, 3, 3, 3, 3, 1, 1, 2, 2, 1, 1, 1, 1, 1], "sizemode": "area", "sizeref": 0.025, "symbol": "circle"}, "mode": "markers", "name": "country=India", "showlegend": true, "type": "scatter", "x": [1989, 2004, 2004, 1984, 1984, 1988, 2014, 2014, 1983, 1983, 1983, 1983, 1986, 1986, 1986, 1986, 1993, 1993, 1987, 1987, 1987, 1985, 1985, 1985, 2010, 1999, 2016, 2016, 2003, 2013, 2002, 2012, 2007], "xaxis": "x", "y": ["India", "India", "India", "India", "India", "India", "India", "India", "India", "India", "India", "India", "India", "India", "India", "India", "India", "India", "India", "India", "India", "India", "India", "India", "India", "India", "India", "India", "India", "India", "India", "India", "India"], "yaxis": "y"}, {"customdata": [[1983, "Gulf of Porto: Calanche of Piana<br>Gulf of Girolata<br>Scandola Reserve<br>Abbey Church of Saint-Savin sur Gartempe<br>Place Stanislas<br>Place de la Carri\u00e8re and Place d'Alliance in Nancy"], [1983, "Gulf of Porto: Calanche of Piana<br>Gulf of Girolata<br>Scandola Reserve<br>Abbey Church of Saint-Savin sur Gartempe<br>Place Stanislas<br>Place de la Carri\u00e8re and Place d'Alliance in Nancy"], [1983, "Gulf of Porto: Calanche of Piana<br>Gulf of Girolata<br>Scandola Reserve<br>Abbey Church of Saint-Savin sur Gartempe<br>Place Stanislas<br>Place de la Carri\u00e8re and Place d'Alliance in Nancy"], [1982, "From the Great Saltworks of Salins-les-Bains to the Royal Saltworks of Arc-et-Senans<br>the Production of Open-pan Salt"], [1995, "Historic Centre of Avignon: Papal Palace<br>Episcopal Ensemble and Avignon Bridge"], [2010, "Episcopal City of Albi<br>Pitons<br>cirques and remparts of Reunion Island"], [2010, "Episcopal City of Albi<br>Pitons<br>cirques and remparts of Reunion Island"], [1979, "Chartres Cathedral<br>Palace and Park of Versailles<br>Prehistoric Sites and Decorated Caves of the V\u00e9z\u00e8re Valley<br>V\u00e9zelay<br>Church and Hill<br>Mont-Saint-Michel and its Bay"], [1979, "Chartres Cathedral<br>Palace and Park of Versailles<br>Prehistoric Sites and Decorated Caves of the V\u00e9z\u00e8re Valley<br>V\u00e9zelay<br>Church and Hill<br>Mont-Saint-Michel and its Bay"], [1979, "Chartres Cathedral<br>Palace and Park of Versailles<br>Prehistoric Sites and Decorated Caves of the V\u00e9z\u00e8re Valley<br>V\u00e9zelay<br>Church and Hill<br>Mont-Saint-Michel and its Bay"], [1979, "Chartres Cathedral<br>Palace and Park of Versailles<br>Prehistoric Sites and Decorated Caves of the V\u00e9z\u00e8re Valley<br>V\u00e9zelay<br>Church and Hill<br>Mont-Saint-Michel and its Bay"], [1979, "Chartres Cathedral<br>Palace and Park of Versailles<br>Prehistoric Sites and Decorated Caves of the V\u00e9z\u00e8re Valley<br>V\u00e9zelay<br>Church and Hill<br>Mont-Saint-Michel and its Bay"], [1981, "Roman Theatre and its Surroundings and the \"Triumphal Arch\" of Orange<br>Cistercian Abbey of Fontenay<br>Amiens Cathedral<br>Arles<br>Roman and Romanesque Monuments<br>Palace and Park of Fontainebleau"], [1981, "Roman Theatre and its Surroundings and the \"Triumphal Arch\" of Orange<br>Cistercian Abbey of Fontenay<br>Amiens Cathedral<br>Arles<br>Roman and Romanesque Monuments<br>Palace and Park of Fontainebleau"], [1981, "Roman Theatre and its Surroundings and the \"Triumphal Arch\" of Orange<br>Cistercian Abbey of Fontenay<br>Amiens Cathedral<br>Arles<br>Roman and Romanesque Monuments<br>Palace and Park of Fontainebleau"], [1981, "Roman Theatre and its Surroundings and the \"Triumphal Arch\" of Orange<br>Cistercian Abbey of Fontenay<br>Amiens Cathedral<br>Arles<br>Roman and Romanesque Monuments<br>Palace and Park of Fontainebleau"], [1981, "Roman Theatre and its Surroundings and the \"Triumphal Arch\" of Orange<br>Cistercian Abbey of Fontenay<br>Amiens Cathedral<br>Arles<br>Roman and Romanesque Monuments<br>Palace and Park of Fontainebleau"], [1998, "Historic Site of Lyons<br>Routes of Santiago de Compostela in France"], [1998, "Historic Site of Lyons<br>Routes of Santiago de Compostela in France"], [1985, "Pont du Gard (Roman Aqueduct)"], [2007, "Bordeaux<br>Port of the Moon"], [2001, "Provins<br>Town of Medieval Fairs"], [2000, "The Loire Valley between Sully-sur-Loire and Chalonnes"], [2015, "Champagne Hillsides<br>Houses and Cellars<br>The Climats<br>terroirs of Burgundy"], [2015, "Champagne Hillsides<br>Houses and Cellars<br>The Climats<br>terroirs of Burgundy"], [2008, "Lagoons of New Caledonia: Reef Diversity and Associated Ecosystems<br>Fortifications of Vauban"], [2008, "Lagoons of New Caledonia: Reef Diversity and Associated Ecosystems<br>Fortifications of Vauban"], [1996, "Canal du Midi"], [1999, "Jurisdiction of Saint-Emilion"], [1991, "Cathedral of Notre-Dame<br>Former Abbey of Saint-R\u00e9mi and Palace of Tau<br>Reims<br>Paris<br>Banks of the Seine"], [1991, "Cathedral of Notre-Dame<br>Former Abbey of Saint-R\u00e9mi and Palace of Tau<br>Reims<br>Paris<br>Banks of the Seine"], [1997, "Historic Fortified City of Carcassonne"], [2005, "Le Havre<br>the City Rebuilt by Auguste Perret"], [2011, "The Causses and the C\u00e9vennes<br>Mediterranean agro-pastoral Cultural Landscape"], [1992, "Bourges Cathedral"], [2014, "Decorated Cave of Pont d\u2019Arc<br>known as Grotte Chauvet-Pont d\u2019Arc<br>Ard\u00e8che"], [2012, "Nord-Pas de Calais Mining Basin"], [1988, "Strasbourg \u2013 Grande \u00eele"]], "hoverlabel": {"namelength": 0}, "hovertemplate": "%{y}<br>Site: %{customdata[1]}", "legendgroup": "country=France", "marker": {"color": "#B6E880", "size": [3, 3, 3, 1, 1, 2, 2, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 2, 2, 1, 1, 1, 1, 2, 2, 2, 2, 1, 1, 2, 2, 1, 1, 1, 1, 1, 1, 1], "sizemode": "area", "sizeref": 0.025, "symbol": "circle"}, "mode": "markers", "name": "country=France", "showlegend": true, "type": "scatter", "x": [1983, 1983, 1983, 1982, 1995, 2010, 2010, 1979, 1979, 1979, 1979, 1979, 1981, 1981, 1981, 1981, 1981, 1998, 1998, 1985, 2007, 2001, 2000, 2015, 2015, 2008, 2008, 1996, 1999, 1991, 1991, 1997, 2005, 2011, 1992, 2014, 2012, 1988], "xaxis": "x", "y": ["France", "France", "France", "France", "France", "France", "France", "France", "France", "France", "France", "France", "France", "France", "France", "France", "France", "France", "France", "France", "France", "France", "France", "France", "France", "France", "France", "France", "France", "France", "France", "France", "France", "France", "France", "France", "France", "France"], "yaxis": "y"}, {"customdata": [[1984, "Burgos Cathedral<br>Works of Antoni Gaud\u00ed<br>Historic Centre of Cordoba<br>Monastery and Site of the Escurial<br>Madrid<br>Alhambra<br>Generalife and Albayz\u00edn<br>Granada"], [1984, "Burgos Cathedral<br>Works of Antoni Gaud\u00ed<br>Historic Centre of Cordoba<br>Monastery and Site of the Escurial<br>Madrid<br>Alhambra<br>Generalife and Albayz\u00edn<br>Granada"], [1984, "Burgos Cathedral<br>Works of Antoni Gaud\u00ed<br>Historic Centre of Cordoba<br>Monastery and Site of the Escurial<br>Madrid<br>Alhambra<br>Generalife and Albayz\u00edn<br>Granada"], [1984, "Burgos Cathedral<br>Works of Antoni Gaud\u00ed<br>Historic Centre of Cordoba<br>Monastery and Site of the Escurial<br>Madrid<br>Alhambra<br>Generalife and Albayz\u00edn<br>Granada"], [1984, "Burgos Cathedral<br>Works of Antoni Gaud\u00ed<br>Historic Centre of Cordoba<br>Monastery and Site of the Escurial<br>Madrid<br>Alhambra<br>Generalife and Albayz\u00edn<br>Granada"], [2007, "Teide National Park"], [1998, "Rock Art of the Mediterranean Basin on the Iberian Peninsula<br>University and Historic Precinct of Alcal\u00e1 de Henares"], [1998, "Rock Art of the Mediterranean Basin on the Iberian Peninsula<br>University and Historic Precinct of Alcal\u00e1 de Henares"], [1985, "Old Town of Segovia and its Aqueduct<br>Monuments of Oviedo and the Kingdom of the Asturias<br>Old Town of \u00c1vila with its Extra-Muros Churches<br>Santiago de Compostela (Old Town)<br>Cave of Altamira and Paleolithic Cave Art of Northern Spain"], [1985, "Old Town of Segovia and its Aqueduct<br>Monuments of Oviedo and the Kingdom of the Asturias<br>Old Town of \u00c1vila with its Extra-Muros Churches<br>Santiago de Compostela (Old Town)<br>Cave of Altamira and Paleolithic Cave Art of Northern Spain"], [1985, "Old Town of Segovia and its Aqueduct<br>Monuments of Oviedo and the Kingdom of the Asturias<br>Old Town of \u00c1vila with its Extra-Muros Churches<br>Santiago de Compostela (Old Town)<br>Cave of Altamira and Paleolithic Cave Art of Northern Spain"], [1985, "Old Town of Segovia and its Aqueduct<br>Monuments of Oviedo and the Kingdom of the Asturias<br>Old Town of \u00c1vila with its Extra-Muros Churches<br>Santiago de Compostela (Old Town)<br>Cave of Altamira and Paleolithic Cave Art of Northern Spain"], [1985, "Old Town of Segovia and its Aqueduct<br>Monuments of Oviedo and the Kingdom of the Asturias<br>Old Town of \u00c1vila with its Extra-Muros Churches<br>Santiago de Compostela (Old Town)<br>Cave of Altamira and Paleolithic Cave Art of Northern Spain"], [1997, "Palau de la M\u00fasica Catalana and Hospital de Sant Pau<br>Barcelona<br>Las M\u00e9dulas<br>San Mill\u00e1n Yuso and Suso Monasteries"], [1997, "Palau de la M\u00fasica Catalana and Hospital de Sant Pau<br>Barcelona<br>Las M\u00e9dulas<br>San Mill\u00e1n Yuso and Suso Monasteries"], [1997, "Palau de la M\u00fasica Catalana and Hospital de Sant Pau<br>Barcelona<br>Las M\u00e9dulas<br>San Mill\u00e1n Yuso and Suso Monasteries"], [1991, "Poblet Monastery"], [1993, "Royal Monastery of Santa Mar\u00eda de Guadalupe<br>Archaeological Ensemble of M\u00e9rida<br>Routes of Santiago de Compostela: <i>Camino Franc\u00e9s</i> and Routes of Northern Spain"], [1993, "Royal Monastery of Santa Mar\u00eda de Guadalupe<br>Archaeological Ensemble of M\u00e9rida<br>Routes of Santiago de Compostela: <i>Camino Franc\u00e9s</i> and Routes of Northern Spain"], [1993, "Royal Monastery of Santa Mar\u00eda de Guadalupe<br>Archaeological Ensemble of M\u00e9rida<br>Routes of Santiago de Compostela: <i>Camino Franc\u00e9s</i> and Routes of Northern Spain"], [2011, "Cultural Landscape of the Serra de Tramuntana"], [1988, "Old City of Salamanca"], [2001, "Aranjuez Cultural Landscape"], [1996, "La Lonja de la Seda de Valencia<br>Historic Walled Town of Cuenca"], [1996, "La Lonja de la Seda de Valencia<br>Historic Walled Town of Cuenca"], [1986, "Historic City of Toledo<br>Old Town of C\u00e1ceres<br>Garajonay National Park<br>Mudejar Architecture of Aragon"], [1986, "Historic City of Toledo<br>Old Town of C\u00e1ceres<br>Garajonay National Park<br>Mudejar Architecture of Aragon"], [1986, "Historic City of Toledo<br>Old Town of C\u00e1ceres<br>Garajonay National Park<br>Mudejar Architecture of Aragon"], [1986, "Historic City of Toledo<br>Old Town of C\u00e1ceres<br>Garajonay National Park<br>Mudejar Architecture of Aragon"], [2003, "Renaissance Monumental Ensembles of \u00dabeda and Baeza"], [2000, "Roman Walls of Lugo<br>Archaeological Ensemble of T\u00e1rraco<br>Catalan Romanesque Churches of the Vall de Bo\u00ed<br>Palmeral of Elche<br>Archaeological Site of Atapuerca"], [2000, "Roman Walls of Lugo<br>Archaeological Ensemble of T\u00e1rraco<br>Catalan Romanesque Churches of the Vall de Bo\u00ed<br>Palmeral of Elche<br>Archaeological Site of Atapuerca"], [2000, "Roman Walls of Lugo<br>Archaeological Ensemble of T\u00e1rraco<br>Catalan Romanesque Churches of the Vall de Bo\u00ed<br>Palmeral of Elche<br>Archaeological Site of Atapuerca"], [2000, "Roman Walls of Lugo<br>Archaeological Ensemble of T\u00e1rraco<br>Catalan Romanesque Churches of the Vall de Bo\u00ed<br>Palmeral of Elche<br>Archaeological Site of Atapuerca"], [2000, "Roman Walls of Lugo<br>Archaeological Ensemble of T\u00e1rraco<br>Catalan Romanesque Churches of the Vall de Bo\u00ed<br>Palmeral of Elche<br>Archaeological Site of Atapuerca"], [1999, "San Crist\u00f3bal de La Laguna<br>Ibiza<br>Biodiversity and Culture"], [1999, "San Crist\u00f3bal de La Laguna<br>Ibiza<br>Biodiversity and Culture"], [2006, "Vizcaya Bridge"], [2016, "Antequera Dolmens Site"], [1987, "Cathedral<br>Alc\u00e1zar and Archivo de Indias in Seville"], [2009, "Tower of Hercules"]], "hoverlabel": {"namelength": 0}, "hovertemplate": "%{y}<br>Site: %{customdata[1]}", "legendgroup": "country=Spain", "marker": {"color": "#FF97FF", "size": [5, 5, 5, 5, 5, 1, 2, 2, 5, 5, 5, 5, 5, 3, 3, 3, 1, 3, 3, 3, 1, 1, 1, 2, 2, 4, 4, 4, 4, 1, 5, 5, 5, 5, 5, 2, 2, 1, 1, 1, 1], "sizemode": "area", "sizeref": 0.025, "symbol": "circle"}, "mode": "markers", "name": "country=Spain", "showlegend": true, "type": "scatter", "x": [1984, 1984, 1984, 1984, 1984, 2007, 1998, 1998, 1985, 1985, 1985, 1985, 1985, 1997, 1997, 1997, 1991, 1993, 1993, 1993, 2011, 1988, 2001, 1996, 1996, 1986, 1986, 1986, 1986, 2003, 2000, 2000, 2000, 2000, 2000, 1999, 1999, 2006, 2016, 1987, 2009], "xaxis": "x", "y": ["Spain", "Spain", "Spain", "Spain", "Spain", "Spain", "Spain", "Spain", "Spain", "Spain", "Spain", "Spain", "Spain", "Spain", "Spain", "Spain", "Spain", "Spain", "Spain", "Spain", "Spain", "Spain", "Spain", "Spain", "Spain", "Spain", "Spain", "Spain", "Spain", "Spain", "Spain", "Spain", "Spain", "Spain", "Spain", "Spain", "Spain", "Spain", "Spain", "Spain", "Spain"], "yaxis": "y"}],
+                        {"font": {"color": "black", "family": "Rockwell", "size": 15}, "hoverlabel": {"bgcolor": "white", "font": {"family": "Rockwell", "size": 12}}, "hovermode": "x", "legend": {"itemsizing": "constant", "tracegroupgap": 0}, "margin": {"t": 60}, "showlegend": false, "template": {"data": {"bar": [{"error_x": {"color": "#2a3f5f"}, "error_y": {"color": "#2a3f5f"}, "marker": {"line": {"color": "#E5ECF6", "width": 0.5}}, "type": "bar"}], "barpolar": [{"marker": {"line": {"color": "#E5ECF6", "width": 0.5}}, "type": "barpolar"}], "carpet": [{"aaxis": {"endlinecolor": "#2a3f5f", "gridcolor": "white", "linecolor": "white", "minorgridcolor": "white", "startlinecolor": "#2a3f5f"}, "baxis": {"endlinecolor": "#2a3f5f", "gridcolor": "white", "linecolor": "white", "minorgridcolor": "white", "startlinecolor": "#2a3f5f"}, "type": "carpet"}], "choropleth": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "type": "choropleth"}], "contour": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "contour"}], "contourcarpet": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "type": "contourcarpet"}], "heatmap": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "heatmap"}], "heatmapgl": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "heatmapgl"}], "histogram": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "histogram"}], "histogram2d": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "histogram2d"}], "histogram2dcontour": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "histogram2dcontour"}], "mesh3d": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "type": "mesh3d"}], "parcoords": [{"line": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "parcoords"}], "pie": [{"automargin": true, "type": "pie"}], "scatter": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scatter"}], "scatter3d": [{"line": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scatter3d"}], "scattercarpet": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scattercarpet"}], "scattergeo": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scattergeo"}], "scattergl": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scattergl"}], "scattermapbox": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scattermapbox"}], "scatterpolar": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scatterpolar"}], "scatterpolargl": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scatterpolargl"}], "scatterternary": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scatterternary"}], "surface": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "surface"}], "table": [{"cells": {"fill": {"color": "#EBF0F8"}, "line": {"color": "white"}}, "header": {"fill": {"color": "#C8D4E3"}, "line": {"color": "white"}}, "type": "table"}]}, "layout": {"annotationdefaults": {"arrowcolor": "#2a3f5f", "arrowhead": 0, "arrowwidth": 1}, "coloraxis": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "colorscale": {"diverging": [[0, "#8e0152"], [0.1, "#c51b7d"], [0.2, "#de77ae"], [0.3, "#f1b6da"], [0.4, "#fde0ef"], [0.5, "#f7f7f7"], [0.6, "#e6f5d0"], [0.7, "#b8e186"], [0.8, "#7fbc41"], [0.9, "#4d9221"], [1, "#276419"]], "sequential": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "sequentialminus": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]]}, "colorway": ["#636efa", "#EF553B", "#00cc96", "#ab63fa", "#FFA15A", "#19d3f3", "#FF6692", "#B6E880", "#FF97FF", "#FECB52"], "font": {"color": "#2a3f5f"}, "geo": {"bgcolor": "white", "lakecolor": "white", "landcolor": "#E5ECF6", "showlakes": true, "showland": true, "subunitcolor": "white"}, "hoverlabel": {"align": "left"}, "hovermode": "closest", "mapbox": {"style": "light"}, "paper_bgcolor": "white", "plot_bgcolor": "#E5ECF6", "polar": {"angularaxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}, "bgcolor": "#E5ECF6", "radialaxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}}, "scene": {"xaxis": {"backgroundcolor": "#E5ECF6", "gridcolor": "white", "gridwidth": 2, "linecolor": "white", "showbackground": true, "ticks": "", "zerolinecolor": "white"}, "yaxis": {"backgroundcolor": "#E5ECF6", "gridcolor": "white", "gridwidth": 2, "linecolor": "white", "showbackground": true, "ticks": "", "zerolinecolor": "white"}, "zaxis": {"backgroundcolor": "#E5ECF6", "gridcolor": "white", "gridwidth": 2, "linecolor": "white", "showbackground": true, "ticks": "", "zerolinecolor": "white"}}, "shapedefaults": {"line": {"color": "#2a3f5f"}}, "ternary": {"aaxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}, "baxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}, "bgcolor": "#E5ECF6", "caxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}}, "title": {"x": 0.05}, "xaxis": {"automargin": true, "gridcolor": "white", "linecolor": "white", "ticks": "", "title": {"standoff": 15}, "zerolinecolor": "white", "zerolinewidth": 2}, "yaxis": {"automargin": true, "gridcolor": "white", "linecolor": "white", "ticks": "", "title": {"standoff": 15}, "zerolinecolor": "white", "zerolinewidth": 2}}}, "title": {"text": "Timeline of UNESCO Inscriptions", "x": 0.5, "xanchor": "center", "y": 0.95, "yanchor": "top"}, "xaxis": {"anchor": "y", "domain": [0.0, 1.0], "layer": "above traces", "showgrid": true, "showline": true, "showspikes": true, "spikemode": "across", "spikesnap": "cursor", "title": {"text": "Year of Inscription"}}, "yaxis": {"anchor": "x", "categoryarray": ["Spain", "France", "India", "Germany", "Iran (Islamic Republic of)", "Russian Federation", "China", "Italy", "Mexico"], "categoryorder": "array", "domain": [0.0, 1.0], "title": {"text": "Top 10 Countries"}}},
+                        {"responsive": true}
+                    ).then(function(){
+                            
+var gd = document.getElementById('43d2f56f-a9af-4f91-84e7-7e06605cd7d0');
+var x = new MutationObserver(function (mutations, observer) {{
+        var display = window.getComputedStyle(gd).display;
+        if (!display || display === 'none') {{
+            console.log([gd, 'removed!']);
+            Plotly.purge(gd);
+            observer.disconnect();
+        }}
+}});
+
+// Listen for the removal of the full notebook cells
+var notebookContainer = gd.closest('#notebook-container');
+if (notebookContainer) {{
+    x.observe(notebookContainer, {childList: true});
+}}
+
+// Listen for the clearing of the current output cell
+var outputEl = gd.closest('.output');
+if (outputEl) {{
+    x.observe(outputEl, {childList: true});
+}}
+
+                        })
+                };
+                
+            </script>
+        </div>
+
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Cool! That's it!</p>
+<p>Now we have an interactive plot with enhanced visuals and all information we need in the labels. Not only can we clearly see the trends of inscriptions in different countries, we can also clearly see the "inscription peak" of some countries (such as 1997 in Italy). We can tell, for example, countries like Russia and China are late players in the field.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Previous-Lesson:-Simple-Bubble-Chart">
+<a class="anchor" href="#Previous-Lesson:-Simple-Bubble-Chart" aria-hidden="true"><span class="octicon octicon-link"></span></a>Previous Lesson: <a href="https://pinkychow1010.github.io/digital-chinese-history-blog/level-3/chapter-3/matplotlib/data-visualization/2021/12/30/Simple_Bubble_Chart.html">Simple Bubble Chart</a><a class="anchor-link" href="#Previous-Lesson:-Simple-Bubble-Chart"> </a>
+</h2>
+<h2 id="Next-Lesson:-Coming-soon...">
+<a class="anchor" href="#Next-Lesson:-Coming-soon..." aria-hidden="true"><span class="octicon octicon-link"></span></a>Next Lesson: Coming soon...<a class="anchor-link" href="#Next-Lesson:-Coming-soon..."> </a>
+</h2>
+<p><br>
+<br></p>
+<hr>
+<h2 id="Additional-information">
+<a class="anchor" href="#Additional-information" aria-hidden="true"><span class="octicon octicon-link"></span></a><strong>Additional information</strong><a class="anchor-link" href="#Additional-information"> </a>
+</h2>
+<p>This notebook is provided for educational purpose and feel free to report any issue on GitHub.</p>
+<p><br></p>
+<p><strong>Author:</strong> <a href="https://www.linkedin.com/in/ka-hei-chow-231345188/">Ka Hei, Chow</a></p>
+<p><strong>License:</strong> The code in this notebook is licensed under the <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons by Attribution 4.0 license</a>.</p>
+<p><strong>Last modified:</strong> December 2021</p>
+<p><br></p>
+<hr>
+<p><br></p>
+<h2 id="References:">
+<a class="anchor" href="#References:" aria-hidden="true"><span class="octicon octicon-link"></span></a><strong>References:</strong><a class="anchor-link" href="#References:"> </a>
+</h2>
+<p><a href="https://plotly.com/python/">Plotly</a></p>
+
+</div>
+</div>
+</div>
+</div>
+
+
+</body>
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="pinkychow1010/digital-chinese-history-blog"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/digital-chinese-history-blog/level-3/chapter-3/plotly.express/data-visualization/2022/01/10/Plotly_Bubble_Timeline.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/digital-chinese-history-blog/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/digital-chinese-history-blog/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/digital-chinese-history-blog/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>This site focuses on Python and aims to support users to conduct academic research in the humanities using open source programming languages.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/pinkychow1010" target="_blank" title="pinkychow1010"><svg class="svg-icon grey"><use xlink:href="/digital-chinese-history-blog/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/pinkychow1010" target="_blank" title="pinkychow1010"><svg class="svg-icon grey"><use xlink:href="/digital-chinese-history-blog/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
