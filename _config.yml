@@ -41,7 +41,7 @@ baseurl: "/digital-chinese-history-blog" # the subpath of your site, e.g. "/blog
 # Github and twitter are optional:
 minima:
   social_links:
-    twitter: pinkychow1010
+    twitter: chinese_digital
     github: pinkychow1010
 
 # Set this to true to get LaTeX math equation support
