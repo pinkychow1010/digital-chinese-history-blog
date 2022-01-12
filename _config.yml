@@ -41,7 +41,7 @@ baseurl: "/digital-chinese-history-blog" # the subpath of your site, e.g. "/blog
 # Github and twitter are optional:
 minima:
   social_links:
-    twitter: pinkychow1010
+    twitter: chinese_digital
     github: pinkychow1010
 
 # Set this to true to get LaTeX math equation support
@@ -51,7 +51,7 @@ use_math:
 show_description: true
 
 # Set this to true to display image previews on home page, if they exist
-show_image: false
+show_image: true
 
 # Set this to true to turn on annotations with hypothes.is (https://web.hypothes.is/)
 annotations: false
