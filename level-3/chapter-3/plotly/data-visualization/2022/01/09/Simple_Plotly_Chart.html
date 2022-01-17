@@ -166,6 +166,7 @@ Digital Chinese History
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<p>As mentioned in the <a href="https://pinkychow1010.github.io/digital-chinese-history-blog/about/">instructions</a>, all materials can be <code>open in Colab</code> as Jupyter notebooks. In this way users can run the code in the cloud. It is highly recommanded to follow the <a href="https://pinkychow1010.github.io/digital-chinese-history-blog/">tutorials</a> in the right order.</p>
 <p>In the last blog, we have created a bubble chart / scatter plot using Plotly. This time we are trying to make other types of plot: a simple bar chart and a lollipop chart using plotly.express and plotly.graph_objects. The creation of both charts begin with a Pandas data frame. Then we pass the data frame into Plotly for a basic plot, and update the layouts afterwards. The bar chart requires only one plotting action .bar(), whereas the lollipop chart requires two plotting actions: first creating the scatter plot, then with add the "stick" using add_shape().</p>
 
 </div>
@@ -187,7 +188,7 @@ Digital Chinese History
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-python"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
 
@@ -224,7 +225,7 @@ Digital Chinese History
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-python"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s2">"Type of Natural Disaster"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"Fire"</span><span class="p">,</span><span class="s2">"Locust"</span><span class="p">,</span><span class="s2">"Drought"</span><span class="p">,</span><span class="s2">"Earthquake"</span><span class="p">,</span><span class="s2">"Flood"</span><span class="p">,</span><span class="s2">"Typhoon"</span><span class="p">,</span><span class="s2">"Storm"</span><span class="p">],</span>
     <span class="s2">"Number of Record"</span><span class="p">:</span> <span class="p">[</span><span class="mi">63</span><span class="p">,</span><span class="mi">81</span><span class="p">,</span><span class="mi">86</span><span class="p">,</span><span class="mi">13</span><span class="p">,</span><span class="mi">138</span><span class="p">,</span><span class="mi">158</span><span class="p">,</span><span class="mi">8</span><span class="p">]</span>
 <span class="p">}</span>
@@ -266,7 +267,7 @@ Digital Chinese History
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-python"><pre><span></span><span class="n">color_discrete_sequence</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'#1f77b4'</span><span class="p">,</span>  <span class="c1"># muted blue</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">color_discrete_sequence</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'#1f77b4'</span><span class="p">,</span>  <span class="c1"># muted blue</span>
     <span class="s1">'#ff7f0e'</span><span class="p">,</span>  <span class="c1"># safety orange</span>
     <span class="s1">'#2ca02c'</span><span class="p">,</span>  <span class="c1"># cooked asparagus green</span>
     <span class="s1">'#d62728'</span><span class="p">,</span>  <span class="c1"># brick red</span>
@@ -297,7 +298,7 @@ Digital Chinese History
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-python"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">'Number of Record'</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">'Type of Natural Disaster'</span><span class="p">,</span> 
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">'Number of Record'</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">'Type of Natural Disaster'</span><span class="p">,</span> 
              <span class="n">title</span><span class="o">=</span><span class="s2">"&lt;b&gt;Disaster Records in 臺灣方志&lt;/b&gt;"</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span>
              <span class="n">color</span><span class="o">=</span><span class="s2">"Type of Natural Disaster"</span><span class="p">,</span><span class="n">color_discrete_sequence</span><span class="o">=</span><span class="n">color_discrete_sequence</span><span class="p">)</span>
 </pre></div>
@@ -324,7 +325,7 @@ Digital Chinese History
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-python"><pre><span></span><span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span><span class="n">showlegend</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span><span class="n">showlegend</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">update_traces</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
 </pre></div>
 
@@ -350,7 +351,7 @@ Digital Chinese History
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-python"><pre><span></span><span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span>
     <span class="n">hoverlabel</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span>
         <span class="n">bgcolor</span><span class="o">=</span><span class="s2">"white"</span><span class="p">,</span>
         <span class="n">font_size</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span>
@@ -454,7 +455,7 @@ if (outputEl) {{
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-python"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s2">"date"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"1919-01-01"</span><span class="p">,</span><span class="s2">"1917-05-01"</span><span class="p">,</span><span class="s2">"1918-01-01"</span><span class="p">,</span><span class="s2">"1919-07-20"</span><span class="p">,</span><span class="s2">"1924-01-01"</span><span class="p">,</span><span class="s2">"1929-01-01"</span><span class="p">,</span><span class="s2">"1929-02-01"</span><span class="p">,</span><span class="s2">"1929-03-01"</span><span class="p">,</span><span class="s2">"1929-04-01"</span><span class="p">,</span><span class="s2">"1930-04-10"</span><span class="p">,</span><span class="s2">"1959-11-20"</span><span class="p">],</span>
     <span class="s2">"title"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"文學改良芻議"</span><span class="p">,</span><span class="s2">"歷史的文學觀念論"</span><span class="p">,</span><span class="s2">"建設的文學革命論"</span><span class="p">,</span><span class="s2">"多研究些問題，少談些主義"</span><span class="p">,</span><span class="s2">"差不多先生傳"</span><span class="p">,</span><span class="s2">"人權與約法"</span><span class="p">,</span><span class="s2">"我們什麼時候才可有憲法—對於建國大綱的疑問"</span><span class="p">,</span><span class="s2">"知難，行亦不易—孫文先生的「行易知難」說述評"</span><span class="p">,</span><span class="s2">"新文化運動與國民黨"</span><span class="p">,</span><span class="s2">"我們走那條路"</span><span class="p">,</span><span class="s2">"容忍與自由"</span><span class="p">],</span>
     <span class="s2">"sub"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"文學改良芻議"</span><span class="p">,</span><span class="s2">"歷史的文學觀念論"</span><span class="p">,</span><span class="s2">"建設的文學革命論"</span><span class="p">,</span><span class="s2">"多研究些問題，少談些主義"</span><span class="p">,</span><span class="s2">"差不多先生傳"</span><span class="p">,</span><span class="s2">"人權與約法"</span><span class="p">,</span><span class="s2">"我們什麼時候才可有憲法"</span><span class="p">,</span><span class="s2">"知難，行亦不易"</span><span class="p">,</span><span class="s2">"新文化運動與國民黨"</span><span class="p">,</span><span class="s2">"我們走那條路"</span><span class="p">,</span><span class="s2">"容忍與自由"</span><span class="p">],</span>
@@ -479,7 +480,7 @@ if (outputEl) {{
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-python"><pre><span></span><span class="n">df</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span>
 </pre></div>
 
     </div>
@@ -703,7 +704,7 @@ if (outputEl) {{
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-python"><pre><span></span><span class="kn">import</span> <span class="nn">plotly.graph_objects</span> <span class="k">as</span> <span class="nn">go</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">plotly.graph_objects</span> <span class="k">as</span> <span class="nn">go</span>
 
 <span class="n">fig</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
 
@@ -739,7 +740,7 @@ if (outputEl) {{
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-python"><pre><span></span><span class="n">fig</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span><span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">"date"</span><span class="p">],</span> 
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">fig</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span><span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">"date"</span><span class="p">],</span> 
                          <span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">"y"</span><span class="p">],</span>
                          <span class="n">text</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s2">"sub"</span><span class="p">],</span> <span class="c1"># static labels</span>
                          <span class="n">customdata</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s2">"title"</span><span class="p">],</span> <span class="c1"># hover labels</span>
@@ -774,7 +775,7 @@ if (outputEl) {{
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-python"><pre><span></span><span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span><span class="n">title_text</span> <span class="o">=</span> 
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span><span class="n">title_text</span> <span class="o">=</span> 
                    <span class="s2">"胡適 文章與期刊"</span><span class="p">,</span>
                    <span class="n">title_font_size</span> <span class="o">=</span> <span class="mi">30</span><span class="p">)</span>
 

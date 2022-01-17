@@ -166,6 +166,7 @@ Digital Chinese History
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<p>As mentioned in the <a href="https://pinkychow1010.github.io/digital-chinese-history-blog/about/">instructions</a>, all materials can be <code>open in Colab</code> as Jupyter notebooks. In this way users can run the code in the cloud. It is highly recommanded to follow the <a href="https://pinkychow1010.github.io/digital-chinese-history-blog/">tutorials</a> in the right order.</p>
 <h2 id="plotly.express">
 <a class="anchor" href="#plotly.express" aria-hidden="true"><span class="octicon octicon-link"></span></a>plotly.express<a class="anchor-link" href="#plotly.express"> </a>
 </h2>
@@ -182,7 +183,7 @@ Digital Chinese History
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-python"><pre><span></span><span class="kn">import</span> <span class="nn">io</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">io</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">requests</span>
 
@@ -206,7 +207,7 @@ Digital Chinese History
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-python"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 
     </div>
@@ -466,7 +467,7 @@ Digital Chinese History
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-python"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s2">"Name (EN)"</span><span class="p">,</span><span class="s2">"Date inscribed"</span><span class="p">,</span><span class="s2">"Category"</span><span class="p">,</span><span class="s2">"Country (EN)"</span><span class="p">,</span><span class="s2">"Continent (EN)"</span><span class="p">]]</span> <span class="c1"># select multiple columns in a list []</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s2">"Name (EN)"</span><span class="p">,</span><span class="s2">"Date inscribed"</span><span class="p">,</span><span class="s2">"Category"</span><span class="p">,</span><span class="s2">"Country (EN)"</span><span class="p">,</span><span class="s2">"Continent (EN)"</span><span class="p">]]</span> <span class="c1"># select multiple columns in a list []</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">"Name (EN)"</span><span class="p">:</span> <span class="s2">"name"</span><span class="p">,</span> <span class="s2">"Date inscribed"</span><span class="p">:</span> <span class="s2">"date"</span><span class="p">,</span> <span class="s2">"Category"</span><span class="p">:</span> <span class="s2">"type"</span><span class="p">,</span> <span class="s2">"Country (EN)"</span><span class="p">:</span> <span class="s2">"country"</span><span class="p">,</span> <span class="s2">"Continent (EN)"</span><span class="p">:</span> <span class="s2">"continent"</span><span class="p">})</span> <span class="c1"># rename the columns for easy reading</span>
 </pre></div>
 
@@ -484,7 +485,7 @@ Digital Chinese History
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-python"><pre><span></span><span class="n">top_10</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">"country"</span><span class="p">])</span><span class="o">.</span><span class="n">count</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s1">'name'</span><span class="p">],</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">top_10</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">"country"</span><span class="p">])</span><span class="o">.</span><span class="n">count</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s1">'name'</span><span class="p">],</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
 <span class="n">top_10</span>
 </pre></div>
 
@@ -706,7 +707,7 @@ Digital Chinese History
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-python"><pre><span></span><span class="n">sub_cnty</span> <span class="o">=</span> <span class="n">top_10</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">values</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">sub_cnty</span> <span class="o">=</span> <span class="n">top_10</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">values</span>
 <span class="n">sub_cnty</span>
 </pre></div>
 
@@ -750,7 +751,7 @@ Digital Chinese History
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-python"><pre><span></span><span class="n">top_df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">'country'</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">sub_cnty</span><span class="p">)]</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">'country'</span><span class="p">,</span><span class="s1">'date'</span><span class="p">])</span><span class="o">.</span><span class="n">count</span><span class="p">()[</span><span class="s1">'name'</span><span class="p">]</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">top_df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">'country'</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">sub_cnty</span><span class="p">)]</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">'country'</span><span class="p">,</span><span class="s1">'date'</span><span class="p">])</span><span class="o">.</span><span class="n">count</span><span class="p">()[</span><span class="s1">'name'</span><span class="p">]</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
 <span class="n">top_df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
 </pre></div>
 
@@ -924,7 +925,7 @@ Digital Chinese History
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-python"><pre><span></span><span class="n">top_df</span><span class="p">[</span><span class="s1">'year'</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DatetimeIndex</span><span class="p">(</span><span class="n">top_df</span><span class="p">[</span><span class="s1">'date'</span><span class="p">])</span><span class="o">.</span><span class="n">year</span> <span class="c1"># set up a new year column</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">top_df</span><span class="p">[</span><span class="s1">'year'</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DatetimeIndex</span><span class="p">(</span><span class="n">top_df</span><span class="p">[</span><span class="s1">'date'</span><span class="p">])</span><span class="o">.</span><span class="n">year</span> <span class="c1"># set up a new year column</span>
 
 <span class="n">top_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
@@ -1105,7 +1106,7 @@ Digital Chinese History
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-python"><pre><span></span><span class="n">group_df</span> <span class="o">=</span> <span class="n">top_df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s2">"country"</span><span class="p">,</span><span class="s2">"year"</span><span class="p">])</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">group_df</span> <span class="o">=</span> <span class="n">top_df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s2">"country"</span><span class="p">,</span><span class="s2">"year"</span><span class="p">])</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
 </pre></div>
 
     </div>
@@ -1122,7 +1123,7 @@ Digital Chinese History
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-python"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="n">country_list</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">group_df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">get_level_values</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
 <span class="n">year_list</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">group_df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">get_level_values</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
 </pre></div>
@@ -1149,7 +1150,7 @@ Digital Chinese History
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-python"><pre><span></span><span class="n">group_df</span><span class="p">[</span><span class="s1">'country'</span><span class="p">]</span> <span class="o">=</span> <span class="n">country_list</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">group_df</span><span class="p">[</span><span class="s1">'country'</span><span class="p">]</span> <span class="o">=</span> <span class="n">country_list</span>
 <span class="n">group_df</span><span class="p">[</span><span class="s1">'year'</span><span class="p">]</span> <span class="o">=</span> <span class="n">year_list</span>
 </pre></div>
 
@@ -1175,7 +1176,7 @@ Digital Chinese History
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-python"><pre><span></span><span class="n">group_df</span> <span class="o">=</span> <span class="n">group_df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">"name"</span><span class="p">:</span> <span class="s2">"count"</span><span class="p">})</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">group_df</span> <span class="o">=</span> <span class="n">group_df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">"name"</span><span class="p">:</span> <span class="s2">"count"</span><span class="p">})</span>
 <span class="n">group_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 
@@ -1358,7 +1359,7 @@ Digital Chinese History
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-python"><pre><span></span><span class="n">group_df</span><span class="p">[</span><span class="s1">'country'</span><span class="p">]</span> <span class="o">=</span> <span class="n">group_df</span><span class="p">[</span><span class="s1">'country'</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">'United Kingdom of Great Britain and Northern Ireland'</span><span class="p">,</span><span class="s1">'United Kingdom'</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">group_df</span><span class="p">[</span><span class="s1">'country'</span><span class="p">]</span> <span class="o">=</span> <span class="n">group_df</span><span class="p">[</span><span class="s1">'country'</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">'United Kingdom of Great Britain and Northern Ireland'</span><span class="p">,</span><span class="s1">'United Kingdom'</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -1387,7 +1388,7 @@ Digital Chinese History
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-python"><pre><span></span><span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
 <span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">group_df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">"year"</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">"country"</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="s2">"count"</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"country"</span><span class="p">)</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span><span class="n">showlegend</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -1487,7 +1488,7 @@ if (outputEl) {{
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-python"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 
     </div>
@@ -1676,7 +1677,7 @@ if (outputEl) {{
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-python"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">'year'</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DatetimeIndex</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">'date'</span><span class="p">])</span><span class="o">.</span><span class="n">year</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">'year'</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DatetimeIndex</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">'date'</span><span class="p">])</span><span class="o">.</span><span class="n">year</span>
 
 <span class="c1"># join the site names</span>
 <span class="n">df</span><span class="p">[</span><span class="s1">'site'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">'country'</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">sub_cnty</span><span class="p">)]</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">'country'</span><span class="p">,</span><span class="s1">'year'</span><span class="p">])[</span><span class="s1">'name'</span><span class="p">]</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="s1">', '</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
@@ -1882,7 +1883,7 @@ if (outputEl) {{
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-python"><pre><span></span><span class="n">df_sub</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">'country'</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">sub_cnty</span><span class="p">)]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_sub</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">'country'</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">sub_cnty</span><span class="p">)]</span>
 <span class="n">df_sub</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 
@@ -2032,7 +2033,7 @@ if (outputEl) {{
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-python"><pre><span></span><span class="n">group_df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">group_df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -2182,7 +2183,7 @@ if (outputEl) {{
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-python"><pre><span></span><span class="n">group_df</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">group_df</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -2207,7 +2208,7 @@ if (outputEl) {{
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-python"><pre><span></span><span class="n">final</span> <span class="o">=</span> <span class="n">df_sub</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">group_df</span><span class="p">,</span> <span class="n">left_on</span><span class="o">=</span><span class="p">[</span><span class="s2">"country"</span><span class="p">,</span><span class="s2">"year"</span><span class="p">],</span> <span class="n">right_on</span><span class="o">=</span><span class="p">[</span><span class="s2">"country"</span><span class="p">,</span><span class="s2">"year"</span><span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">final</span> <span class="o">=</span> <span class="n">df_sub</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">group_df</span><span class="p">,</span> <span class="n">left_on</span><span class="o">=</span><span class="p">[</span><span class="s2">"country"</span><span class="p">,</span><span class="s2">"year"</span><span class="p">],</span> <span class="n">right_on</span><span class="o">=</span><span class="p">[</span><span class="s2">"country"</span><span class="p">,</span><span class="s2">"year"</span><span class="p">])</span>
 
 <span class="n">final</span> <span class="o">=</span> <span class="n">final</span><span class="p">[[</span><span class="s2">"country"</span><span class="p">,</span><span class="s2">"year"</span><span class="p">,</span><span class="s2">"site"</span><span class="p">,</span><span class="s2">"count"</span><span class="p">]]</span>
 <span class="n">final</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
@@ -2389,7 +2390,7 @@ if (outputEl) {{
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-python"><pre><span></span><span class="n">final</span><span class="o">.</span><span class="n">site</span> <span class="o">=</span> <span class="n">final</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">', '</span><span class="p">,</span> <span class="s1">'&lt;br&gt;'</span><span class="p">))</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">final</span><span class="o">.</span><span class="n">site</span> <span class="o">=</span> <span class="n">final</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">', '</span><span class="p">,</span> <span class="s1">'&lt;br&gt;'</span><span class="p">))</span>
 <span class="n">final</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 
@@ -2439,7 +2440,7 @@ Name: site, dtype: object</pre>
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-python"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">final</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">"year"</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">"country"</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="s2">"count"</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"country"</span><span class="p">,</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">final</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">"year"</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">"country"</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="s2">"count"</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"country"</span><span class="p">,</span>
                  <span class="n">custom_data</span><span class="o">=</span><span class="p">[</span><span class="s1">'year'</span><span class="p">,</span> <span class="s1">'site'</span><span class="p">])</span>
 <span class="c1"># remove legend</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span><span class="n">showlegend</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>

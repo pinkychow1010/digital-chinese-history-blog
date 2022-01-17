@@ -85,7 +85,7 @@ Digital Chinese History
        • <span class="read-time" title="Estimated read time">
     
     
-      4 min read
+      5 min read
     
 </span></p>
 
@@ -155,6 +155,7 @@ Digital Chinese History
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<p>As mentioned in the <a href="https://pinkychow1010.github.io/digital-chinese-history-blog/about/">instructions</a>, all materials can be <code>open in Colab</code> as Jupyter notebooks. In this way users can run the code in the cloud. It is highly recommanded to follow the <a href="https://pinkychow1010.github.io/digital-chinese-history-blog/">tutorials</a> in the right order.</p>
 <p>Welcome to the data visualization chapter! After you have done some basic plots using Matplotlib, do you know you can further style your plot beyond the color uses? In this lesson, you will learn how can you make a matplotlib chart with hand drawn style ✍️. To do that you do not need to install any new library.</p>
 <p>Let's try to make a chart using some Chinese historical statistics about taxation and infrastructures (stage station) during Yuan Dynasty (1279-1368) <a href="http://www.stats.gov.cn/ztjc/zthd/50znjn/200206/t20020617_35565.html">[Source]</a>.</p>
 
@@ -176,7 +177,7 @@ Digital Chinese History
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-python"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 </pre></div>
@@ -195,7 +196,7 @@ Digital Chinese History
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-python"><pre><span></span><span class="err">!</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">pinyin</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span> pip install pinyin
 <span class="kn">import</span> <span class="nn">pinyin</span>
 </pre></div>
 
@@ -221,7 +222,7 @@ Digital Chinese History
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-python"><pre><span></span><span class="n">loc_list</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"腹里"</span><span class="p">,</span><span class="s2">"河南江北"</span><span class="p">,</span><span class="s2">"辽阳"</span><span class="p">,</span><span class="s2">"江浙"</span><span class="p">,</span><span class="s2">"江西"</span><span class="p">,</span><span class="s2">"湖广"</span><span class="p">,</span><span class="s2">"陕西"</span><span class="p">,</span><span class="s2">"四川"</span><span class="p">,</span><span class="s2">"云南"</span><span class="p">,</span><span class="s2">"甘肃"</span><span class="p">]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">loc_list</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"腹里"</span><span class="p">,</span><span class="s2">"河南江北"</span><span class="p">,</span><span class="s2">"辽阳"</span><span class="p">,</span><span class="s2">"江浙"</span><span class="p">,</span><span class="s2">"江西"</span><span class="p">,</span><span class="s2">"湖广"</span><span class="p">,</span><span class="s2">"陕西"</span><span class="p">,</span><span class="s2">"四川"</span><span class="p">,</span><span class="s2">"云南"</span><span class="p">,</span><span class="s2">"甘肃"</span><span class="p">]</span>
 
 <span class="n">name</span> <span class="o">=</span> <span class="p">[</span><span class="n">pinyin</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">loc</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">"strip"</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s2">" "</span><span class="p">)</span> <span class="k">for</span> <span class="n">loc</span> <span class="ow">in</span> <span class="n">loc_list</span><span class="p">]</span>
 </pre></div>
@@ -248,7 +249,7 @@ Digital Chinese History
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-python"><pre><span></span><span class="n">type_list</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="s2">"Lu zhan"</span><span class="p">,</span><span class="mi">10</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="s2">"Shui zhan"</span><span class="p">,</span> <span class="mi">10</span><span class="p">)),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">type_list</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="s2">"Lu zhan"</span><span class="p">,</span><span class="mi">10</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="s2">"Shui zhan"</span><span class="p">,</span> <span class="mi">10</span><span class="p">)),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -273,7 +274,7 @@ Digital Chinese History
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-python"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="p">{</span> 
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="p">{</span> 
     <span class="s2">"Location"</span><span class="p">:</span> <span class="n">name</span> <span class="o">+</span> <span class="n">name</span><span class="p">,</span>
     <span class="s2">"Station"</span><span class="p">:</span> <span class="p">[</span><span class="mi">177</span><span class="p">,</span><span class="mi">106</span><span class="p">,</span><span class="mi">120</span><span class="p">,</span><span class="mi">180</span><span class="p">,</span><span class="mi">85</span><span class="p">,</span><span class="mi">100</span><span class="p">,</span><span class="mi">80</span><span class="p">,</span><span class="mi">48</span><span class="p">,</span><span class="mi">74</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">21</span><span class="p">,</span><span class="mi">90</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">82</span><span class="p">,</span><span class="mi">69</span><span class="p">,</span><span class="mi">73</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">84</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span>
     <span class="s2">"Type"</span><span class="p">:</span> <span class="n">type_list</span>
@@ -474,7 +475,7 @@ Digital Chinese History
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-python"><pre><span></span><span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
 <span class="n">sns</span><span class="o">.</span><span class="n">set_style</span><span class="p">(</span><span class="s1">'darkgrid'</span><span class="p">)</span>
 
 <span class="c1"># groupped bar chart</span>
@@ -540,7 +541,7 @@ Digital Chinese History
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-python"><pre><span></span><span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
 <span class="n">sns</span><span class="o">.</span><span class="n">set_style</span><span class="p">(</span><span class="s1">'white'</span><span class="p">)</span>
 
 <span class="c1"># groupped bar chart</span>
@@ -609,7 +610,7 @@ Digital Chinese History
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-python"><pre><span></span><span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
 <span class="n">sns</span><span class="o">.</span><span class="n">set_style</span><span class="p">(</span><span class="s1">'white'</span><span class="p">)</span>
 
 <span class="c1"># hand drawn chart</span>
@@ -678,7 +679,7 @@ Digital Chinese History
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-python"><pre><span></span><span class="n">loc_list</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"腹里"</span><span class="p">,</span><span class="s2">"辽阳"</span><span class="p">,</span><span class="s2">"河南"</span><span class="p">,</span><span class="s2">"陕西"</span><span class="p">,</span><span class="s2">"四川"</span><span class="p">,</span><span class="s2">"甘肃"</span><span class="p">,</span><span class="s2">"云南"</span><span class="p">,</span><span class="s2">"江浙"</span><span class="p">,</span><span class="s2">"江西"</span><span class="p">,</span><span class="s2">"湖广"</span><span class="p">]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">loc_list</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"腹里"</span><span class="p">,</span><span class="s2">"辽阳"</span><span class="p">,</span><span class="s2">"河南"</span><span class="p">,</span><span class="s2">"陕西"</span><span class="p">,</span><span class="s2">"四川"</span><span class="p">,</span><span class="s2">"甘肃"</span><span class="p">,</span><span class="s2">"云南"</span><span class="p">,</span><span class="s2">"江浙"</span><span class="p">,</span><span class="s2">"江西"</span><span class="p">,</span><span class="s2">"湖广"</span><span class="p">]</span>
 <span class="n">name</span> <span class="o">=</span> <span class="p">[</span><span class="n">pinyin</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">loc</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">"strip"</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s2">" "</span><span class="p">)</span> <span class="k">for</span> <span class="n">loc</span> <span class="ow">in</span> <span class="n">loc_list</span><span class="p">]</span> <span class="c1"># list comprehension to get pinyin for the whole list</span>
 
 <span class="c1"># create data</span>

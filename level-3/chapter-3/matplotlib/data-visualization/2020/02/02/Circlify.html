@@ -85,7 +85,7 @@ Digital Chinese History
        • <span class="read-time" title="Estimated read time">
     
     
-      2 min read
+      3 min read
     
 </span></p>
 
@@ -154,6 +154,7 @@ Digital Chinese History
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<p>As mentioned in the <a href="https://pinkychow1010.github.io/digital-chinese-history-blog/about/">instructions</a>, all materials can be <code>open in Colab</code> as Jupyter notebooks. In this way users can run the code in the cloud. It is highly recommanded to follow the <a href="https://pinkychow1010.github.io/digital-chinese-history-blog/">tutorials</a> in the right order.</p>
 <hr>
 <p>This notebook aims to intrduce users some practical skills on generating a circle packing chart.</p>
 <p><br></p>
@@ -171,7 +172,7 @@ Digital Chinese History
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-python"><pre><span></span><span class="err">!</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">circlify</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span> pip install circlify
 </pre></div>
 
     </div>
@@ -205,7 +206,7 @@ Successfully installed circlify-0.14.0
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-python"><pre><span></span><span class="kn">from</span> <span class="nn">pprint</span> <span class="kn">import</span> <span class="n">pprint</span> <span class="k">as</span> <span class="n">pp</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">pprint</span> <span class="kn">import</span> <span class="n">pprint</span> <span class="k">as</span> <span class="n">pp</span>
 <span class="kn">import</span> <span class="nn">circlify</span> <span class="k">as</span> <span class="nn">circ</span>
 </pre></div>
 
@@ -223,7 +224,7 @@ Successfully installed circlify-0.14.0
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-python"><pre><span></span><span class="n">surname</span> <span class="o">=</span> <span class="s2">"""</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">surname</span> <span class="o">=</span> <span class="s2">"""</span>
 <span class="s2">	王	李	張	趙	劉	陳	楊	吳	黃	朱	孫	郭	胡	呂	高	宋	徐	程	林	鄭	范	何	韓	曹	馬	許	田	馮	杜	周	曾	汪	蘇	董	方	蔡	梁	石	謝	賈	薛	彭	崔	唐	潘	鄧	任	史	錢	侯	魏	羅	葉	沈	孟	姚	傅	丁	章	蕭	蔣	盧	陸	袁	江	晁	譚	邵	歐陽	孔	俞	尹	廖	閻	洪	夏	雷	葛	文	柳	陶	毛	丘	龔	康	蒲	邢	郝	龐	安	裴	折	施	游	金	鄒	湯	虞	嚴	鍾</span>
 <span class="s2">"""</span>
 
@@ -245,7 +246,7 @@ Successfully installed circlify-0.14.0
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-python"><pre><span></span><span class="n">surname</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">surname</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span>
 </pre></div>
 
     </div>
@@ -278,7 +279,7 @@ Successfully installed circlify-0.14.0
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-python"><pre><span></span><span class="n">surname</span><span class="o">.</span><span class="n">reverse</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">surname</span><span class="o">.</span><span class="n">reverse</span><span class="p">()</span>
 </pre></div>
 
     </div>
@@ -295,7 +296,7 @@ Successfully installed circlify-0.14.0
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-python"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">surname</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">surname</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -328,7 +329,7 @@ Successfully installed circlify-0.14.0
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-python"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
     <span class="s1">'surname'</span><span class="p">:</span> <span class="n">surname</span><span class="p">,</span>
@@ -350,7 +351,7 @@ Successfully installed circlify-0.14.0
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-python"><pre><span></span><span class="kn">import</span> <span class="nn">circlify</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">circlify</span>
 
 <span class="c1"># compute circle positions:</span>
 <span class="n">circles</span> <span class="o">=</span> <span class="n">circlify</span><span class="o">.</span><span class="n">circlify</span><span class="p">(</span>
@@ -374,7 +375,7 @@ Successfully installed circlify-0.14.0
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-python"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">weight</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">weight</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -407,7 +408,7 @@ Successfully installed circlify-0.14.0
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-python"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
 <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">cir</span><span class="o">.</span><span class="n">x</span> <span class="k">for</span> <span class="n">cir</span> <span class="ow">in</span> <span class="n">circles</span><span class="p">])</span>
@@ -437,7 +438,7 @@ Successfully installed circlify-0.14.0
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-python"><pre><span></span><span class="err">!</span><span class="n">wget</span> <span class="o">-</span><span class="n">O</span> <span class="n">TaipeiSansTCBeta</span><span class="o">-</span><span class="n">Regular</span><span class="o">.</span><span class="n">ttf</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">drive</span><span class="o">.</span><span class="n">google</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">uc</span><span class="err">?</span><span class="nb">id</span><span class="o">=</span><span class="mi">1</span><span class="n">eGAsTN1HBpJAkeVM57_C7ccp7hbgSz3_</span><span class="o">&amp;</span><span class="n">export</span><span class="o">=</span><span class="n">download</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>wget -O TaipeiSansTCBeta-Regular.ttf https://drive.google.com/uc?id<span class="o">=</span>1eGAsTN1HBpJAkeVM57_C7ccp7hbgSz3_<span class="p">&amp;</span><span class="nv">export</span><span class="o">=</span>download
 
 <span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span> 
@@ -461,7 +462,7 @@ Successfully installed circlify-0.14.0
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-python"><pre><span></span><span class="kn">import</span> <span class="nn">circlify</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">circlify</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">random</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
@@ -538,7 +539,7 @@ Successfully installed circlify-0.14.0
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-python"><pre><span></span><span class="n">bubble_df</span><span class="p">[</span><span class="s2">"rank"</span><span class="p">]</span> <span class="o">=</span> <span class="n">bubble_df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s2">"r"</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">index</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">bubble_df</span><span class="p">[</span><span class="s2">"rank"</span><span class="p">]</span> <span class="o">=</span> <span class="n">bubble_df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s2">"r"</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">index</span>
 <span class="n">bubble_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 
@@ -722,7 +723,7 @@ Successfully installed circlify-0.14.0
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-python"><pre><span></span><span class="n">font_size</span> <span class="o">=</span> <span class="mi">250</span><span class="o">*</span><span class="n">bubble_df</span><span class="o">.</span><span class="n">r</span><span class="o">.</span><span class="n">values</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">font_size</span> <span class="o">=</span> <span class="mi">250</span><span class="o">*</span><span class="n">bubble_df</span><span class="o">.</span><span class="n">r</span><span class="o">.</span><span class="n">values</span>
 </pre></div>
 
     </div>
@@ -739,7 +740,7 @@ Successfully installed circlify-0.14.0
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-python"><pre><span></span><span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
 
 <span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">bubble_df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">"x"</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">"y"</span><span class="p">,</span> <span class="n">custom_data</span><span class="o">=</span><span class="p">[</span><span class="s2">"l"</span><span class="p">,</span><span class="s2">"rank"</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">"x"</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">800</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">700</span><span class="p">,</span>
                  <span class="n">size</span><span class="o">=</span><span class="s2">"s"</span><span class="p">,</span> <span class="n">hover_name</span><span class="o">=</span><span class="s2">"l"</span><span class="p">,</span> <span class="n">size_max</span><span class="o">=</span><span class="mi">45</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">"l"</span><span class="p">)</span>
