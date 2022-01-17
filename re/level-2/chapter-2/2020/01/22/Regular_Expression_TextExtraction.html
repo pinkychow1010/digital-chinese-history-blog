@@ -186,7 +186,7 @@ Digital Chinese History
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><br></p>
 <p><em>Before starting with this tutorial, please watch this video beforehand so that you would already understand:</em></p>
-<p><strong>1) What is group method in regular expression?</strong></p>
+<p><strong>1) What is the group method in a regular expression?</strong></p>
 <p><strong>2) What is a raw string?</strong></p>
 <p><strong>3) How to create a character set?</strong></p>
 <p><strong>4) What is the function of quantifiers?</strong></p>
@@ -202,18 +202,18 @@ Digital Chinese History
 <h2 id="Review">
 <a class="anchor" href="#Review" aria-hidden="true"><span class="octicon octicon-link"></span></a><strong>Review</strong><a class="anchor-link" href="#Review"> </a>
 </h2>
-<p><strong><em>Here is the summary tables from the video:</em></strong></p>
+<p><strong><em>Here are the summary tables from the video:</em></strong></p>
 <table>
 <thead>
 <tr>
 <th>Syntax</th>
-<th>Meanings</th>
+<th>Meaning</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>.</td>
-<td>Any Character Except New Line</td>
+<td>Any character except newline</td>
 </tr>
 <tr>
 <td>\d</td>
@@ -221,23 +221,23 @@ Digital Chinese History
 </tr>
 <tr>
 <td>\D</td>
-<td>- Not a Digit (0-9)</td>
+<td>Not a digit (0-9)</td>
 </tr>
 <tr>
 <td>\w</td>
-<td>- Word Character (a-z, A-Z, 0-9, _)</td>
+<td>Word character (a-z, A-Z, 0-9, _)</td>
 </tr>
 <tr>
 <td>\W</td>
-<td>- Not a Word Character</td>
+<td>Not a word character</td>
 </tr>
 <tr>
 <td>\s</td>
-<td>- Whitespace (space, tab, newline)</td>
+<td>Whitespace (space, tab, newline)</td>
 </tr>
 <tr>
 <td>\S</td>
-<td>- Not Whitespace (space, tab, newline)</td>
+<td>Not whitespace (space, tab, newline)</td>
 </tr>
 </tbody>
 </table>
@@ -252,37 +252,38 @@ Digital Chinese History
 <thead>
 <tr>
 <th>Syntax</th>
-<th>Meanings</th>
+<th>Meaning</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>\b</td>
-<td>Word Boundary</td>
+<td>Word boundary</td>
 </tr>
 <tr>
 <td>\B</td>
-<td>Not a Word Boundary</td>
+<td>Not a word boundary</td>
 </tr>
 <tr>
 <td>^</td>
-<td>Beginning of a String</td>
+<td>Beginning of a string</td>
 </tr>
 <tr>
 <td>$</td>
-<td>End of a String</td>
+<td>End of a string</td>
 </tr>
 <tr>
 <td>[]</td>
-<td>Matches Characters in brackets</td>
+<td>Matches characters in brackets</td>
 </tr>
 <tr>
 <td>[^ ]</td>
-<td>Matches Characters NOT in brackets</td>
+<td>Matches characters NOT in brackets</td>
 </tr>
 <tr>
-<td>Vertical bar</td>
-<td>Either Or</td>
+<td></td>
+<td></td>
+<td>Either or</td>
 </tr>
 <tr>
 <td>( )</td>
@@ -295,29 +296,29 @@ Digital Chinese History
 <thead>
 <tr>
 <th>Quantifiers</th>
-<th>Meanings</th>
+<th>Meaning</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>*</td>
-<td>0 or More</td>
+<td>0 or more</td>
 </tr>
 <tr>
 <td>+</td>
-<td>1 or More</td>
+<td>1 or more</td>
 </tr>
 <tr>
 <td>?</td>
-<td>0 or One</td>
+<td>0 or one</td>
 </tr>
 <tr>
 <td>{3}</td>
-<td>Exact Number</td>
+<td>Exact number</td>
 </tr>
 <tr>
 <td>{3,4}</td>
-<td>Range of Numbers (Minimum, Maximum)</td>
+<td>Range of numbers (minimum, maximum)</td>
 </tr>
 </tbody>
 </table>
@@ -335,8 +336,8 @@ Digital Chinese History
 <li>## <strong>re</strong>
 </li>
 </ul>
-<p>Before we analysis any text, the relevant information need to be first extracted to exclude all irrelavant information. And sometimes it is not very straight-forward and the text might be mixed with other information, particularly when the text are mined from online sources.</p>
-<p>Below we can look at an exmaple of an entry extracted from <a href="http://maps.cga.harvard.edu/chgis/japan/">Historical GIS for Japan</a>. We can see the information are in multiple rows with each row giving different information. If we only aim for one piece of information, it might be easy to copy in one entry but the task gets challenging once we have thousands of them. This is why text mining can be helpful to save us time and effort.</p>
+<p>Before we analyse any text, the relevant information needs to be first extracted to exclude all irrelavant information. Sometimes this is not very straight-forward since the text might be mixed with other information, particularly when the texts are mined from online sources.</p>
+<p>Below we can look at an exmaple of an entry extracted from <a href="http://maps.cga.harvard.edu/chgis/japan/">Historical GIS for Japan</a>. We can see the information is in multiple rows with each row giving different information. If we only aim for one piece of information, it might be easy to copy in one entry but the task gets challenging once we have thousands of them. This is why text mining can be helpful to save us time and effort.</p>
 <p><br></p>
 <p>First of all, we have to <strong>import the library</strong>.</p>
 
@@ -398,8 +399,8 @@ Digital Chinese History
 <a class="anchor" href="#Name" aria-hidden="true"><span class="octicon octicon-link"></span></a><strong>Name</strong><a class="anchor-link" href="#Name"> </a>
 </h2>
 <p>Here we can try to get the <strong>kanji name</strong> of the entry.</p>
-<p>From what we have learnt, we can use the group option to get the first group kanji: at the word boundary (\b) followed with space (\s) and everything (regardless of length) behind it. Using pattern1, we have the name we need in the second group.</p>
-<p>We will use <strong>re.compile()</strong> to define our pattern, then use <strong>findall()</strong> to look for all matches.</p>
+<p>From what we have learnt, we can use the group option to get the first group <code>kanji:</code> at the word boundary (<code>\b</code>) followed by space (<code>\s</code>) and everything (regardless of length) behind it. Using <code>pattern1</code>, we have the name we need in the second group.</p>
+<p>We will use <strong>re.compile()</strong> to compile our pattern (faster if the pattern is frequently used), then use <strong>findall()</strong> to look for all matches.</p>
 
 </div>
 </div>
@@ -443,7 +444,7 @@ Digital Chinese History
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>We can then access the first element of list [0] (there is only one element) and second element of the <a href="https://www.w3schools.com/python/python_tuples.asp">tuple</a> [1].</p>
+<p>We can then access the first element of list <code>[0]</code> (there is only one element) and second element of the <a href="https://www.w3schools.com/python/python_tuples.asp">tuple</a> <code>[1]</code>.</p>
 
 </div>
 </div>
@@ -487,20 +488,20 @@ Digital Chinese History
 <h2 id="Alternative:-Lookaround">
 <a class="anchor" href="#Alternative:-Lookaround" aria-hidden="true"><span class="octicon octicon-link"></span></a><strong>Alternative: Lookaround</strong><a class="anchor-link" href="#Alternative:-Lookaround"> </a>
 </h2>
-<p>However, we can also use <strong>lookaround method</strong> from <strong>re</strong>, which mean we use "kanji:" to identify what we search for (behind the keyword) but we do not select "kanji: " itself because it is not important for us.</p>
+<p>However, we can also use the <strong>lookaround method</strong> from <strong>re</strong>, which means we use <code>kanji:</code> to identify what we search for (behind the keyword) but we do not select <code>kanji:</code> itself because it is not important for us.</p>
 <p><br></p>
-<p>Be careful, <strong>space</strong> might not be obvious, it is also count as the element in the string by Python so we always need to address them too.</p>
+<p>Be careful, <strong>space</strong> might not be obvious, but it is also counts as character, so we always need to address them too.</p>
 <p><br></p>
 <hr>
-<p>Given the string <strong>"foobarbarfoo"</strong>:</p>
+<p>Given the string <code>foobarbarfoo</code>:</p>
 <p><br></p>
-<p><strong>bar(?=bar)</strong>     finds the 1st bar ("bar" which has "bar" after it)</p>
-<p><strong>bar(?!bar)</strong>     finds the 2nd bar ("bar" which does not have "bar" after it)</p>
-<p><strong>(?&lt;=foo)bar</strong>    finds the 1st bar ("bar" which has "foo" before it)</p>
-<p><strong>(?&lt;!foo)bar</strong>    finds the 2nd bar ("bar" which does not have "foo" before it)</p>
+<p><code>bar(?=bar)</code>     finds the 1st bar ("bar" which has "bar" after it)</p>
+<p><code>bar(?!bar)</code>     finds the 2nd bar ("bar" which does not have "bar" after it)</p>
+<p><code>(?&lt;=foo)bar</code>    finds the 1st bar ("bar" which has "foo" before it)</p>
+<p><code>(?&lt;!foo)bar</code>    finds the 2nd bar ("bar" which does not have "foo" before it)</p>
 <p><br></p>
 <p>They can also be combined:</p>
-<p><strong>(?&lt;=foo)bar(?=bar)</strong>    finds the 1st bar ("bar" with "foo" before it and "bar" after it)</p>
+<p><code>(?&lt;=foo)bar(?=bar)</code>    finds the 1st bar ("bar" with "foo" before it and "bar" after it)</p>
 <hr>
 
 </div>
@@ -509,7 +510,7 @@ Digital Chinese History
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Here we use <strong>(?&lt;=text1)text2</strong> to select text 2 from identifying text 1, in which text 1 is before text 2 in the text.</p>
+<p>Here we use <code>(?&lt;=text1)text2</code> to select text 2 from identifying text 1, in which text 1 is before text 2 in the text.</p>
 
 </div>
 </div>
@@ -556,7 +557,7 @@ Digital Chinese History
 <h2 id="Coordinates">
 <a class="anchor" href="#Coordinates" aria-hidden="true"><span class="octicon octicon-link"></span></a><strong>Coordinates</strong><a class="anchor-link" href="#Coordinates"> </a>
 </h2>
-<p>Now, we can try to get the latitude and longitude from the lord (For example, when we need them for making a map in <strong>GIS</strong>). Since we have already learnt the principle, the code we need is indeed very similar.</p>
+<p>Now, we can try to get the latitude and longitude from the <code>lord_entry</code> (for example, to make a map in <strong>GIS</strong>). Since we have already learnt the principle, the code we need is indeed very similar.</p>
 
 </div>
 </div>
@@ -656,7 +657,7 @@ Digital Chinese History
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">match</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="c1"># we can get the first item of list to remove [], now it is a string</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">match</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="c1"># we can get the first item of the list to remove [], now it is a string</span>
 </pre></div>
 
     </div>
@@ -760,7 +761,7 @@ Digital Chinese History
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Now we get what we need! Let's do the same for longitude.</p>
+<p>Now we got what we need! Let's do the same for longitude.</p>
 
 </div>
 </div>
@@ -1082,7 +1083,7 @@ Digital Chinese History
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Combining with Web Scrapping, which we will learn later, we can then easily get information for text analysis.</p>
+<p>Combining with Web Scrapping, which we will learn later, we can then easily get the required information for text analysis.</p>
 <p><br>
 <br>
 <br></p>
@@ -1096,7 +1097,7 @@ Digital Chinese History
 <h2 id="Additional-information">
 <a class="anchor" href="#Additional-information" aria-hidden="true"><span class="octicon octicon-link"></span></a><strong>Additional information</strong><a class="anchor-link" href="#Additional-information"> </a>
 </h2>
-<p>This notebook is provided for educational purpose and feel free to report any issue on GitHub.</p>
+<p>This notebook is provided for educational purposes only. Feel free to report any issues on GitHub.</p>
 <p><br></p>
 <p><strong>Author:</strong> <a href="https://www.linkedin.com/in/ka-hei-chow-231345188/">Ka Hei, Chow</a></p>
 <p><strong>License:</strong> The code in this notebook is licensed under the <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons by Attribution 4.0 license</a>.</p>
