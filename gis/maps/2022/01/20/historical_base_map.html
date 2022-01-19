@@ -121,107 +121,133 @@ Digital Chinese History
 <h2 id="background">
 <a class="anchor" href="#background" aria-hidden="true"><span class="octicon octicon-link"></span></a>Background</h2>
 
-<p>If you just started with QGIS, a free and open geographic information system application for working with georeferenced data, you might realize you only have an empty window when you start a new project. Adding a basemap is very helpful for you to comprehend and navigate with your own data. Basemap serves as a reference map on which you overlay data from layers and visualize geographic information. Just as a Google Map, you can zoom in and out for different levels of details in your map. However, the typical open basemap such as Open Street Map might not be enough for historical research. In this tutorial, you will learn how to add Chinese historical basemap into your QGIS. Here we will demonstrate with QGIS version 3.16.0-Hannover.</p>
+<p>If you just started with QGIS, a free and open geographic information system application for working with georeferenced data, you might realize you only have an empty window when you start a new project. Adding a base map is very helpful for you to comprehend and navigate your data. Basemap serves as a reference map on which you overlay data from layers and visualize geographic information. Just as a Google Map, you can zoom in and out for different levels of details in your map. However, the typical open base map such as Open Street Map might not be enough for historical research. In this tutorial, you will learn how to add Chinese historical base maps into your QGIS. Here we will demonstrate with QGIS version 3.16.0-Hannover.</p>
 
 <h2 id="basic-setup">
 <a class="anchor" href="#basic-setup" aria-hidden="true"><span class="octicon octicon-link"></span></a>Basic Setup</h2>
 
-<p>The first thing you need to do is to open a new project in QGIS. On the left side, you will see a browser panel where you can browse to a directory on your system where you have some GIS data, as well as a layer panel where the opened data will be displayed. The layer panel should be empty by now but our basemap will appear there as soon as we add it.</p>
+<p>The first thing you need to do is to open a new project in QGIS. On the left side, you will see a browser panel where you can browse to a directory on your system where you have some GIS data, as well as a layer panel where the opened data will be displayed. The layer panel should be empty by now but our base map will appear there as soon as we add it.</p>
 
-<p><img src="/digital-chinese-history-blog/images/gis01" alt="" title="This is a typical QGIS layout for starting with a new project"></p>
-
-<p><img src="/digital-chinese-history-blog/images/logo.png" alt="" title="fast.ai's logo"></p>
+<p><img src="/digital-chinese-history-blog/images/gis01.png" alt="" title="This is a typical QGIS layout for starting with a new project"></p>
 
 <h2 id="add-the-basemaps">
 <a class="anchor" href="#add-the-basemaps" aria-hidden="true"><span class="octicon octicon-link"></span></a>Add the Basemaps</h2>
 
-<p>Adding a historical basemap is rather straight-forward. It is done via WMS/WMTS (Web Map Service), which is a service hosted on a remote server. Similar to a website, you can access it as long as you have a connection to the server. Using QGIS, you can load a WMS directly into your existing map. The WMS service can be assessed either by right-clicking the <code class="language-plaintext highlighter-rouge">WMS/WMTS</code> icon in the <code class="language-plaintext highlighter-rouge">browser panel</code>, or clicking layer from the <code class="language-plaintext highlighter-rouge">menu bar</code>, browsing to <code class="language-plaintext highlighter-rouge">Add Layer</code> and <code class="language-plaintext highlighter-rouge">Add WMS/WMTS Layer</code>. Then you can create a <code class="language-plaintext highlighter-rouge">new connection</code> by inputting the <code class="language-plaintext highlighter-rouge">Name</code> and <code class="language-plaintext highlighter-rouge">url</code>.</p>
+<p>Adding a historical base map is rather straightforward. It is done via WMS/WMTS (Web Map Service), which is a service hosted on a remote server. Similar to a website, you can access it as long as you have a connection to the server. Using QGIS, you can load a WMS directly into your existing map. The WMS service can be assessed either by right-clicking the <code class="language-plaintext highlighter-rouge">WMS/WMTS</code> icon in the <code class="language-plaintext highlighter-rouge">browser panel</code>, or clicking layer from the <code class="language-plaintext highlighter-rouge">menu bar</code>, browsing to <code class="language-plaintext highlighter-rouge">Add Layer</code> and <code class="language-plaintext highlighter-rouge">Add WMS/WMTS Layer</code>. Then you can create a <code class="language-plaintext highlighter-rouge">new connection</code> by inputting the <code class="language-plaintext highlighter-rouge">Name</code> and <code class="language-plaintext highlighter-rouge">URL</code>.</p>
 
-<p>Here, we will use the basemaps provided by Chinese Civilization in Time and Space (中華文明之時空基礎架構) from Academia Sinica (中央研究院) in Taiwan. For the details of the project, you can visit this <a href="https://ccts.sinica.edu.tw/index.php?lang=zh-tw">page</a>.</p>
+<p>Here, we will use the base maps provided by Chinese Civilization in Time and Space (中華文明之時空基礎架構) from Academia Sinica (中央研究院) in Taiwan. For the details of the project, you can visit this <a href="https://ccts.sinica.edu.tw/index.php?lang=zh-tw">page</a>.</p>
 
-<p>In the screenshot below, I use name <code class="language-plaintext highlighter-rouge">中國歷史地圖</code>. For the url, input the following:</p>
+<p>In the screenshot below, I use the name <code class="language-plaintext highlighter-rouge">中國歷史地圖</code>. For the URL, input the following:</p>
 
 <p>http://gis.sinica.edu.tw/ccts/wmts?SERVICE=WMTS&amp;REQUEST=GetTile&amp;VERSION=1.0.0&amp;LAYER=%7BLayer_ID%7D&amp;STYLE=_null&amp;TILEMATRIXSET=GoogleMapsCompatible&amp;TILEMATRIX=%7Bz%7D&amp;TILEROW=%7By%7D&amp;TILECOL=%7Bx%7D&amp;FORMAT=image/jpeg</p>
 
 <p>Then click <code class="language-plaintext highlighter-rouge">ok</code>.</p>
 
-<p><img src="/digital-chinese-history-blog/images/gis02" alt="" title="Create a new connection"></p>
+<p><img src="/digital-chinese-history-blog/images/gis02.png" alt="" title="Create a new connection"></p>
 
-<p><img src="/digital-chinese-history-blog/images/gis03" alt="" title="Add name and url"></p>
+<p><img src="/digital-chinese-history-blog/images/gis03.png" alt="" title="Add name and url"></p>
 
 <h2 id="check-the-projection">
 <a class="anchor" href="#check-the-projection" aria-hidden="true"><span class="octicon octicon-link"></span></a>Check the Projection</h2>
 
-<p>In order for all layers correctly displayed, we need to make sure the projection projection is consistent with the layer projection. As the basemap layer has a projection of <code class="language-plaintext highlighter-rouge">EPSG: 3857</code>, we need to change the project projection to the same setting too. We can do that by clicking on the EPSG code in the bottom right of the window, where an earth icon is displayed. Then we will search for EPSG code 3857 and click <code class="language-plaintext highlighter-rouge">apply</code> then <code class="language-plaintext highlighter-rouge">ok</code>.</p>
+<p>For all layers correctly displayed, we need to make sure the project projection is consistent with the layer projection. As the base map layer has a projection of <code class="language-plaintext highlighter-rouge">EPSG: 3857</code>, we need to change the project projection to the same setting too. We can do that by clicking on the EPSG code in the bottom right of the window, where an earth icon is displayed. Then we will search for EPSG code 3857 and click <code class="language-plaintext highlighter-rouge">apply</code> then <code class="language-plaintext highlighter-rouge">ok</code>.</p>
 
-<p><img src="/digital-chinese-history-blog/images/gis04" alt="" title="Change project projection"></p>
+<p><img src="/digital-chinese-history-blog/images/gis04.png" alt="" title="Change project projection"></p>
 
-<p>Then we can browse through different basemaps. This is the <a href="http://gis.sinica.edu.tw/ccts/">full list</a> of the available maps.</p>
+<p>Then we can browse through different base maps. This is the <a href="http://gis.sinica.edu.tw/ccts/">full list</a> of the available maps.</p>
 
-<p>A shorten list:</p>
+<p>A shortened list:</p>
 
-<p>*唐代各道、州界 : Tang_Admin</p>
-
-<p>*唐代交通路線圖 : Tang_TrafficRoute</p>
-
-<p>*西周時期地圖 : Xijhou</p>
-
-<p>*河西新疆五十萬分一地圖集 : Xinjiang_500K_1943</p>
-
-<p>*東漢歷史地圖(E. Han) : ad0140</p>
-
-<p>*三國歷史地圖(Sanguo) : ad0262</p>
-
-<p>*西晉歷史地圖(W. Jing) : ad0281</p>
-
-<p>*東晉歷史地圖(E. Jing) : ad0382</p>
-
-<p>*南北朝歷史地圖(South and North) : ad0497</p>
-
-<p>*隋代歷史地圖(Sui) : ad0612</p>
-
-<p>*唐代歷史地圖(Tang) : ad0741</p>
-
-<p>*北宋歷史地圖(N. Song) : ad1111</p>
-
-<p>*南宋歷史地圖(S. Song) : ad1208</p>
-
-<p>*元代歷史地圖(Yuan) : ad1330</p>
-
-<p>*明代歷史地圖(Ming) : ad1582</p>
-
-<p>*讀史方輿紀要地名 : ad1582_10_2s</p>
-
-<p>*清代歷史地圖(Qing) : ad1820</p>
-
-<p>*西漢歷史地圖(W. Han) : bc0007</p>
-
-<p>*秦代歷史地圖(Qin) : bc0210</p>
-
-<p>*明代雲南外邊與軍管政區 : mingbd_yn</p>
-
-<p>*明代驛站與驛路 : mingtraffic</p>
-
-<p>*商時期地圖 : shang</p>
-
-<p>*中華民國新地圖 : spaper</p>
+<ul>
+  <li>
+    <p>唐代各道、州界 : Tang_Admin</p>
+  </li>
+  <li>
+    <p>唐代交通路線圖 : Tang_TrafficRoute</p>
+  </li>
+  <li>
+    <p>西周時期地圖 : Xijhou</p>
+  </li>
+  <li>
+    <p>河西新疆五十萬分一地圖集 : Xinjiang_500K_1943</p>
+  </li>
+  <li>
+    <p>東漢歷史地圖(E. Han) : ad0140</p>
+  </li>
+  <li>
+    <p>三國歷史地圖(Sanguo) : ad0262</p>
+  </li>
+  <li>
+    <p>西晉歷史地圖(W. Jing) : ad0281</p>
+  </li>
+  <li>
+    <p>東晉歷史地圖(E. Jing) : ad0382</p>
+  </li>
+  <li>
+    <p>南北朝歷史地圖(South and North) : ad0497</p>
+  </li>
+  <li>
+    <p>隋代歷史地圖(Sui) : ad0612</p>
+  </li>
+  <li>
+    <p>唐代歷史地圖(Tang) : ad0741</p>
+  </li>
+  <li>
+    <p>北宋歷史地圖(N. Song) : ad1111</p>
+  </li>
+  <li>
+    <p>南宋歷史地圖(S. Song) : ad1208</p>
+  </li>
+  <li>
+    <p>元代歷史地圖(Yuan) : ad1330</p>
+  </li>
+  <li>
+    <p>明代歷史地圖(Ming) : ad1582</p>
+  </li>
+  <li>
+    <p>讀史方輿紀要地名 : ad1582_10_2s</p>
+  </li>
+  <li>
+    <p>清代歷史地圖(Qing) : ad1820</p>
+  </li>
+  <li>
+    <p>西漢歷史地圖(W. Han) : bc0007</p>
+  </li>
+  <li>
+    <p>秦代歷史地圖(Qin) : bc0210</p>
+  </li>
+  <li>
+    <p>明代雲南外邊與軍管政區 : mingbd_yn</p>
+  </li>
+  <li>
+    <p>明代驛站與驛路 : mingtraffic</p>
+  </li>
+  <li>
+    <p>商時期地圖 : shang</p>
+  </li>
+  <li>
+    <p>中華民國新地圖 : spaper</p>
+  </li>
+</ul>
 
 <p>*春秋時期地圖 : spring_autumn</p>
 
 <p>*戰國時期地圖 : warring_states</p>
 
-<p>Double click on the layer you like in the browser panel. Now, in the layer panel, you will see a new layer being displayed. To better view the layers, we will right-click the basemap layer and select <code class="language-plaintext highlighter-rouge">Zoom to Layer</code></p>
+<p>Double click on the layer you like in the browser panel. Now, in the layer panel, you will see a new layer being displayed. To better view the layers, we will right-click the base map layer and select <code class="language-plaintext highlighter-rouge">Zoom to Layer</code></p>
 
-<p><img src="/digital-chinese-history-blog/images/gis05" alt="" title="Zoom to Layer"></p>
+<p><img src="/digital-chinese-history-blog/images/gis05.png" alt="" title="Zoom to Layer"></p>
 
 <h2 id="add-open-street-map">
 <a class="anchor" href="#add-open-street-map" aria-hidden="true"><span class="octicon octicon-link"></span></a>Add Open Street Map</h2>
 
-<p>However, the historical basemap provided Academia Sinica do not show fine details for the topography and different provinces. To improve the visuals, I will prefer also adding a Open Street Map basemap for looking into regional details. To do that, we can use another option for adding a basemap: XYZ Tile Layers,</p>
+<p>However, the historical base map provided Academia Sinica do not show fine details for the topography and different provinces. To improve the visuals, I prefer also to add an Open Street Map base map for looking into regional details. To do that, we can use another option for adding a base map: XYZ Tile Layers,</p>
 
-<p>In the Browser Panel (or from the browser panel of the “Data Source Manager”), find the <code class="language-plaintext highlighter-rouge">XYZ Tiles</code> and right-click it. Select <code class="language-plaintext highlighter-rouge">New Connection</code>. Here we need to provide a <em>name</em> (any name will do) and add the <em>url</em>. The placeholders {z}, {x}, and {y} will be replaced by QGIS with the appropriate information. To add the <strong>Open Street Map (OSM)</strong>, use the following url:</p>
+<p>In the Browser Panel (or from the browser panel of the “Data Source Manager”), find the <code class="language-plaintext highlighter-rouge">XYZ Tiles</code> and right-click it. Select <code class="language-plaintext highlighter-rouge">New Connection</code>. Here we need to provide a <em>name</em> (any name will do) and add the <em>URL</em>. The placeholders {z}, {x}, and {y} will be replaced by QGIS with the appropriate information. To add the <strong>Open Street Map (OSM)</strong>, use the following URL:</p>
 
 <p>https://tile.openstreetmap.org/{z}/{x}/{y}.png</p>
+
+<p><img src="/digital-chinese-history-blog/images/gis06.png" alt="" title="Add OSM basemap"></p>
 
 <p>You can also add other options as you like:</p>
 
@@ -231,12 +257,18 @@ http://mt0.google.com/vt/lyrs=s&amp;hl=en&amp;x={x}&amp;y={y}&amp;z={z}</p>
 <p><strong>Terrain:</strong>
 http://mt0.google.com/vt/lyrs=t&amp;hl=en&amp;x={x}&amp;y={y}&amp;z={z}</p>
 
-<p>Pay attention that the layers are displayed in order, so your historical base map will be hidden by OSM if it is put below the OSM layer. Great! Now, we finish with the set up and can start to play around with our data. Let’s look at our basemaps.</p>
+<p>Pay attention that the layers are displayed in order, so your historical base map will be hidden by OSM if it is put below the OSM layer. Great! Now, we finish with the set-up and can start to play around with our data. Let’s look at our base maps.</p>
 
-<p><img src="/digital-chinese-history-blog/images/gis07" alt="" title="Completed"></p>
+<p><img src="/digital-chinese-history-blog/images/gis07.png" alt="" title="Completed"></p>
+
+<p><br></p>
+
+<hr>
 
 <h2 id="references">
 <a class="anchor" href="#references" aria-hidden="true"><span class="octicon octicon-link"></span></a>References</h2>
+
+<p><em>https://ccts.sinica.edu.tw/framework.php?lang=zh-tw</em></p>
 
 
   </div><a class="u-url" href="/digital-chinese-history-blog/gis/maps/2022/01/20/historical_base_map.html" hidden></a>
