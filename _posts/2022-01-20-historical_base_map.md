@@ -6,11 +6,10 @@ image: images/china.jpg
 categories: [GIS, maps]
 title: Adding Historical Base Map in QGIS
 ---
-# Adding Historical Base Map in QGIS
 
 ## Background
 
-If you just started with **QGIS**, a free and open geographic information system application for working with georeferenced data, you might realize you only have an empty window when you start a new project. Adding a base map is very helpful for you to comprehend and navigate your data. Basemap serves as a **reference map** on which you overlay data from layers and visualize geographic information. Just as a Google Map, you can zoom in and out for different levels of details in your map. However, the typical open base map such as Open Street Map might not be enough for historical research. In this tutorial, you will learn how to add Chinese historical base maps into your QGIS. Here we will demonstrate with QGIS **version 3.16.0-Hannover**.
+If you just started with [**QGIS**](https://qgis.org/en/site/), a free and open geographic information system application for working with georeferenced data, you might realize there is only an empty window when you start a new project. Adding a base map is very helpful for you to comprehend and navigate your data. Basemap serves as a **reference map** on which you overlay data from layers and visualize geographic information. Just as a Google Map, you can zoom in and out for different levels of details in your map. However, the typical open base map such as Open Street Map might not be enough for historical research. In this tutorial, you will learn how to add Chinese historical base maps into your QGIS. Here we will demonstrate with QGIS **version 3.16.0-Hannover**.
 
 
 ## Basic Setup
@@ -27,7 +26,7 @@ Here, we will use the base maps provided by **Chinese Civilization in Time and S
 
 In the screenshot below, I use the name `中國歷史地圖`. For the URL, input the following:
 
-http://gis.sinica.edu.tw/ccts/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=%7BLayer_ID%7D&STYLE=_null&TILEMATRIXSET=GoogleMapsCompatible&TILEMATRIX=%7Bz%7D&TILEROW=%7By%7D&TILECOL=%7Bx%7D&FORMAT=image/jpeg
+`http://gis.sinica.edu.tw/ccts/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=%7BLayer_ID%7D&STYLE=_null&TILEMATRIXSET=GoogleMapsCompatible&TILEMATRIX=%7Bz%7D&TILEROW=%7By%7D&TILECOL=%7Bx%7D&FORMAT=image/jpeg`
 
 Then click `ok`.
 
@@ -102,21 +101,21 @@ Double click on the layer you like in the browser panel. Now, in the layer panel
 
 ## Add Open Street Map
 
-However, the historical base map provided Academia Sinica do not show fine details for the topography and different provinces. To improve the visuals, I prefer also to add an **Open Street Map** base map for looking into regional details. To do that, we can use another option for adding a base map: XYZ Tile Layers, which was implemented for tiled services with no plugin required.
+However, the historical base map provided by Academia Sinica do not show fine details for the topography and different provinces. To improve the visuals, I prefer also to add an **Open Street Map** base map for looking into regional details. To do that, we can use another option for adding a base map: XYZ Tile Layers, which was implemented for tiled services with no plugin required.
 
 In the Browser Panel (or from the browser panel of the “Data Source Manager”), find the `XYZ Tiles` and right-click it. Select `New Connection`. Here we need to provide a *name* (any name will do) and add the *URL*. The placeholders {z}, {x}, and {y} will be replaced by QGIS with the appropriate information. To add the **Open Street Map (OSM)**, use the following URL:
 
-https://tile.openstreetmap.org/{z}/{x}/{y}.png
+`https://tile.openstreetmap.org/{z}/{x}/{y}.png`
 
 ![]({{ site.baseurl }}/images/gis06.png "Add OSM basemap")
 
 You can also add other options as you like:
 
 **Satellite:**
-http://mt0.google.com/vt/lyrs=s&hl=en&x={x}&y={y}&z={z}
+`http://mt0.google.com/vt/lyrs=s&hl=en&x={x}&y={y}&z={z}`
 
 **Terrain:**
-http://mt0.google.com/vt/lyrs=t&hl=en&x={x}&y={y}&z={z}
+`http://mt0.google.com/vt/lyrs=t&hl=en&x={x}&y={y}&z={z}`
 
 Pay attention that the layers are displayed **in order**, so your historical base map will be hidden by OSM if it is put below the OSM layer. Great! Now, we finish with the set-up and can start to play around with our data. Let's look at our base maps.
 
