@@ -19,6 +19,7 @@ The first thing you need to do is to open a new project in QGIS. On the left sid
 
 ![]({{ site.baseurl }}/images/gis01 "This is a typical QGIS layout for starting with a new project")
 
+![]({{ site.baseurl }}/images/logo.png "fast.ai's logo")
 
 ## Add the Basemaps
 
