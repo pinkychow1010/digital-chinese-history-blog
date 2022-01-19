@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary" /><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Adding Historical Base Map in QGIS | 數位中國史部落格 Digital Chinese History</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="Adding Historical Base Map in QGIS" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="GIS Tutorial" />
+<meta property="og:description" content="GIS Tutorial" />
+<link rel="canonical" href="https://pinkychow1010.github.io/digital-chinese-history-blog/gis/maps/2022/01/20/historical_base_map.html" />
+<meta property="og:url" content="https://pinkychow1010.github.io/digital-chinese-history-blog/gis/maps/2022/01/20/historical_base_map.html" />
+<meta property="og:site_name" content="數位中國史部落格 Digital Chinese History" />
+<meta property="og:image" content="https://pinkychow1010.github.io/digital-chinese-history-blog/images/china.jpg" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-01-20T00:00:00-06:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://pinkychow1010.github.io/digital-chinese-history-blog/images/china.jpg" />
+<meta property="twitter:title" content="Adding Historical Base Map in QGIS" />
+<script type="application/ld+json">
+{"url":"https://pinkychow1010.github.io/digital-chinese-history-blog/gis/maps/2022/01/20/historical_base_map.html","@type":"BlogPosting","image":"https://pinkychow1010.github.io/digital-chinese-history-blog/images/china.jpg","headline":"Adding Historical Base Map in QGIS","dateModified":"2022-01-20T00:00:00-06:00","datePublished":"2022-01-20T00:00:00-06:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://pinkychow1010.github.io/digital-chinese-history-blog/gis/maps/2022/01/20/historical_base_map.html"},"description":"GIS Tutorial","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/digital-chinese-history-blog/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://pinkychow1010.github.io/digital-chinese-history-blog/feed.xml" title="數位中國史部落格
+Digital Chinese History
+" /><link rel="shortcut icon" type="image/x-icon" href="/digital-chinese-history-blog/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/digital-chinese-history-blog/">數位中國史部落格
+Digital Chinese History
+</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/digital-chinese-history-blog/about/">About</a><a class="page-link" href="/digital-chinese-history-blog/gallery/">Gallery</a><a class="page-link" href="/digital-chinese-history-blog/resources/">Resources</a><a class="page-link" href="/digital-chinese-history-blog/search/">Search</a><a class="page-link" href="/digital-chinese-history-blog/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Adding Historical Base Map in QGIS</h1><p class="page-description">GIS Tutorial</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2022-01-20T00:00:00-06:00" itemprop="datePublished">
+        Jan 20, 2022
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      4 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/digital-chinese-history-blog/categories/#GIS">GIS</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/digital-chinese-history-blog/categories/#maps">maps</a>
+        
+      
+      </p>
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <ul id="toc" class="section-nav">
+<li class="toc-entry toc-h1"><a href="#adding-historical-base-map-in-qgis">Adding Historical Base Map in QGIS</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#background">Background</a></li>
+<li class="toc-entry toc-h2"><a href="#basic-setup">Basic Setup</a></li>
+<li class="toc-entry toc-h2"><a href="#add-the-basemaps">Add the Basemaps</a></li>
+<li class="toc-entry toc-h2"><a href="#check-the-projection">Check the Projection</a></li>
+<li class="toc-entry toc-h2"><a href="#add-open-street-map">Add Open Street Map</a></li>
+<li class="toc-entry toc-h2"><a href="#references">References</a></li>
+</ul>
+</li>
+</ul><h1 id="adding-historical-base-map-in-qgis">
+<a class="anchor" href="#adding-historical-base-map-in-qgis" aria-hidden="true"><span class="octicon octicon-link"></span></a>Adding Historical Base Map in QGIS</h1>
+
+<h2 id="background">
+<a class="anchor" href="#background" aria-hidden="true"><span class="octicon octicon-link"></span></a>Background</h2>
+
+<p>If you just started with QGIS, a free and open geographic information system application for working with georeferenced data, you might realize you only have an empty window when you start a new project. Adding a basemap is very helpful for you to comprehend and navigate with your own data. Basemap serves as a reference map on which you overlay data from layers and visualize geographic information. Just as a Google Map, you can zoom in and out for different levels of details in your map. However, the typical open basemap such as Open Street Map might not be enough for historical research. In this tutorial, you will learn how to add Chinese historical basemap into your QGIS. Here we will demonstrate with QGIS version 3.16.0-Hannover.</p>
+
+<h2 id="basic-setup">
+<a class="anchor" href="#basic-setup" aria-hidden="true"><span class="octicon octicon-link"></span></a>Basic Setup</h2>
+
+<p>The first thing you need to do is to open a new project in QGIS. On the left side, you will see a browser panel where you can browse to a directory on your system where you have some GIS data, as well as a layer panel where the opened data will be displayed. The layer panel should be empty by now but our basemap will appear there as soon as we add it.</p>
+
+<p><img src="/digital-chinese-history-blog/images/gis01" alt="" title="This is a typical QGIS layout for starting with a new project"></p>
+
+<h2 id="add-the-basemaps">
+<a class="anchor" href="#add-the-basemaps" aria-hidden="true"><span class="octicon octicon-link"></span></a>Add the Basemaps</h2>
+
+<p>Adding a historical basemap is rather straight-forward. It is done via WMS/WMTS (Web Map Service), which is a service hosted on a remote server. Similar to a website, you can access it as long as you have a connection to the server. Using QGIS, you can load a WMS directly into your existing map. The WMS service can be assessed either by right-clicking the <code class="language-plaintext highlighter-rouge">WMS/WMTS</code> icon in the <code class="language-plaintext highlighter-rouge">browser panel</code>, or clicking layer from the <code class="language-plaintext highlighter-rouge">menu bar</code>, browsing to <code class="language-plaintext highlighter-rouge">Add Layer</code> and <code class="language-plaintext highlighter-rouge">Add WMS/WMTS Layer</code>. Then you can create a <code class="language-plaintext highlighter-rouge">new connection</code> by inputting the <code class="language-plaintext highlighter-rouge">Name</code> and <code class="language-plaintext highlighter-rouge">url</code>.</p>
+
+<p>Here, we will use the basemaps provided by Chinese Civilization in Time and Space (中華文明之時空基礎架構) from Academia Sinica (中央研究院) in Taiwan. For the details of the project, you can visit this <a href="https://ccts.sinica.edu.tw/index.php?lang=zh-tw">page</a>.</p>
+
+<p>In the screenshot below, I use name <code class="language-plaintext highlighter-rouge">中國歷史地圖</code>. For the url, input the following:</p>
+
+<p>http://gis.sinica.edu.tw/ccts/wmts?SERVICE=WMTS&amp;REQUEST=GetTile&amp;VERSION=1.0.0&amp;LAYER=%7BLayer_ID%7D&amp;STYLE=_null&amp;TILEMATRIXSET=GoogleMapsCompatible&amp;TILEMATRIX=%7Bz%7D&amp;TILEROW=%7By%7D&amp;TILECOL=%7Bx%7D&amp;FORMAT=image/jpeg</p>
+
+<p>Then click <code class="language-plaintext highlighter-rouge">ok</code>.</p>
+
+<p><img src="/digital-chinese-history-blog/images/gis02" alt="" title="Create a new connection"></p>
+
+<p><img src="/digital-chinese-history-blog/images/gis03" alt="" title="Add name and url"></p>
+
+<h2 id="check-the-projection">
+<a class="anchor" href="#check-the-projection" aria-hidden="true"><span class="octicon octicon-link"></span></a>Check the Projection</h2>
+
+<p>In order for all layers correctly displayed, we need to make sure the projection projection is consistent with the layer projection. As the basemap layer has a projection of <code class="language-plaintext highlighter-rouge">EPSG: 3857</code>, we need to change the project projection to the same setting too. We can do that by clicking on the EPSG code in the bottom right of the window, where an earth icon is displayed. Then we will search for EPSG code 3857 and click <code class="language-plaintext highlighter-rouge">apply</code> then <code class="language-plaintext highlighter-rouge">ok</code>.</p>
+
+<p><img src="/digital-chinese-history-blog/images/gis04" alt="" title="Change project projection"></p>
+
+<p>Then we can browse through different basemaps. This is the <a href="http://gis.sinica.edu.tw/ccts/">full list</a> of the available maps.</p>
+
+<p>A shorten list:</p>
+
+<p>*唐代各道、州界 : Tang_Admin</p>
+
+<p>*唐代交通路線圖 : Tang_TrafficRoute</p>
+
+<p>*西周時期地圖 : Xijhou</p>
+
+<p>*河西新疆五十萬分一地圖集 : Xinjiang_500K_1943</p>
+
+<p>*東漢歷史地圖(E. Han) : ad0140</p>
+
+<p>*三國歷史地圖(Sanguo) : ad0262</p>
+
+<p>*西晉歷史地圖(W. Jing) : ad0281</p>
+
+<p>*東晉歷史地圖(E. Jing) : ad0382</p>
+
+<p>*南北朝歷史地圖(South and North) : ad0497</p>
+
+<p>*隋代歷史地圖(Sui) : ad0612</p>
+
+<p>*唐代歷史地圖(Tang) : ad0741</p>
+
+<p>*北宋歷史地圖(N. Song) : ad1111</p>
+
+<p>*南宋歷史地圖(S. Song) : ad1208</p>
+
+<p>*元代歷史地圖(Yuan) : ad1330</p>
+
+<p>*明代歷史地圖(Ming) : ad1582</p>
+
+<p>*讀史方輿紀要地名 : ad1582_10_2s</p>
+
+<p>*清代歷史地圖(Qing) : ad1820</p>
+
+<p>*西漢歷史地圖(W. Han) : bc0007</p>
+
+<p>*秦代歷史地圖(Qin) : bc0210</p>
+
+<p>*明代雲南外邊與軍管政區 : mingbd_yn</p>
+
+<p>*明代驛站與驛路 : mingtraffic</p>
+
+<p>*商時期地圖 : shang</p>
+
+<p>*中華民國新地圖 : spaper</p>
+
+<p>*春秋時期地圖 : spring_autumn</p>
+
+<p>*戰國時期地圖 : warring_states</p>
+
+<p>Double click on the layer you like in the browser panel. Now, in the layer panel, you will see a new layer being displayed. To better view the layers, we will right-click the basemap layer and select <code class="language-plaintext highlighter-rouge">Zoom to Layer</code></p>
+
+<p><img src="/digital-chinese-history-blog/images/gis05" alt="" title="Zoom to Layer"></p>
+
+<h2 id="add-open-street-map">
+<a class="anchor" href="#add-open-street-map" aria-hidden="true"><span class="octicon octicon-link"></span></a>Add Open Street Map</h2>
+
+<p>However, the historical basemap provided Academia Sinica do not show fine details for the topography and different provinces. To improve the visuals, I will prefer also adding a Open Street Map basemap for looking into regional details. To do that, we can use another option for adding a basemap: XYZ Tile Layers,</p>
+
+<p>In the Browser Panel (or from the browser panel of the “Data Source Manager”), find the <code class="language-plaintext highlighter-rouge">XYZ Tiles</code> and right-click it. Select <code class="language-plaintext highlighter-rouge">New Connection</code>. Here we need to provide a <em>name</em> (any name will do) and add the <em>url</em>. The placeholders {z}, {x}, and {y} will be replaced by QGIS with the appropriate information. To add the <strong>Open Street Map (OSM)</strong>, use the following url:</p>
+
+<p>https://tile.openstreetmap.org/{z}/{x}/{y}.png</p>
+
+<p>You can also add other options as you like:</p>
+
+<p><strong>Satellite:</strong>
+http://mt0.google.com/vt/lyrs=s&amp;hl=en&amp;x={x}&amp;y={y}&amp;z={z}</p>
+
+<p><strong>Terrain:</strong>
+http://mt0.google.com/vt/lyrs=t&amp;hl=en&amp;x={x}&amp;y={y}&amp;z={z}</p>
+
+<p>Pay attention that the layers are displayed in order, so your historical base map will be hidden by OSM if it is put below the OSM layer. Great! Now, we finish with the set up and can start to play around with our data. Let’s look at our basemaps.</p>
+
+<p><img src="/digital-chinese-history-blog/images/gis07" alt="" title="Completed"></p>
+
+<h2 id="references">
+<a class="anchor" href="#references" aria-hidden="true"><span class="octicon octicon-link"></span></a>References</h2>
+
+
+  </div><a class="u-url" href="/digital-chinese-history-blog/gis/maps/2022/01/20/historical_base_map.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/digital-chinese-history-blog/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/digital-chinese-history-blog/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/digital-chinese-history-blog/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>This site focuses on Python and aims to support users to conduct academic research in the humanities using open source programming languages.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/pinkychow1010" target="_blank" title="pinkychow1010"><svg class="svg-icon grey"><use xlink:href="/digital-chinese-history-blog/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/chinese_digital" target="_blank" title="chinese_digital"><svg class="svg-icon grey"><use xlink:href="/digital-chinese-history-blog/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

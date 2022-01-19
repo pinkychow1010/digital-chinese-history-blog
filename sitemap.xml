@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
-<loc>https://pinkychow1010.github.io/digital-chinese-history-blog/markdown/2020/01/14/test-markdown-post.html</loc>
-<lastmod>2020-01-14T00:00:00-06:00</lastmod>
-</url>
-<url>
 <loc>https://pinkychow1010.github.io/digital-chinese-history-blog/re/level-2/chapter-2/2020/01/22/Regular_Expression_TextExtraction.html</loc>
 <lastmod>2020-01-22T00:00:00-06:00</lastmod>
 </url>
@@ -73,6 +69,10 @@
 <lastmod>2022-01-20T00:00:00-06:00</lastmod>
 </url>
 <url>
+<loc>https://pinkychow1010.github.io/digital-chinese-history-blog/gis/maps/2022/01/20/historical_base_map.html</loc>
+<lastmod>2022-01-20T00:00:00-06:00</lastmod>
+</url>
+<url>
 <loc>https://pinkychow1010.github.io/digital-chinese-history-blog/about/</loc>
 </url>
 <url>
@@ -101,10 +101,10 @@
 </url>
 <url>
 <loc>https://pinkychow1010.github.io/digital-chinese-history-blog/data/ocr_example_page.pdf</loc>
-<lastmod>2022-01-19T03:23:05-06:00</lastmod>
+<lastmod>2022-01-19T04:41:31-06:00</lastmod>
 </url>
 <url>
 <loc>https://pinkychow1010.github.io/digital-chinese-history-blog/data/%E6%9D%AF%E9%85%92%E9%87%8A%E5%85%B5%E6%9D%83%E8%80%83_chapter.pdf</loc>
-<lastmod>2022-01-19T03:23:05-06:00</lastmod>
+<lastmod>2022-01-19T04:41:31-06:00</lastmod>
 </url>
 </urlset>
